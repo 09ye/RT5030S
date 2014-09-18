@@ -7,7 +7,7 @@
 //
 
 #import "SHNavigationShowViewController.h"
-#import "NVSkin.h"
+#import "SHSkin.h"
 
 @interface SHNavigationShowViewController ()
 
@@ -52,7 +52,7 @@
     imgShadeFrame.size.width= 8;
     if(imgShade == nil){
         imgShade = [[UIImageView alloc]initWithFrame:imgShadeFrame];
-        imgShade.image = [NVSkin.instance stretchImage:@"showview_left_shade"];
+        imgShade.image = [SHSkin.instance stretchImage:@"showview_left_shade"];
     }
     imgShade.frame = imgShadeFrame;
     self.view.backgroundColor = [UIColor clearColor];
@@ -66,7 +66,7 @@
         UIViewController * controller =  [mNavigationController.viewControllers objectAtIndex:0];
         controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCancel :self action:@selector(btnBack:)];
     }else{
-//        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage: [NVSkin.instance image:@"NaviBack.png" ] title:nil target:self action:@selector(popViewControllerAnimated)];
+//        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage: [SHSkin.instance image:@"NaviBack.png" ] title:nil target:self action:@selector(popViewControllerAnimated)];
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" target: self action:@selector(popViewControllerAnimated)];
     }
 }

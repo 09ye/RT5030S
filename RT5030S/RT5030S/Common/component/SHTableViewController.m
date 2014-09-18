@@ -27,10 +27,6 @@
     return self;
 }
 
-- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -44,13 +40,17 @@
         return mList.count + 1;
     }
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0;
+}
 
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, self.view.frame.size.width - 20, 44)];
     label.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
     label.userstyle = @"labmidmilk";
-    label.backgroundColor = [NVSkin.instance colorOfStyle:@"ColorBackGroundCell"];
+    label.backgroundColor = [SHSkin.instance colorOfStyle:@"ColorBackGroundCell"];
     label.textAlignment = NSTextAlignmentCenter;
     return label;
 }
@@ -59,7 +59,7 @@
 {
     [super loadSkin];
     if(self.showTitle){
-        UIImage * img = [NVSkin.instance image:@"icon-top.png"];
+        UIImage * img = [SHSkin.instance image:@"icon-top.png"];
         UIImageView * imgView =[[UIImageView alloc]initWithImage: img];
         imgView.frame = CGRectMake(self.tableView.frame.size.width/2 - img.size.width/2, -img.size.height - 10, img.size.width, img.size.height);
         [self.tableView addSubview:imgView];
@@ -156,7 +156,7 @@
     return nil;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row >= mList.count || mList.count == 0 ){
         return 44;

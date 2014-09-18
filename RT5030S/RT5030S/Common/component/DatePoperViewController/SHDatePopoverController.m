@@ -19,7 +19,7 @@
     mCalendar.delegate = self;
     UIViewController * controller = [[UIViewController alloc]init];
     controller.view = mCalendar;
-    mCalendar.selectColor = [NVSkin.instance colorOfStyle:@"ColorStyleCellSelected"];
+    mCalendar.selectColor = [SHSkin.instance colorOfStyle:@"ColorStyleCellSelected"];
     self.popoverContentSize = mCalendar.bounds.size;
     if (self = [super initWithContentViewController:controller]){
         

@@ -76,11 +76,15 @@ static UINavigationController * __NAVIGATION__;
                     if(!iOS7){
                         __NAVIGATION__.navigationBar.clipsToBounds = YES;
                     }
-                    if([NVSkin.instance colorOfStyle:@"ColorBase"]!= nil && iOS7){
-                        __NAVIGATION__.navigationBar.barTintColor = [NVSkin.instance colorOfStyle:@"ColorBase"];
+                    if([SHSkin.instance colorOfStyle:@"ColorBase"]!= nil && iOS7){
+                        __NAVIGATION__.navigationBar.barTintColor = [SHSkin.instance colorOfStyle:@"ColorBase"];
+                        if([UIImage imageNamed:@"navigation_bg.png"]){
+                        [__NAVIGATION__.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigation_bg.png"] forBarMetrics:UIBarMetricsDefault];
+                        }
+
                     }
                     [[UIApplication sharedApplication].keyWindow addSubview:__NAVIGATION__.view];
-                    __NAVIGATION__.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCancel:self action:@selector(btnCancel:)];
+                    __NAVIGATION__.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCancel:   self action:@selector(btnCancel:)];
                     CGRect rect = __NAVIGATION__.view.frame;
                     rect.origin.y = [UIApplication sharedApplication].keyWindow.frame.size.height;
                     __NAVIGATION__.view.frame = rect;

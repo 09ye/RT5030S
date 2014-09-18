@@ -14,12 +14,62 @@
 #import "WeiboApi.h"
 
 
+@implementation SHAnalyzeFactoryExtension1
+
+- (BOOL) analyzeDate:(SHTask *) task Data:(NSData*)data
+{
+    
+    NSError * error ;
+    NSDictionary * netreutrn = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions)NSJSONWritingPrettyPrinted error:&error];
+    if(netreutrn == nil){
+        return NO;
+    }
+    int code = 0;
+    NSString * message;
+    if([netreutrn valueForKey:@"message"]){
+        message = [netreutrn  objectForKey:@"msg"];
+        
+    }else{
+        message = [netreutrn objectForKey:@"message"];
+        
+    }
+
+    Respinfo* res  = [[Respinfo alloc]initWithCode:code message:message];
+    SEL resSel = @selector(setRespinfo:);
+    if([task respondsToSelector:resSel] && res){
+        IMP p = [task methodForSelector:resSel];
+        p (task,resSel,res);
+    }
+    SEL resData = @selector(setResult:);
+//    if([task netreutrn:resData]){
+//        IMP p = [task methodForSelector:resData];
+//        NSObject * obj = [netreutrn valueForKey:@"data"];
+//        //        if([obj containsObject:@"session_id"]){
+//        //            Entironment.instance.sessionid = [netreutrn valueForKey:@"session_id"];
+//        //        }
+//        if([obj isKindOfClass:[NSDictionary class]]){
+//            NSDictionary * d = (NSDictionary*)obj;
+//            if([[d allKeys] containsObject:@"session_id"]){
+//                SHEntironment.instance.sessionid = [d valueForKey:@"session_id"];
+//            }
+//        }
+//        
+//    }
+    
+    
+    
+    return YES;
+}
+
+@end
+
 @implementation AppDelegate
 @synthesize myAddressResult;
 @synthesize locationDistrict;
 static bool __isupdate = NO;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    [SHAnalyzeFactory setAnalyExtension:[[SHAnalyzeFactoryExtension1 alloc]init]];
 #ifdef DEBUG
     [SHTask pull:URL_HEADER newUrl:BATA_HEADER];
 #endif
@@ -143,6 +193,10 @@ static bool __isupdate = NO;
         //        [myAlertView show];
         
         //	定位时非直辖市传值到市，如：江苏苏州市；直辖市传值到区，如：上海上海市闸北区 // provicne  上海 江苏
+        if (provice.length==0) {
+            NSLog(@"%@==省份",provice);
+            return;
+        }
         SHPostTaskM * post = [[SHPostTaskM alloc]init];
         post.URL = URL_FOR(@"getareainfo");
         

@@ -37,8 +37,8 @@
 
 -(void)loadSkin
 {
-    self.selectedBackgroundView.backgroundColor = [NVSkin.instance colorOfStyle:@"ColorStyleCellSelected"];
-    self.backgroundColor =  [NVSkin.instance colorOfStyle:@"ColorBackGroundCell"];
+    self.selectedBackgroundView.backgroundColor = [SHSkin.instance colorOfStyle:@"ColorStyleCellSelected"];
+    self.backgroundColor =  [SHSkin.instance colorOfStyle:@"ColorBackGroundCell"];
 }
 
 - (void) alternate :(NSIndexPath*) indexpath
@@ -46,7 +46,7 @@
     if(indexpath.row % 2 != 0){
           self.backgroundColor = [UIColor clearColor];
     }else{
-        self.backgroundColor = [NVSkin.instance colorOfStyle:@"ColorLightBackGround"];
+        self.backgroundColor = [SHSkin.instance colorOfStyle:@"ColorLightBackGround"];
     }
 }
 - (void)showAlertDialog:(NSString*)content

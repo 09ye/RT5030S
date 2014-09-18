@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ISHSkin <NSObject>
+
+-(void)loadSkin;
+
+@end
 
 @interface NVSkinValue :NSObject
 
@@ -39,7 +44,7 @@ typedef  enum
     FontScaleLarge
 }FontScale;
 
-@interface NVSkin : NSObject
+@interface SHSkin : NSObject
 {
     @private
     NSString*  _postfix;
@@ -63,7 +68,7 @@ typedef  enum
 //实例
 -(UIFont*)fontOfStyle:(NSString*)style;
 
-+(NVSkin*)instance;
++(SHSkin*)instance;
 //
 - (id)resource: (NSString*)type  key:(NSString *) key;
 -(NSString *)resourceString:(NSString*)key;

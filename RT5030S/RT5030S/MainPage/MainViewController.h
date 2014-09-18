@@ -7,7 +7,11 @@
 //
 
 #import "SHTableViewController.h"
+#import "SHLoginViewController.h"
 
 @interface MainViewController : SHTableViewController
+{
+     SHLoginViewController* loginViewController;
+}
 
 @end

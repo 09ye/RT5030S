@@ -43,6 +43,9 @@
 #define RECT_MAIN_LANDSCAPE_LEFT CGRectMake(20, 0, 768, 1004)
 #define LIST_PAGE_SIZE 10
 
+//config
+#define USER_CENTER_LOGINNAME @"user_center_loginname"
+
 //notification
 #define NOTIFICATION_LOGIN_SUCCESSFUL @"notification_login_successful"
 

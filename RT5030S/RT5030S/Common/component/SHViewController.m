@@ -81,7 +81,10 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 40, 40)];
+    if([self.intent.args valueForKeyPath:@"title"]){
+        self.title = [self.intent.args valueForKeyPath:@"title"];
+    }
+    UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
     [button setImage:[UIImage imageNamed:@"NaviBack"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
     //    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
@@ -388,7 +391,7 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
 
 - (void)loadSkin
 {
-    self.view.backgroundColor = [NVSkin.instance colorOfStyle:@"ColorBaseBackGround"];
+    self.view.backgroundColor = [SHSkin.instance colorOfStyle:@"ColorBaseBackGround"];
 }
 
 - (void)showAlertDialog:(NSString*)content

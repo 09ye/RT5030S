@@ -27,8 +27,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification:) name:NOTIFICATION_LOGIN_SUCCESSFUL object:nil];
+    loginViewController = [[SHLoginViewController alloc ]init];
+    [self.view addSubview:loginViewController.view];
 }
-
+- (void)notification:(NSObject*)sender
+{
+    [loginViewController.view removeFromSuperview];
+    //[self showAlertDialog:@"您有新的重要任务事项" button:@"前往查看" otherButton:@"取消"];
+    //    tabbar.selectedItem = [tabbar.items objectAtIndex:0];
+    //    [self tabBar:tabbar didSelectItem:tabbar.selectedItem];
+//    SHIntent*intent = [[SHIntent alloc]init:@"un_do_message" delegate:nil containner:nil];
+//    [[UIApplication sharedApplication]open:intent];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

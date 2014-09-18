@@ -50,6 +50,7 @@
 #import "SHCalendarViewController.h"
 #import "BWStatusBarOverlay.h"
 #import "JDStatusBarNotification.h"
+#import "SHCollectionImagesViewController.h"
 
 
 

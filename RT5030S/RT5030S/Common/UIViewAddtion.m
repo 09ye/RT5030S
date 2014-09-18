@@ -12,7 +12,7 @@
 - (void)setUserstyle:(NSString *)userstyle
 {
     //[NVSkin.instance accommodate:self key:(NSString*) style];
-    [NVSkin.instance accommodate:self :userstyle];
+    [SHSkin.instance accommodate:self :userstyle];
 }
 
 -(NSString *)userstyle

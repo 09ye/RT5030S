@@ -42,7 +42,7 @@
     btn.userstyle = @"btnnavigation";
     //btn.backgroundColor = [UIColor blackColor];
     if(image_){
-        [btn setBackgroundImage:[NVSkin.instance stretchImage:@"button_item_bg"] forState:(UIControlState)UIControlStateNormal];
+        [btn setBackgroundImage:[SHSkin.instance stretchImage:@"button_item_bg"] forState:(UIControlState)UIControlStateNormal];
     }
     [view addSubview:btn];
     view.backgroundColor = [UIColor clearColor];

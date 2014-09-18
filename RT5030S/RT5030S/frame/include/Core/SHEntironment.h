@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SHVersion.h"
 
-@interface Entironment : NSObject
+@interface SHEntironment : NSObject
 {
 }
 @property (nonatomic,copy) NSString* loginName;
@@ -20,5 +20,5 @@
 @property (nonatomic,readonly,strong) SHVersion * version;
 @property (nonatomic,readonly,copy) NSString * deviceInfo;
 
-+ (Entironment* )instance;
++ (SHEntironment* )instance;
 @end

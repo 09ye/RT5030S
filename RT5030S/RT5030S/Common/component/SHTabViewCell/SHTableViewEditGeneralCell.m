@@ -23,7 +23,7 @@
 {
     [super awakeFromNib];
     mPlan.layer.cornerRadius = 4;
-    mPlan.backgroundColor = [NVSkin.instance colorOfStyle:@"ColorStyleLight"];
+    mPlan.backgroundColor = [SHSkin.instance colorOfStyle:@"ColorStyleLight"];
     self.txtTitle.layer.cornerRadius = 4;
     
 }
