@@ -63,6 +63,27 @@
     taskDefaultImag.cachetype = CacheTypeTimes;
     self.urlTask = taskDefaultImag;
 }
+-(void)setCircleStyle:(UIColor *)bordercolor
+{
+    //默认白色边框
+    [self.layer setCornerRadius:self.frame.size.height/2];
+    [self.layer setMasksToBounds:YES];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+    [self setClipsToBounds:YES];
+    self.layer.shadowColor = [UIColor grayColor].CGColor;
+    self.layer.shadowOffset = CGSizeMake(4, 4);
+    self.layer.shadowOpacity = 0.5;
+    self.layer.shadowRadius = 3.0;
+    if (bordercolor) {
+        self.layer.borderColor = [bordercolor CGColor];
+    }else{
+        self.layer.borderColor = [[UIColor whiteColor] CGColor];
+    }
+    
+    self.layer.borderWidth = 0.8f;
+    self.userInteractionEnabled = YES;
+    self.backgroundColor = [UIColor clearColor];
+}
 
 - (void)taskDidFinished:(SHTask *)task
 {

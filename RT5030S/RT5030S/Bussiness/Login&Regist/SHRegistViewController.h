@@ -12,20 +12,23 @@
 {
     __weak IBOutlet UITextField *labPhone;
     __weak IBOutlet UITextField *labValidate;
-    __weak IBOutlet UITextField *labPassword;
-    __weak IBOutlet UIImageView *imgAgree;
-    __weak IBOutlet UISwitch *mSwitch;
-    __weak IBOutlet UILabel *labAgreement;
+    __weak IBOutlet UITextField *labPassOne;
+    __weak IBOutlet UITextField *labPassTwo;
     BOOL imageFlag;
-    __weak IBOutlet UIView *mView_1;
-    __weak IBOutlet UIView *mView_2;
-    __weak IBOutlet UIView *mView_3;
-    __weak IBOutlet UIButton *mView_validate;
+    BOOL registType;
+    NSString * verificationCode;
     __weak IBOutlet UIButton *mBtn_submit;
 
+    __weak IBOutlet UIButton *btnVerification;
+    __weak IBOutlet UIButton *mBtnEmail;
+    __weak IBOutlet UIButton *mBtnPhone;
+    __weak IBOutlet UIButton *mBtnAgree;
 }
-- (IBAction)validateOnTouch:(id)sender;
 - (IBAction)submitOnTouch:(id)sender;
-- (IBAction)switchOnTouch:(id)sender;
+- (IBAction)btnEmailResgitOntouch:(id)sender;
+- (IBAction)btnPhoneResgitOntouch:(id)sender;
+- (IBAction)btnVerificationOntouch:(id)sender;
+- (IBAction)btnAgreeOntouch:(id)sender;
+- (IBAction)btnReadAgreementOntouch:(id)sender;
 
 @end

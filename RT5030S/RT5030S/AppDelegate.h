@@ -15,10 +15,10 @@
 #import <ShareSDK/ShareSDK.h>
 #import "SHAnalyzeFactory.h"
 
-@interface SHAnalyzeFactoryExtension1 : SHAnalyzeFactoryExtension
-
-
-@end
+//@interface SHAnalyzeFactoryExtension1 : SHAnalyzeFactoryExtension
+//
+//
+//@end
 
 @interface AppDelegate : SHAppDelegate<UIApplicationDelegate,BMKGeneralDelegate,WXApiDelegate,WeiboSDKDelegate,SHTaskDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,SHTaskDelegate>
 {

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SHPhaseReportViewController">
+            <connections>
+                <outlet property="imgTitle" destination="CqJ-WB-J1S" id="oeb-vC-8NN"/>
+                <outlet property="mLabCalendarDate" destination="Lfq-Tj-kR2" id="UcN-eC-ueO"/>
+                <outlet property="mLabCriLeftContent" destination="NvY-bE-0jd" id="Q8Y-jW-6H9"/>
+                <outlet property="mLabCriLeftTitle" destination="4Ue-h7-zmD" id="Gsc-5q-N4b"/>
+                <outlet property="mLabCriMidContent" destination="p7k-Wb-Cvi" id="0k8-kZ-WkU"/>
+                <outlet property="mLabCriMidTitle" destination="y91-RG-Gh4" id="Cn2-nh-c7W"/>
+                <outlet property="mLabCriRightContent1" destination="kRk-lh-05D" id="mkN-Cb-yU5"/>
+                <outlet property="mLabCriRightContent2" destination="3Cv-Nc-f3f" id="IJt-bT-RwG"/>
+                <outlet property="mLabCriRightTitle" destination="Zs1-Yn-u3Q" id="LeK-bo-WBI"/>
+                <outlet property="mLabTitle" destination="wPv-xU-iWN" id="GZa-rq-nst"/>
+                <outlet property="mSegment" destination="pFP-xe-CvA" id="tsW-Qg-suX"/>
+                <outlet property="mViewChart" destination="MN0-rU-INR" id="Rst-3T-xXL"/>
+                <outlet property="mViewContain" destination="fhU-Yo-5us" id="2b8-f7-oCU"/>
+                <outlet property="mbtnTab1" destination="Gd8-b6-Vwc" id="8Pp-Oo-Tug"/>
+                <outlet property="mbtnTab2" destination="Kgh-yv-wSb" id="hG2-Aa-4Kd"/>
+                <outlet property="mbtnTab3" destination="xNk-Xj-qY9" id="sQB-Cp-kmp"/>
+                <outlet property="mbtnTab4" destination="EFQ-KP-QDm" id="MBw-qS-6Hg"/>
+                <outlet property="tableView" destination="B77-6H-8Hy" id="kkZ-4V-iXE"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gd8-b6-Vwc">
+                    <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
+                    <state key="normal" title="卡路里" backgroundImage="xuangxiang_selected.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnTopTabOntohc:" destination="-1" eventType="touchUpInside" id="zar-4b-5CP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNk-Xj-qY9">
+                    <rect key="frame" x="160" y="0.0" width="80" height="44"/>
+                    <state key="normal" title="使用频次" backgroundImage="xuanxiang_default.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnTopTabOntohc:" destination="-1" eventType="touchUpInside" id="xNE-XY-vu9"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgh-yv-wSb">
+                    <rect key="frame" x="80" y="0.0" width="80" height="44"/>
+                    <state key="normal" title="使用时长" backgroundImage="xuanxiang_default.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnTopTabOntohc:" destination="-1" eventType="touchUpInside" id="sbK-yj-1uN"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFQ-KP-QDm">
+                    <rect key="frame" x="240" y="0.0" width="80" height="44"/>
+                    <state key="normal" title="模式偏好" backgroundImage="xuanxiang_default.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnTopTabOntohc:" destination="-1" eventType="touchUpInside" id="B17-1t-US3"/>
+                    </connections>
+                </button>
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="B77-6H-8Hy">
+                    <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="OAe-OX-K3s"/>
+                        <outlet property="delegate" destination="-1" id="4bF-ja-CAM"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhU-Yo-5us">
+                    <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pFP-xe-CvA">
+                            <rect key="frame" x="110" y="15" width="100" height="29"/>
+                            <segments>
+                                <segment title="最近"/>
+                                <segment title="上周"/>
+                            </segments>
+                            <color key="tintColor" red="0.44705882349999998" green="0.61960784310000006" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="segmentOntouch:" destination="-1" eventType="valueChanged" id="H1J-L4-9nO"/>
+                            </connections>
+                        </segmentedControl>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwh-ID-sJW">
+                            <rect key="frame" x="111" y="56" width="100" height="30"/>
+                            <state key="normal" backgroundImage="bg_calendar.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnCalender:" destination="-1" eventType="touchUpInside" id="6k5-og-ViW"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_calendar.png" translatesAutoresizingMaskIntoConstraints="NO" id="5uE-8G-80A">
+                            <rect key="frame" x="114" y="61" width="20" height="20"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="71月21日" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lfq-Tj-kR2">
+                            <rect key="frame" x="136" y="60" width="80" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_cricle_org.png" translatesAutoresizingMaskIntoConstraints="NO" id="LRC-JK-KPp">
+                            <rect key="frame" x="118" y="312" width="80" height="80"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_cricle_greed.png" translatesAutoresizingMaskIntoConstraints="NO" id="ux0-G8-NoT">
+                            <rect key="frame" x="20" y="308" width="80" height="80"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="200卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvY-bE-0jd">
+                            <rect key="frame" x="12" y="341" width="100" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.094117647060000004" green="0.66274509800000003" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="总卡路里" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ue-h7-zmD">
+                            <rect key="frame" x="10" y="397" width="100" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.094117647060000004" green="0.66274509800000003" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="单次最高" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y91-RG-Gh4">
+                            <rect key="frame" x="108" y="397" width="100" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.96470588239999999" green="0.70588235290000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2000卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7k-Wb-Cvi">
+                            <rect key="frame" x="108" y="341" width="100" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.96470588239999999" green="0.70588235290000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="使用天数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zs1-Yn-u3Q">
+                            <rect key="frame" x="208" y="397" width="100" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.32156862749999998" green="0.66274509800000003" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRk-lh-05D">
+                            <rect key="frame" x="198" y="331" width="100" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.32156862749999998" green="0.66274509800000003" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cv-Nc-f3f">
+                            <rect key="frame" x="216" y="352" width="100" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.32156862749999998" green="0.66274509800000003" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_cricle_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cj2-uN-Ohl">
+                            <rect key="frame" x="218" y="312" width="80" height="80"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_calrio.png" translatesAutoresizingMaskIntoConstraints="NO" id="CqJ-WB-J1S">
+                            <rect key="frame" x="14" y="63" width="15" height="15"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MN0-rU-INR">
+                            <rect key="frame" x="10" y="100" width="300" height="200"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="卡路里" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPv-xU-iWN">
+                            <rect key="frame" x="32" y="60" width="82" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.96470588239999999" green="0.70588235290000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="127" y="147"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg_calendar.png" width="178" height="44"/>
+        <image name="ic_calendar.png" width="32" height="35"/>
+        <image name="ic_calrio.png" width="32" height="22"/>
+        <image name="ic_cricle_blue.png" width="146" height="146"/>
+        <image name="ic_cricle_greed.png" width="146" height="146"/>
+        <image name="ic_cricle_org.png" width="146" height="146"/>
+        <image name="xuangxiang_selected.png" width="161" height="44"/>
+        <image name="xuanxiang_default.png" width="161" height="44"/>
+    </resources>
+</document>

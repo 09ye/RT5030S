@@ -12,56 +12,57 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WeiboApi.h"
+#import "SHBlueToothManager.h"
 
 
-@implementation SHAnalyzeFactoryExtension1
-
-- (BOOL) analyzeDate:(SHTask *) task Data:(NSData*)data
-{
-    
-    NSError * error ;
-    NSDictionary * netreutrn = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions)NSJSONWritingPrettyPrinted error:&error];
-    if(netreutrn == nil){
-        return NO;
-    }
-    int code = 0;
-    NSString * message;
-    if([netreutrn valueForKey:@"message"]){
-        message = [netreutrn  objectForKey:@"msg"];
-        
-    }else{
-        message = [netreutrn objectForKey:@"message"];
-        
-    }
-
-    Respinfo* res  = [[Respinfo alloc]initWithCode:code message:message];
-    SEL resSel = @selector(setRespinfo:);
-    if([task respondsToSelector:resSel] && res){
-        IMP p = [task methodForSelector:resSel];
-        p (task,resSel,res);
-    }
-    SEL resData = @selector(setResult:);
-//    if([task netreutrn:resData]){
-//        IMP p = [task methodForSelector:resData];
-//        NSObject * obj = [netreutrn valueForKey:@"data"];
-//        //        if([obj containsObject:@"session_id"]){
-//        //            Entironment.instance.sessionid = [netreutrn valueForKey:@"session_id"];
-//        //        }
-//        if([obj isKindOfClass:[NSDictionary class]]){
-//            NSDictionary * d = (NSDictionary*)obj;
-//            if([[d allKeys] containsObject:@"session_id"]){
-//                SHEntironment.instance.sessionid = [d valueForKey:@"session_id"];
-//            }
-//        }
+//@implementation SHAnalyzeFactoryExtension1
+//
+//- (BOOL) analyzeDate:(SHTask *) task Data:(NSData*)data
+//{
+//    
+//    NSError * error ;
+//    NSDictionary * netreutrn = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions)NSJSONWritingPrettyPrinted error:&error];
+//    if(netreutrn == nil){
+//        return NO;
+//    }
+//    int code = 0;
+//    NSString * message;
+//    if([netreutrn valueForKey:@"message"]){
+//        message = [netreutrn  objectForKey:@"msg"];
+//        
+//    }else{
+//        message = [netreutrn objectForKey:@"message"];
 //        
 //    }
-    
-    
-    
-    return YES;
-}
+//
+//    Respinfo* res  = [[Respinfo alloc]initWithCode:code message:message];
+//    SEL resSel = @selector(setRespinfo:);
+//    if([task respondsToSelector:resSel] && res){
+//        IMP p = [task methodForSelector:resSel];
+//        p (task,resSel,res);
+//    }
+//    SEL resData = @selector(setResult:);
+////    if([task netreutrn:resData]){
+////        IMP p = [task methodForSelector:resData];
+////        NSObject * obj = [netreutrn valueForKey:@"data"];
+////        //        if([obj containsObject:@"session_id"]){
+////        //            Entironment.instance.sessionid = [netreutrn valueForKey:@"session_id"];
+////        //        }
+////        if([obj isKindOfClass:[NSDictionary class]]){
+////            NSDictionary * d = (NSDictionary*)obj;
+////            if([[d allKeys] containsObject:@"session_id"]){
+////                SHEntironment.instance.sessionid = [d valueForKey:@"session_id"];
+////            }
+////        }
+////        
+////    }
+//    
+//    
+//    
+//    return NO;
+//}
 
-@end
+//@end
 
 @implementation AppDelegate
 @synthesize myAddressResult;
@@ -69,12 +70,12 @@
 static bool __isupdate = NO;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    [SHAnalyzeFactory setAnalyExtension:[[SHAnalyzeFactoryExtension1 alloc]init]];
+//    [SHAnalyzeFactory setAnalyExtension:[[SHAnalyzeFactoryExtension1 alloc]init]];
 #ifdef DEBUG
-    [SHTask pull:URL_HEADER newUrl:BATA_HEADER];
+    [SHTask pull:URL_HEADER newUrl:URL_DEVELOPER];
 #endif
     // Override point for customization after application launch.
-    
+   [SHBlueToothManager.instance scanDevinces] ;
     
     
     // 新浪微博
@@ -279,8 +280,8 @@ static bool __isupdate = NO;
     else{
         
     }
-    return [ShareSDK handleOpenURL:url
-                        wxDelegate:self];
+//    return [ShareSDK handleOpenURL:url
+//                        wxDelegate:self];
     
     //return   [WXApi  handleOpenURL:url delegate:self];
     //return [TencentOAuth HandleOpenURL:url];
@@ -308,17 +309,17 @@ static bool __isupdate = NO;
         
         return [ WeiboSDK  handleOpenURL:url delegate:self];
     }
-    //    else if([sourceApplication  isEqualToString:@"com.tencent.xin"]){
-    //
-    //        BOOL isSuc = [WXApi handleOpenURL:url delegate:self];
-    //
-    //        NSLog(@"url %@ isSuc %d",url,isSuc == YES ? 1 : 0);
-    //        return  isSuc;
-    //    }
-    return [ShareSDK handleOpenURL:url
-                 sourceApplication:sourceApplication
-                        annotation:annotation
-                        wxDelegate:self];
+    else if([sourceApplication  isEqualToString:@"com.tencent.xin"]){
+        
+        BOOL isSuc = [WXApi handleOpenURL:url delegate:self];
+        
+        NSLog(@"url %@ isSuc %d",url,isSuc == YES ? 1 : 0);
+        return  isSuc;
+    }
+//    return [ShareSDK handleOpenURL:url
+//                 sourceApplication:sourceApplication
+//                        annotation:annotation
+//                        wxDelegate:self];
     return   [WXApi  handleOpenURL:url delegate:self];
 }
 
@@ -484,7 +485,7 @@ static bool __isupdate = NO;
         [dic setValue:[mResutl objectForKey:@"AreaName"] forKey:@"CodeValue"];
         [dic setValue:[mResutl objectForKey:@"AreaId"] forKey:@"CodeID"];
         locationDistrict = dic;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_DISTRICT object:dic];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_DISTRICT object:dic];
         [[NSUserDefaults standardUserDefaults] setValue:dic  forKey:@"location_district"];
         
     }else if (task.tag == 2) {// 定位到市  网聘会用
@@ -492,7 +493,7 @@ static bool __isupdate = NO;
         NSMutableDictionary * dic =  [[NSMutableDictionary alloc]init];
         [dic setValue:[mResutl objectForKey:@"AreaName"] forKey:@"CodeValue"];
         [dic setValue:[mResutl objectForKey:@"AreaId"] forKey:@"CodeID"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_CITY object:dic];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_CITY object:dic];
         [[NSUserDefaults standardUserDefaults] setValue:dic  forKey:@"location_city"];
     }
     

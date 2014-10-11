@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SHDataReportViewController">
+            <connections>
+                <outlet property="imgPhoto" destination="FTP-wG-eDk" id="XUv-OT-m0g"/>
+                <outlet property="mLabCalrio" destination="BG4-Vc-4DG" id="fif-Rr-x2x"/>
+                <outlet property="mLabTime" destination="EmP-9q-yfT" id="d4y-QA-8JR"/>
+                <outlet property="mViewShare" destination="DH3-Q9-iHJ" id="oeY-3U-eVB"/>
+                <outlet property="txtSuggestDiet" destination="8gI-oj-AAG" id="bkC-7U-qLd"/>
+                <outlet property="txtSuggestRun" destination="ol7-em-0S5" id="8ym-nO-GoB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dingbu_yonghuxinxi_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="XVI-Kb-bH3">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="278分钟" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmP-9q-yfT">
+                    <rect key="frame" x="147" y="53" width="100" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.32156862749999998" green="0.66274509800000003" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nan.png" translatesAutoresizingMaskIntoConstraints="NO" id="FTP-wG-eDk" customClass="SHImageView">
+                    <rect key="frame" x="8" y="25" width="50" height="50"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="累计消耗:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgc-SU-1Rr">
+                    <rect key="frame" x="73" y="25" width="65" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="115686卡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BG4-Vc-4DG">
+                    <rect key="frame" x="147" y="25" width="100" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.96470588239999999" green="0.70588235290000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="累计时间:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQt-Up-jTH">
+                    <rect key="frame" x="73" y="53" width="65" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mianbao_tubiao.png" translatesAutoresizingMaskIntoConstraints="NO" id="Aea-vL-j5U">
+                    <rect key="frame" x="236" y="26" width="20" height="20"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yundongfangan_tubiao.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sg1-m6-QkY">
+                    <rect key="frame" x="8" y="111" width="15" height="15"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="远动方案" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyy-5O-dsD">
+                    <rect key="frame" x="30" y="108" width="60" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.32156862749999998" green="0.66274509800000003" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ol7-em-0S5">
+                    <rect key="frame" x="8" y="134" width="304" height="128"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="WmX-5j-txM"/>
+                    </connections>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8gI-oj-AAG">
+                    <rect key="frame" x="10" y="316" width="304" height="244"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="i1Q-6O-xwu"/>
+                    </connections>
+                </textView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dafenge_lanse.png" translatesAutoresizingMaskIntoConstraints="NO" id="Mam-ii-3nG">
+                    <rect key="frame" x="10" y="277" width="300" height="1"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="饮食建议" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGg-sF-hdg">
+                    <rect key="frame" x="30" y="286" width="60" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.32156862749999998" green="0.66274509800000003" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yinshijianyi_tubiao.png" translatesAutoresizingMaskIntoConstraints="NO" id="LTg-i4-Kkb">
+                    <rect key="frame" x="8" y="289" width="15" height="15"/>
+                </imageView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DH3-Q9-iHJ" customClass="SHShareView">
+                    <rect key="frame" x="0.0" y="342" width="104" height="28"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fenxiang_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="E8a-fC-yWN">
+                            <rect key="frame" x="0.0" y="0.0" width="104" height="28"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZv-uL-xWu">
+                            <rect key="frame" x="10" y="2" width="24" height="24"/>
+                            <state key="normal" backgroundImage="weixin_fenxiang.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnShareWeixinOntouch:" destination="DH3-Q9-iHJ" eventType="touchUpInside" id="ex3-E4-DWv"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EW-R4-wZM">
+                            <rect key="frame" x="43" y="2" width="24" height="24"/>
+                            <state key="normal" backgroundImage="xinlang_fenxiang_button.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnShareWeiboOntouch:" destination="DH3-Q9-iHJ" eventType="touchUpInside" id="3V4-iH-Mgq"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAC-M1-9Qn">
+                            <rect key="frame" x="77" y="2" width="24" height="24"/>
+                            <state key="normal" backgroundImage="fenxiang_button.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnShareOntouch:" destination="DH3-Q9-iHJ" eventType="touchUpInside" id="wwn-Fg-Qvx"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dafenge_lanse.png" width="300" height="1"/>
+        <image name="dingbu_yonghuxinxi_bg.png" width="321" height="95"/>
+        <image name="fenxiang_bg.png" width="104" height="28"/>
+        <image name="fenxiang_button.png" width="24" height="24"/>
+        <image name="mianbao_tubiao.png" width="19" height="19"/>
+        <image name="nan.png" width="53" height="69"/>
+        <image name="weixin_fenxiang.png" width="24" height="24"/>
+        <image name="xinlang_fenxiang_button.png" width="24" height="24"/>
+        <image name="yinshijianyi_tubiao.png" width="16" height="15"/>
+        <image name="yundongfangan_tubiao.png" width="14" height="14"/>
+    </resources>
+</document>

@@ -27,4 +27,5 @@
 
 - (void)setUrl:(NSString *)url_ args:(NSString*) idvalue;
 - (void)setUrl:(NSString *)url_;
+- (void)setCircleStyle:(UIColor *) bordercolor;
 @end

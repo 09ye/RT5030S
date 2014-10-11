@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SHRegistViewController">
             <connections>
-                <outlet property="imgAgree" destination="5fI-9t-hYf" id="ZKy-BP-LcD"/>
-                <outlet property="labPhone" destination="YWi-Z1-Yfz" id="gPN-dr-Fef"/>
+                <outlet property="btnVerification" destination="Vle-ZC-DFO" id="UdN-HG-RqZ"/>
+                <outlet property="labPassOne" destination="puZ-YA-2lh" id="FQf-5l-blj"/>
+                <outlet property="labPassTwo" destination="hie-RU-3I5" id="kG4-Xl-vvc"/>
+                <outlet property="labPhone" destination="YWi-Z1-Yfz" id="yT9-cn-Laz"/>
                 <outlet property="labValidate" destination="rBj-lP-T24" id="P3S-4w-Pxf"/>
+                <outlet property="mBtnAgree" destination="QrD-Qw-t5E" id="oQM-Fg-rBw"/>
+                <outlet property="mBtnEmail" destination="Ktz-Ka-k8E" id="9zI-Fw-pA3"/>
+                <outlet property="mBtnPhone" destination="5bY-SR-cGK" id="FfV-NH-cgI"/>
                 <outlet property="mBtn_submit" destination="AfJ-gg-Qo1" id="Fte-p0-cIk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,30 +24,39 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入手机号码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YWi-Z1-Yfz">
-                    <rect key="frame" x="20" y="60" width="285" height="30"/>
+                    <rect key="frame" x="20" y="60" width="280" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="IZY-gs-uKX"/>
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入验证码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rBj-lP-T24">
-                    <rect key="frame" x="20" y="110" width="285" height="30"/>
+                    <rect key="frame" x="20" y="110" width="280" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="JPc-ld-U5Z"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="puZ-YA-2lh">
-                    <rect key="frame" x="20" y="160" width="285" height="30"/>
+                    <rect key="frame" x="20" y="160" width="280" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="6QJ-zT-npy"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="确认密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hie-RU-3I5">
-                    <rect key="frame" x="20" y="210" width="285" height="30"/>
+                    <rect key="frame" x="20" y="210" width="280" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="eVt-Br-PhY"/>
+                    </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfJ-gg-Qo1">
-                    <rect key="frame" x="22" y="310" width="280" height="40"/>
+                    <rect key="frame" x="20" y="310" width="280" height="40"/>
                     <color key="backgroundColor" red="0.87450980389999999" green="0.3800659891" blue="0.18175429030000001" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="注册" backgroundImage="zhuce_button.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,55 +66,71 @@
                         <action selector="submitOnTouch:" destination="-1" eventType="touchUpInside" id="ktd-c6-hLa"/>
                     </connections>
                 </button>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xieyi_xuangxiang_weixuan.png" translatesAutoresizingMaskIntoConstraints="NO" id="5fI-9t-hYf">
-                    <rect key="frame" x="126" y="266" width="15" height="15"/>
-                </imageView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uaf-mW-cp6">
-                    <rect key="frame" x="42" y="389" width="198" height="1"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bY-SR-cGK">
                     <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="手机注册" backgroundImage="xuangxiang_selected.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="btnPhoneResgitOntouch:" destination="-1" eventType="touchUpInside" id="jn9-tx-TWZ"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ktz-Ka-k8E">
                     <rect key="frame" x="160" y="0.0" width="161" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="邮箱注册" backgroundImage="xuanxiang_default.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="btnEmailResgitOntouch:" destination="-1" eventType="touchUpInside" id="UUm-oQ-pnA"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vle-ZC-DFO">
                     <rect key="frame" x="225" y="110" width="75" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="获取验证码">
                         <color key="titleColor" red="0.99215686270000003" green="0.72941176470000002" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="btnVerificationOntouch:" destination="-1" eventType="touchUpInside" id="Mvb-Gi-M7o"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Le2-H4-SDd">
                     <rect key="frame" x="149" y="259" width="156" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <state key="normal" title="阅读同意软件许可及服务协议">
                         <color key="titleColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="btnReadAgreementOntouch:" destination="-1" eventType="touchUpInside" id="CEp-h6-L07"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QrD-Qw-t5E">
+                    <rect key="frame" x="126" y="266" width="15" height="15"/>
+                    <state key="normal" backgroundImage="xieyi_xuangxiang_selected.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnAgreeOntouch:" destination="-1" eventType="touchUpInside" id="GXn-nh-aMj"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="xieyi_xuangxiang_weixuan.png" width="18" height="18"/>
+        <image name="xieyi_xuangxiang_selected.png" width="18" height="18"/>
         <image name="xuangxiang_selected.png" width="161" height="44"/>
         <image name="xuanxiang_default.png" width="161" height="44"/>
         <image name="zhuce_button.png" width="300" height="30"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

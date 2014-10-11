@@ -7,13 +7,16 @@
 //
 
 #import "SHViewController.h"
+#import <TencentOpenAPI/TencentOAuth.h>
 
-@interface SHLoginViewController : SHViewController<SHTaskDelegate,UITextFieldDelegate>
+@interface SHLoginViewController : SHViewController<SHTaskDelegate,UITextFieldDelegate,TencentSessionDelegate>
 {
 
     __weak IBOutlet UIButton *mBtnLogin;
     __weak IBOutlet UITextField *mTxtName;
     __weak IBOutlet UITextField *mTxtPassword;
+    TencentOAuth * _tencentOAuth;
+    NSMutableArray* _permissions;
    
 }
 - (IBAction)btnResigtOntouch:(id)sender;

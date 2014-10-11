@@ -10,15 +10,16 @@
 #import "Core.h"
 #import "common.h"
 #import "SHAppDelegate.h"
+#import "Utility.h"
 
 
-#define URL_HEADER @ "http://mobile.9191offer.com"
+#define URL_HEADER @ "http://114.215.151.117:8080/topcms/app"
 
-#define BATA_HEADER @ "http://route.9191offer.com:8181"
+#define BATA_HEADER @ "http://114.215.151.117:8080/topcms/app"
 
-#define URL_BATA @ "http://192.168.1.200/api"
+#define URL_BATA @ "http://114.215.151.117:8080/topcms/app"
 
-#define URL_DEVELOPER @ "http://mobile.9191offer.com/"
+#define URL_DEVELOPER @ "http://114.215.151.117:8080/topcms/app"
 
 
 
@@ -45,27 +46,15 @@
 
 //config
 #define USER_CENTER_LOGINNAME @"user_center_loginname"
-
+#define USER_CENTER_PASSWORD @"user_center_password"
 //notification
 #define NOTIFICATION_LOGIN_SUCCESSFUL @"notification_login_successful"
 
 #define NOTIFICATION_LOGINOUT @"notification_loginout"
 #define NOTIFICATION_REGIST_SUCCESSFUL @"notification_regist_successful"
+#define NOTIFICATION_BACK_HOME @"notification_back_home"
+#define NOTIFICATION_BLUETOOTH_DATA_UPDATE @"notification_bluetooth_data_update"
 
-#define NOTIFICATION_CITY_SELECT @"notification_city_select"
-#define NOTIFICATION_ADVANCE_SELECT @"notification_advance_select"
-
-#define NOTIFICATION_RELSASETIME_SELECT @"notification_releasetime_select"
-#define NOTIFICATION_INTERVIEW_HANDLE @"notification_interview_handle"
-
-#define NOTIFICATION_EDIT_SELFINFO_SUCCESSFUL @"notification_edit_selfinfo_successful"
-#define NOTIFICATION_EDIT_SELFINFO @"notification_edit_selfinfo"
-
-#define NOTIFICATION_LOCATION_DISTRICT @"notification_location_district"
-#define NOTIFICATION_LOCATION_CITY @"notification_location_city"
-#define NOTIFICATION_VIDEO_UPLOADER_SUCCESSFUL @"notification_video_uploader_successful"
-
-#define NOTIFICATION_JOBLIST_STORE_CHANGE @"notification_joblist_store_change"
 //#define NOTIFICATION_LOGIN_SUCCESS @"notification_login_success"
 
 #define NOTIFICATION_EditRefrence @"notification_edit_refrence"
@@ -78,6 +67,14 @@
 
 #define NOTIFICATION_MESSAGE_UPDATE @"notification_message_update"
 /* lqh77 add  */
+
+//userdefault
+#define AUTOLOGIN @"autologin"
+
+#define SEARCH_ME @"searchme"
+
+#define AUTO_LINK @"autolink"
+
 #define ORIGINAL_MAX_WIDTH 640.0f
 
 #define IPHONE5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
