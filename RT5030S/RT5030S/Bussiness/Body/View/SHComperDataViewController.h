@@ -8,7 +8,7 @@
 
 #import "SHTableViewController.h"
 
-@interface SHComperDataViewController : SHTableViewController<SHTableHorizontalViewDataSource,SHTableHorizontalViewDelegate>
+@interface SHComperDataViewController : SHTableViewController<SHTableHorizontalViewDataSource,SHTableHorizontalViewDelegate,SHTaskDelegate>
 {
     __weak IBOutlet UILabel *mLabWeightToday;
     
@@ -16,8 +16,11 @@
     __weak IBOutlet UILabel *mLabWegithWeek;
     __weak IBOutlet UILabel *mLabCalrioWeek;
     __weak IBOutlet UILabel *mLabFreq;
+    __weak IBOutlet UILabel *mLabOtherDay;
     __weak IBOutlet SHTableHorizontalView *mViewWeek;
     int  selectWeek;
+     NSArray * mListWeek;
+    NSDictionary * mResult;
 }
 @property(nonatomic,retain) UINavigationController *navigationCont; // If this view controller has been pushed onto a navigation controller, return it.
 - (IBAction)btnCreateDataReportOntouch:(id)sender;

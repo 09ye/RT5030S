@@ -14,7 +14,7 @@
 		<string>https://github.com/09ye/RT5030S.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>RT5030S/RT5030S.xcodeproj/project.xcworkspace</string>
+	<string>RT5030S/RT5030S.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C763BCE350210CFAE0DDAC05BB37AECD9B54DC41</key>

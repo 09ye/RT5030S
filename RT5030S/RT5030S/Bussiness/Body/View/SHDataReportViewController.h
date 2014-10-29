@@ -9,7 +9,7 @@
 #import "SHTableViewController.h"
 #import "SHShareView.h"
 
-@interface SHDataReportViewController : SHTableViewController
+@interface SHDataReportViewController : SHTableViewController<SHTaskDelegate>
 {
     __weak IBOutlet SHImageView *imgPhoto;
     __strong IBOutlet   SHShareView* mViewShare;
@@ -17,6 +17,7 @@
     __weak IBOutlet UILabel *mLabTime;
     __weak IBOutlet UITextView *txtSuggestRun;
     __weak IBOutlet UITextView *txtSuggestDiet;
+    NSDictionary * mResult;
 }
 
 @end

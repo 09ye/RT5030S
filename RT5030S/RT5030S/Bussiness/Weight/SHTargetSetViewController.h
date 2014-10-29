@@ -8,7 +8,7 @@
 
 #import "SHTableViewController.h"
 
-@interface SHTargetSetViewController : SHTableViewController<SHTableHorizontalViewDataSource,SHTableHorizontalViewDelegate>
+@interface SHTargetSetViewController : SHTableViewController<SHTableHorizontalViewDataSource,SHTableHorizontalViewDelegate,SHTaskDelegate>
 {
     __weak IBOutlet UISegmentedControl *mSegment;
     __weak IBOutlet UILabel *mLabNowTarget;
@@ -19,7 +19,7 @@
     __weak IBOutlet UIImageView *mImgBg;
     __weak IBOutlet UIImageView *img1;
     __weak IBOutlet UIImageView *img2;
-//     NSMutableArray * mArray;
+     NSMutableDictionary * mResult;
     __weak IBOutlet SHTableHorizontalView *mScrollview;
 }
 

@@ -49,7 +49,7 @@
 }
  */
 //http://wiki.connect.qq.com/ios%E5%BC%80%E5%8F%91%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B
-#define  APPID_QQ            @"1101506644"//101072114
+#define  APPID_QQ            @"1103405567"//101072114
 #define  APPID_KEY_QQ        @"Xq98voVzKY8bStPO"
 
 
@@ -57,10 +57,10 @@
 /*   必须的框架 Security.framework”,“libiconv.dylib”，“SystemConfiguration.framework”，“CoreGraphics.Framework”、“libsqlite3.dylib”、“CoreTelephony.framework”、“libstdc++.dylib”、“libz.dylib”。
  */
 
-#define  APPID_Sina          @"3038797854"
-#define  APPID_KEY_Sina      @"fcc320ba27a4244b41c04d65bc6bff21"
+#define  APPID_Sina          @"3677032229"
+#define  APPID_KEY_Sina      @"b0f69e5b4c74c26a6c154fe712f4f3fb"
 //注意:IOS 应用推荐使用默认授权回调页!地址为: https://api.weibo.com/oauth2/default.html
-#define  Sina_RedirectURI    @"http://www.9191offer.com"
+#define  Sina_RedirectURI    @"http://www.baidu.com"
 
 //#define  APPID_WeoXin         @"wxf293133716ec75b6"
 //#define  APPID_KEY_WeiXin     @"582c0b7f0e0f9ed980b61e404010497b"

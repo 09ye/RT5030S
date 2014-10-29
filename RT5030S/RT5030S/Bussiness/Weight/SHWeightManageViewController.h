@@ -9,7 +9,7 @@
 #import "SHTableViewController.h"
 #import "SHShareView.h"
 
-@interface SHWeightManageViewController : SHTableViewController<UIActionSheetDelegate>
+@interface SHWeightManageViewController : SHTableViewController<UIActionSheetDelegate,SHTaskDelegate>
 {
     
     __weak IBOutlet UILabel *mLabScord;
@@ -18,6 +18,7 @@
     __weak IBOutlet UILabel *mLabWater;
     __weak IBOutlet UILabel *mLabFatRate;
     __strong IBOutlet   SHShareView* mViewShare;
+    NSDictionary * mResult;
 
 }
 - (IBAction)btnTargetOntouch:(id)sender;

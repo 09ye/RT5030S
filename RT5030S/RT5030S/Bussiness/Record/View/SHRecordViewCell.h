@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labWeight;
 @property (weak, nonatomic) IBOutlet UILabel *labCalorie;
 @property (weak, nonatomic) IBOutlet UIView *viewLine;
+@property (weak, nonatomic) IBOutlet UIView *viewLine2;
 
 @end

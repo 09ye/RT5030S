@@ -17,8 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.frame = [UIScreen mainScreen].bounds;
     self.tableView.backgroundColor = [SHSkin.instance colorOfStyle:@"ColorSettingBackGround"];
     [imgPhoto setCircleStyle:nil];
+   
+    [imgPhoto setUrl: [[NSUserDefaults standardUserDefaults]objectForKey:USER_CENTER_PHOTO]];
+    labName.text =  [[NSUserDefaults standardUserDefaults]objectForKey:USER_CENTER_NICKNAME];
 }
 
 

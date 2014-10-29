@@ -8,7 +8,7 @@
 //比一比
 #import "SHTableViewController.h"
 
-@interface SHComparisonViewController : SHTableViewController
+@interface SHComparisonViewController : SHTableViewController<SHTaskDelegate>
 {
     __weak IBOutlet UISegmentedControl *mSegment;
     __weak IBOutlet SHImageView *imgMy;
@@ -31,7 +31,11 @@
     __weak IBOutlet UILabel *mLabCalorie2;
     __weak IBOutlet UIView *mViewOther;
     __weak IBOutlet UIView *mViewTarget;
+    
+    __weak IBOutlet UILabel *mLabToTarget;
+    NSDictionary * mResult;
 }
 - (IBAction)mSegmentTouch:(UISegmentedControl *)sender;
+- (IBAction)btnShareOntouch:(UIButton *)sender;
 
 @end

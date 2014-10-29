@@ -23,7 +23,17 @@
     self.title = @"搜索列表";
     self.view.backgroundColor = [SHSkin.instance colorOfStyle:@"ColorBackGroundGray"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"清除记录" target:self action:@selector(clearRecord)];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification:) name:NOTIFICATION_BLUETOOTH_CONNET_SUCCESSFUL object:nil];
 }
+//-(void)notification:(NSNotification *) noti
+//{
+//    if ([noti.name isEqualToString:NOTIFICATION_BLUETOOTH_CONNET_SUCCESSFUL]){
+//        NSDictionary * temp=[noti object];
+//        selectPeripheral = [temp objectForKey:@"selectDevice"];
+//        [self.tableView reloadData];
+//        
+//    }
+//}
 -(void) clearRecord
 {
 
@@ -55,6 +65,7 @@
 {
    CBPeripheral * peripheral = [SHBlueToothManager.instance.devices objectAtIndex:indexPath.row];
     [SHBlueToothManager.instance connetPeripheral:peripheral connect:YES];
+    [self.tableView reloadData];
     
 }
 - (void)didReceiveMemoryWarning {

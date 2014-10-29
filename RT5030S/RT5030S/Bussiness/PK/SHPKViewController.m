@@ -18,6 +18,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"PK";
+    [self request];
+}
+-(void) request
+{
+    [self showWaitDialogForNetWork];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    if (type == 1) {
+        post.URL = URL_FOR(@"listRemind.jhtml");
+    }else{
+        post.URL = URL_FOR(@"listPK.jhtml");
+    }
+ 
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        NSDictionary * result = [[task result]mutableCopy];
+        mList = [[result objectForKey:@"friends"]mutableCopy];
+        [self.tableView reloadData];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
 }
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -25,7 +53,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return mList.count;
 }
 
 -(SHTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -36,26 +64,47 @@
         cell.backgroundColor = [UIColor clearColor];
     }
     cell.backgroundColor = [UIColor whiteColor];
+    NSDictionary * dic = [mList objectAtIndex:indexPath.row];
+    cell.detail= dic;
+    cell.labTargetTitle.hidden = NO;
+    cell.labTargetCalrio.hidden = NO;
+    cell.labTargetCalrio.text = [NSString stringWithFormat:@"%@卡",[dic objectForKey:@"targetCalorie"]];
+  
+    if ([[dic objectForKey:@"operate"]intValue] == 0 ) {//0-接收，1提醒，-1不显示按钮
+        cell.btnPk.hidden = NO;
+        cell.btnPk.tag = indexPath.row;
+        [cell.btnPk setTitle:@"接受" forState:UIControlStateNormal];
+        [cell.btnPk setBackgroundImage:[UIImage imageNamed:@"jieshou_anniu"] forState:UIControlStateNormal];
+        [cell.btnPk addTarget:self action:@selector(btnComfriePKOntouch:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnPk removeTarget:self action:@selector(btnRemindPKOntouch:) forControlEvents:UIControlEventTouchUpInside];
+    }else if ([[dic objectForKey:@"operate"]intValue] == 1 ) {//0-接收，1提醒，-1不显示按钮
+        cell.btnPk.hidden = NO;
+        cell.btnPk.tag = indexPath.row;
+        [cell.btnPk setTitle:@"提醒" forState:UIControlStateNormal];
+        [cell.btnPk setBackgroundImage:[UIImage imageNamed:@"haoyoujiandu_tixing_button"] forState:UIControlStateNormal];
+        [cell.btnPk removeTarget:self action:@selector(btnComfriePKOntouch:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnPk addTarget:self action:@selector(btnRemindPKOntouch:) forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        cell.btnPk.hidden = YES;
+    }
+    
+   
+   
     return cell;
     
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([[self.intent.args objectForKey:@"classType"] isEqualToString:@"comper"])// 比一比
-    {
+    if (!type==1) {
+        NSDictionary * dic  =[mList objectAtIndex:indexPath.row];
         SHIntent * intent = [[SHIntent alloc ]init];
         intent.target = @"SHComparisonViewController";
         intent.container = self.navigationController;
-        [[UIApplication sharedApplication] open:intent];
-    }else{
-        SHIntent * intent = [[SHIntent alloc ]init];
-        intent.target = @"SHFriendDetailViewController";
-        intent.container = self.navigationController;
-        [intent.args setValue:@"Done" forKey:@"classType"];
+        [intent.args setValue:[dic objectForKey:@"userId"] forKey:@"userId"];
         [[UIApplication sharedApplication] open:intent];
     }
-    
+   
 }
 #pragma  删除
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -75,23 +124,129 @@
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {// 删除
     
+    [self showWaitDialogForNetWork];
+    NSDictionary * dic = [mList objectAtIndex:indexPath.row];
+    NSMutableDictionary * dicDetail = [[NSMutableDictionary alloc]init ];
+    [dicDetail setValue:SHEntironment.instance.userId forKey:@"userId"];
+    [dicDetail setValue:[dic objectForKey:@"userId"] forKey:@"friendId"];
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
     
-    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    //    [self.tableView reloadData];
+    if(type == 1){// 监督
+        post.URL = URL_FOR(@"deleteRemind.jhtml");
+    }else{
+        post.URL = URL_FOR(@"deletePK.jhtml");
+        
+    }
+    post.postData = [Utility createPostData:dicDetail];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+        [mList removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)btnTabOntouch:(UIButton *)sender {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.tableView cache:YES];
+    type = sender.tag;
+    switch (sender.tag) {
+        case 0:
+            [mbtnTab1 setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
+            [mbtnTab2 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+            break;
+        case 1:
+            [mbtnTab1 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+            [mbtnTab2 setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
+            break;            
+        default:
+            break;
+    }
+    [self request];
+    [UIView commitAnimations];
 }
-*/
 
+- (IBAction)btnAddOntouch:(UIButton *)sender {
+    SHIntent * intent = [[SHIntent alloc ]init];
+    intent.target = @"SHFriendListViewController";
+    [intent.args setValue:@"pk" forKey:@"classType"];
+    [intent.args setValue:[NSNumber numberWithInt:type] forKey:@"type"];
+    intent.container = self.navigationController;
+    intent.delegate = self;
+    [[UIApplication sharedApplication] open:intent];
+    
+}
+
+-(void) btnComfriePKOntouch:(UIButton *)button
+{
+     NSDictionary * dic  =[mList objectAtIndex:button.tag];
+    if(type == 1){// 监督接受
+        [self showWaitDialogForNetWork];
+        NSMutableDictionary * dicDetail = [[NSMutableDictionary alloc]init ];
+        [dicDetail setValue:SHEntironment.instance.userId forKey:@"userId"];
+        [dicDetail setValue:[dic objectForKey:@"userId"] forKey:@"friendId"];
+        SHPostTaskM * post = [[SHPostTaskM alloc]init];
+        post.URL = URL_FOR(@"passRemind.jhtml");
+        post.postData = [Utility createPostData:dicDetail];
+        post.delegate = self;
+        [post start:^(SHTask *task) {
+            [self dismissWaitDialog];
+            [task.respinfo show];
+            [self request];
+        } taskWillTry:^(SHTask *task) {
+            
+        } taskDidFailed:^(SHTask *task) {
+            [self dismissWaitDialog];
+            [task.respinfo show];
+        }];
+    }else{
+       
+        SHIntent * intent = [[SHIntent alloc ]init];
+        intent.target = @"SHComparisonViewController";
+        intent.container = self.navigationController;
+        [intent.args setValue:[dic objectForKey:@"userId"] forKey:@"userId"];
+        [[UIApplication sharedApplication] open:intent];
+    }
+  
+}
+-(void) btnRemindPKOntouch:(UIButton *)button// 提醒
+{
+    NSDictionary * dic  =[mList objectAtIndex:button.tag];
+    [self showWaitDialogForNetWork];
+    NSMutableDictionary * dicDetail = [[NSMutableDictionary alloc]init ];
+    [dicDetail setValue:SHEntironment.instance.userId forKey:@"userId"];
+    [dicDetail setValue:[dic objectForKey:@"userId"] forKey:@"friendId"];
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"remindMsg.jhtml");
+    post.postData = [Utility createPostData:dicDetail];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+        [self request];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
+}
+-(void) friendListViewControllerPkAddSuccessful:(SHFriendListViewController *)control type:(int) index
+{
+    [self request];
+}
 @end

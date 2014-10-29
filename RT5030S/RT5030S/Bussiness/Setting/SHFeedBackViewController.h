@@ -8,7 +8,7 @@
 
 #import "SHTableViewController.h"
 
-@interface SHFeedBackViewController : SHTableViewController
+@interface SHFeedBackViewController : SHTableViewController<SHTaskDelegate>
 {
     
     __weak IBOutlet UITextView *mTxtContent;

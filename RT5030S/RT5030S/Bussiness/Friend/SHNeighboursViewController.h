@@ -8,9 +8,10 @@
 
 #import "SHTableViewController.h"
 
-@interface SHNeighboursViewController : SHTableViewController
+@interface SHNeighboursViewController : SHTableViewController<SHTaskDelegate,UISearchBarDelegate>
 {
     __weak IBOutlet UISearchBar *mSearch;
+    NSDictionary * mResult;
     
 }
 

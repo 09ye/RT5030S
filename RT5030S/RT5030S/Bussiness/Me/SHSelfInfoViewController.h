@@ -14,9 +14,9 @@
 @interface SHSelfInfoViewController : SHTableViewController<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,SHImageCropperDelegate,SHSexSelectViewControllerDelegate,SHTaskDelegate>
 {
     BOOL edit;
-    NSString * mSexName;
-    NSMutableDictionary * detail;
-    SHImageView * imgPhoto;
+//    NSString * mSexName;
+//    NSMutableDictionary * detail;
+
     NSMutableDictionary * mResult;
 }
 

@@ -68,7 +68,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pwz-Gu-EW3">
-                    <rect key="frame" x="138" y="91" width="44" height="24"/>
+                    <rect key="frame" x="126" y="91" width="69" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" red="0.094117647058823528" green="0.66274509803921566" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>

@@ -53,10 +53,30 @@
 }
 - (IBAction)btnShareWeixinOntouch:(id)sender {
     [self weixinShareAction];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    [dic setValue:self.shareContent forKey:@"content"];
+    [dic setValue:@"0" forKey:@"type"];// 0weix 1 qq 2weibo 3qqweibo
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"share.jhtml");
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start];
+
+    
 }
 
 - (IBAction)btnShareWeiboOntouch:(id)sender {
     [self sinaShareAction];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    [dic setValue:self.shareContent forKey:@"content"];
+    [dic setValue:@"2" forKey:@"type"];// 0weix 1 qq 2weibo 3qqweibo
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"share.jhtml");
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start];
 }
 
 - (IBAction)btnShareOntouch:(id)sender;
@@ -110,7 +130,8 @@
      WXSceneTimeline = 1,        *< 朋友圈
      WXSceneFavorite = 2,        *< 收藏
      */
-    self.shareContent = @"来自来伊份的分享";
+
+//    self.shareContent = @"来自来伊份的分享";
     AppDelegate  *dd=(AppDelegate *)[UIApplication sharedApplication].delegate;
     if (buttonIndex == 0) {
         [dd changeScene:0 ];
@@ -140,7 +161,7 @@
     WBMessageObject *message = [WBMessageObject message];
     
     //    message.text=_sharedContent;
-    message.text = @"来自来伊份的分享";
+    message.text = self.shareContent;
     
     return message;
 }

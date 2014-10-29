@@ -58,13 +58,7 @@ static SHBlueToothManager * _instance;
     NSArray *uuidArray = [NSArray arrayWithObjects:[CBUUID UUIDWithString:Server_UUID],nil];
     [self.manager scanForPeripheralsWithServices:uuidArray options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @NO }];
     
-    //    double delayInSeconds = 30.0;
-    //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    //    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    //        [self.manager stopScan];
-    //        [self dismissWaitDialog];
-    //        [self showAlertDialog:@"扫描超时,停止扫描"];
-    //    });
+   
 }
 
 //连接
@@ -132,6 +126,9 @@ static SHBlueToothManager * _instance;
     
     [self.peripheral setDelegate:self];
     [self.peripheral discoverServices:nil];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
+    [dic setValue:self.peripheral forKey:@"selectDevice"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BLUETOOTH_CONNET_SUCCESSFUL object:dic];
     
 }
 //连接外设失败
@@ -185,7 +182,13 @@ static SHBlueToothManager * _instance;
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"4A5B"]]) {
         NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
        _responseData = [[self bytesToIntArray:characteristic.value] mutableCopy];
-        NSLog(@"4A5B-==%@",characteristic.value);
+        
+          SHLog(@"4A5B-==%@",characteristic.value);
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+        [dic setValue:_responseData forKey:@"data"];
+          [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BLUETOOTH_DATA_UPDATE object:dic];
+        
+        
     }else{
         NSLog(@"didUpdateValueForCharacteristic%@",[[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding]);
     }

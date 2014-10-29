@@ -62,7 +62,7 @@
 	while (num > 0) {
 		CGFloat chartCavanHeight = self.frame.size.height - chartMargin * 2 - 40.0 ;
 		CGFloat levelHeight = chartCavanHeight /5.0;
-		PNChartLabel * label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight - index * levelHeight + (levelHeight - yLabelHeight) , 20.0, yLabelHeight)];
+		PNChartLabel * label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight - index * levelHeight + (levelHeight - yLabelHeight) , 40.0, yLabelHeight)];
 		[label setTextAlignment:NSTextAlignmentRight];
 		label.text = [NSString stringWithFormat:@"%1.f",level * index];
 		[self addSubview:label];
@@ -86,7 +86,7 @@
         NSInteger index = [xLabels indexOfObject:labelText];
         PNChartLabel * label = [[PNChartLabel alloc] initWithFrame:CGRectMake(index * (xLabelMargin + _xLabelWidth) + 30.0, self.frame.size.height - 30.0, _xLabelWidth, 20.0)];
         [label setTextAlignment:NSTextAlignmentCenter];
-        label.text = labelText;
+        label.text = [NSString stringWithFormat:@"%@",labelText];;
         label.backgroundColor = [UIColor clearColor];
         [self addSubview:label];
         UIView * view = [[UIView alloc]initWithFrame:CGRectMake(index * (xLabelMargin + _xLabelWidth) + 30.0+_xLabelWidth/2, 0, 1, self.frame.size.height - 30.0)];

@@ -22,7 +22,7 @@
     {
         postString=[postString substringToIndex:[postString length]-1];
     }
-    NSLog(@"%@",postString);
+    SHLog(@"%@",postString);
     NSData * data = [postString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     return data;
 }

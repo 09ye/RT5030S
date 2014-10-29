@@ -12,24 +12,79 @@
 @interface SHFriendListViewController ()
 
 @end
-// classType  comper =比一比 好友选择
+// classType  comper =比一比 好友选择   friendlist= 主页好友类列   familylist= 家庭管理 pk = PK
 @implementation SHFriendListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.title = @"好友列表";
+   
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"ic_addres_title"] target:self action:@selector(goNeighbour)];
+   
+    if([[self.intent.args objectForKey:@"classType"] isEqualToString:@"familylist"]){
+        self.title = @"家庭管理";
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"删除" target:self action:@selector(sss)];
+        [self requestFamily];
+    }else if([[self.intent.args objectForKey:@"classType"] isEqualToString:@"comper"]||[[self.intent.args objectForKey:@"classType"] isEqualToString:@"pk"]){
+        self.title = @"好友列表";
+        btnButtomAdd.hidden = YES;
+        self.tableView.frame = self.view.bounds;
+        [self requestFriends];
+        
+    }else{
+        self.title = @"好友列表";
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"ic_addres_title"] target:self action:@selector(goNeighbour)];
+        [self requestFriends];
+    }
 }
-
+-(void) requestFriends
+{
+    [self showWaitDialogForNetWork];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"listFriend.jhtml");
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        NSDictionary * result = [[task result]mutableCopy];
+        mList = [[result objectForKey:@"friends"]mutableCopy];
+         [self.tableView reloadData];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
+}
+-(void) requestFamily
+{
+    [self showWaitDialogForNetWork];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"listFamily.jhtml");
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        NSDictionary * result = [[task result]mutableCopy];
+        mList = [[result objectForKey:@"families"]mutableCopy];
+        [self.tableView reloadData];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
+}
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   
     return CELL_GENERAL_HEIGHT3;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return mList.count;
 }
 
 -(SHTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -39,23 +94,72 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"SHFrienItemCell" owner:nil options:nil] objectAtIndex:0];
         cell.backgroundColor = [UIColor clearColor];
     }
-    cell.backgroundColor = [UIColor whiteColor];
+//    cell.backgroundColor = [UIColor whiteColor];
+//    NSDictionary * dic = [[NSDictionary alloc]init];
+    cell.detail= [mList objectAtIndex:indexPath.row];
+    cell.btnAddFriend.hidden = YES;
     return cell;
     
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary * dic = [mList objectAtIndex:indexPath.row];
     if([[self.intent.args objectForKey:@"classType"] isEqualToString:@"comper"])// 比一比
     {
         SHIntent * intent = [[SHIntent alloc ]init];
         intent.target = @"SHComparisonViewController";
         intent.container = self.navigationController;
+        [intent.args setValue:[dic objectForKey:@"userId"] forKey:@"userId"];
         [[UIApplication sharedApplication] open:intent];
+    }else if([[self.intent.args objectForKey:@"classType"] isEqualToString:@"pk"])// pk
+    {
+        NSMutableDictionary * dicData = [[NSMutableDictionary alloc]init ];
+        [dicData setValue:SHEntironment.instance.userId forKey:@"userId"];
+        [dicData setValue:[dic objectForKey:@"userId"] forKey:@"friendId"];
+        [self showWaitDialogForNetWork];
+        SHPostTaskM * post = [[SHPostTaskM alloc]init];
+        if([[self.intent.args objectForKey:@"type"]intValue] ==0 ){
+            post.URL = URL_FOR(@"applyPK.jhtml");
+        }else{
+            post.URL = URL_FOR(@"applyRemind.jhtml");
+        }
+      
+        post.postData = [Utility createPostData:dicData];
+        post.delegate = self;
+        [post start:^(SHTask *task) {
+            [self dismissWaitDialog];
+            [task.respinfo show];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(friendListViewControllerPkAddSuccessful:type:)]) {
+                [self.delegate friendListViewControllerPkAddSuccessful:self type:[[self.intent.args objectForKey:@"type"]intValue]];
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } taskWillTry:^(SHTask *task) {
+            
+        } taskDidFailed:^(SHTask *task) {
+            [self dismissWaitDialog];
+            [task.respinfo show];
+        }];
+    }else if([[self.intent.args objectForKey:@"classType"] isEqualToString:@"familylist"]){
+        
+       
+        if ([[self.intent.args objectForKey:@"type"]isEqualToString:@"switch"]) {
+            SHEntironment.instance.userId = [dic valueForKey:@"userId"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+            SHIntent * intent = [[SHIntent alloc ]init];
+            intent.target = @"SHFamilyDetailViewController";
+            intent.container = self.navigationController;
+            [intent.args setValue:[dic objectForKey:@"userId"] forKey:@"userId"];
+            [[UIApplication sharedApplication] open:intent];
+        }
+        
     }else{
         SHIntent * intent = [[SHIntent alloc ]init];
         intent.target = @"SHFriendDetailViewController";
         intent.container = self.navigationController;
+        [intent.args setValue:[dic objectForKey:@"userId"] forKey:@"userId"];
         [intent.args setValue:@"Done" forKey:@"classType"];
         [[UIApplication sharedApplication] open:intent];
     }
@@ -80,7 +184,35 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {// 删除
     
 
-    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self showWaitDialogForNetWork];
+    NSDictionary * detail = [mList objectAtIndex:indexPath.row];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+   
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+  
+    if([[self.intent.args objectForKey:@"classType"] isEqualToString:@"familylist"]){
+        post.URL = URL_FOR(@"deleteFamily.jhtml");
+         [dic setValue:[detail objectForKey:@"userId"] forKey:@"familyId"];
+    }else{
+        post.URL = URL_FOR(@"deleteFriend.jhtml");
+         [dic setValue:[detail objectForKey:@"userId"] forKey:@"friendId"];
+        
+    }
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+        [mList removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
+    
 //    [self.tableView reloadData];
 }
 - (void)didReceiveMemoryWarning {
@@ -88,22 +220,27 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void) familyAddViewControllerAddSuccessful:(SHFamilyAddViewController *)control
+{
+    [self requestFamily];
 }
-*/
 
 - (IBAction)btnBottomAddOntouch:(id)sender {
-    SHIntent * intent = [[SHIntent alloc ]init];
-    intent.target = @"SHNeighboursViewController";
-    intent.container = self.navigationController;
-    [intent.args setValue:@"A" forKey:@"classType"];
-    [[UIApplication sharedApplication] open:intent];
+    if([[self.intent.args objectForKey:@"classType"] isEqualToString:@"familylist"]){
+        SHIntent * intent = [[SHIntent alloc ]init];
+        intent.target = @"SHFamilyAddViewController";
+        intent.delegate = self;
+        intent.container = self.navigationController;
+        
+        [[UIApplication sharedApplication] open:intent];
+    }else{
+        SHIntent * intent = [[SHIntent alloc ]init];
+        intent.target = @"SHNeighboursViewController";
+        intent.container = self.navigationController;
+        [intent.args setValue:@"A" forKey:@"classType"];
+        [[UIApplication sharedApplication] open:intent];
+    }
+  
 }
 -(void) goNeighbour
 {

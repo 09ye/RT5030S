@@ -12,7 +12,7 @@
 @interface SHNeighboursViewController ()
 
 @end
-
+// classType N = 附件好友 。 A = 搜索好友添加
 @implementation SHNeighboursViewController
 
 - (void)viewDidLoad {
@@ -23,13 +23,63 @@
          self.title = @"附近的人";
          mSearch.hidden = YES;
         self.tableView.frame = self.view.bounds;
+        [self requestNeighbour];
     }else  if([type isEqualToString:@"A"]){
          self.title = @"添加好友";
+        [mSearch becomeFirstResponder];
 
     }
    
 }
-
+-(void) requestNeighbour
+{
+    [self showWaitDialogForNetWork];
+    AppDelegate* app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+   
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    [dic setValue:[NSNumber numberWithDouble: app.myLocation.location.coordinate.longitude] forKey:@"longitude"];
+    [dic setValue:[NSNumber numberWithDouble: app.myLocation.location.coordinate.latitude] forKey:@"latitude"];
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"locateNear.jhtml");
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        NSDictionary * result = [[task result]mutableCopy];
+        mList = [[result objectForKey:@"persons"]mutableCopy];
+        [self.tableView reloadData];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
+}
+-(void) requestSearch
+{
+    [mSearch resignFirstResponder];
+    [self showWaitDialogForNetWork];//搜索好友
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    [dic setValue:mSearch.text forKey:@"nickName"];//(mSearchView.text == nil ? @"" : mSearchView.text )
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"searchFriend.jhtml");
+//    post.cachetype = CacheTypeTimes;
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        NSDictionary * result = [[task result]mutableCopy];
+        mList = [[result objectForKey:@"friends"]mutableCopy];
+        [self.tableView reloadData];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -40,7 +90,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return mList.count;
 }
 
 -(SHTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -50,27 +100,52 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"SHFrienItemCell" owner:nil options:nil] objectAtIndex:0];
         cell.backgroundColor = [UIColor clearColor];
     }
-    cell.backgroundColor = [UIColor whiteColor];
+//    cell.backgroundColor = [UIColor whiteColor];
+    NSDictionary * dic = [mList objectAtIndex:indexPath.row];
+    cell.detail = dic;
+    cell.btnAddFriend.tag = [[dic objectForKey:@"userId"]integerValue];
+    [cell.btnAddFriend addTarget:self action:@selector(btnAddFriend:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
     
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary * dic = [mList objectAtIndex:indexPath.row];
     SHIntent * intent = [[SHIntent alloc ]init];
     intent.target = @"SHFriendDetailViewController";
     intent.container = self.navigationController;
     [intent.args setValue:@"Done" forKey:@"classType"];
+    [intent.args setValue:[dic objectForKey:@"userId"] forKey:@"userId"];
     [[UIApplication sharedApplication] open:intent];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void) btnAddFriend:(UIButton *)button
+{
+    [self showWaitDialogForNetWork];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    [dic setValue:[NSNumber numberWithInt:button.tag] forKey:@"friendId"];
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"applyFriend.jhtml");
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
 }
-*/
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+   
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+     [self requestSearch];
+}
 
 @end

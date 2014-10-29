@@ -14,12 +14,12 @@
 @end
 
 @implementation SHSelfInfoViewController
-
+// regist 注册 complete 完善
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人中心";
    
-    detail = [[NSMutableDictionary alloc]init];
+    mResult = [[NSMutableDictionary alloc]init];
     if ([[self.intent.args objectForKey:@"classType"]isEqualToString:@"regist"]) {
         UIButton * searchButton = [[UIButton alloc] initWithFrame:CGRectMake(75, self.view.frame.size.height-200, 170, 35)];
         searchButton.backgroundColor = [SHSkin.instance colorOfStyle:@"ColorTextBlue"];
@@ -30,8 +30,12 @@
         searchButton.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin);
         [self.view insertSubview:searchButton aboveSubview:self.tableView];
         edit = YES;
+    }else if ([[self.intent.args objectForKey:@"classType"]isEqualToString:@"complete"]){
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"提交" target:self action:@selector(sumbit)];
+        edit = YES;
     }else{
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" target:self action:@selector(editInfo)];
+        
     }
     mResult = [[NSMutableDictionary alloc]init];
     [self showWaitDialogForNetWork];
@@ -43,6 +47,7 @@
     [post start:^(SHTask *task ) {
         [self dismissWaitDialog];
         mResult = [[task result]mutableCopy];
+        [self.tableView reloadData];
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
@@ -73,8 +78,11 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (  section == 1&&[[self.intent.args objectForKey:@"classType"]isEqualToString:@"regist"]) {
-        return 2;
+    if (  section == 1) {
+        if ([[self.intent.args objectForKey:@"classType"]isEqualToString:@"regist"] ||[[self.intent.args objectForKey:@"classType"]isEqualToString:@"complete"]) {
+             return 2;
+        }
+       
     }
     return 5;
 }
@@ -98,34 +106,40 @@
             cell.labTitle.frame = rect;
             UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeLogoAction)];
             cell.imgPhone.userInteractionEnabled = YES;
-//            cell.imgPhone = imgPhoto;
-            [cell.imgPhone  setUrl:[detail objectForKey:@"headImg"]];
+            [cell.imgPhone  setUrl:[mResult objectForKey:@"headImg"]];
             [cell.imgPhone addGestureRecognizer:tapGr];
             
         }else if(indexPath.row == 1){
             cell.labTitle.text = @"昵称";
-            cell.txtContent.text = [detail objectForKey:@"nickName"];
+            cell.txtContent.text = [mResult objectForKey:@"nickName"];
             cell.editing = edit;
         }else if(indexPath.row == 2){
-            cell.labTitle.text = @"年龄";
-            cell.txtContent.text = [[detail objectForKey:@"age"] stringValue];
+            cell.labTitle.text = @"出生日期";
+            cell.txtContent.placeholder = @"日期格式19880102";
+            cell.txtContent.text = [mResult objectForKey:@"birthday"];
             cell.editing = edit;
         }else if(indexPath.row == 3){
             cell.labTitle.text = @"性别";// ????
-            cell.txtContent.text = mSexName;
+            if ([[mResult objectForKey:@"gender"] isEqualToString:@"F"]) {
+                  cell.txtContent.text = @"女";
+            }else{
+                cell.txtContent.text = @"男";
+            }
+          
         }else if(indexPath.row == 4){
             cell.labTitle.text = @"身高";
-            cell.txtContent.text = [[detail objectForKey:@"height"]stringValue];
+             cell.txtContent.placeholder = @"180（单位厘米）";// 传输单位mm
+            cell.txtContent.text = [NSString stringWithFormat:@"%d",[[mResult objectForKey:@"height"]intValue]/10];
             cell.editing = edit;
         }
     }else if (indexPath.section == 1){
         if(indexPath.row == 0){
             cell.labTitle.text = @"邮箱";
-            cell.txtContent.text = [detail objectForKey:@"email"];;
+            cell.txtContent.text = [mResult objectForKey:@"email"];;
             cell.editing = edit;
         }else if(indexPath.row == 1){
             cell.labTitle.text = @"地区";
-            cell.txtContent.text = [detail objectForKey:@"area"];;
+            cell.txtContent.text = [mResult objectForKey:@"area"];;
             cell.editing = edit;
         }else if(indexPath.row == 2){
             
@@ -151,22 +165,33 @@
         if(indexPath.row == 3){// 选择性别
             SHIntent * intent = [[SHIntent alloc ]init];
             intent.target = @"SHSexSelectViewController";
-            if ([mSexName isEqualToString:@"女"]) {
-                [intent.args setValue:@"F" forKey:@"sex"];
-            }else{
-                [intent.args setValue:@"M" forKey:@"sex"];
-            }
+            [intent.args setValue:[mResult objectForKey:@"gender"] forKey:@"sex"];
             intent.container = self.navigationController;
             intent.delegate = self;
             [[UIApplication sharedApplication] open:intent];
         }
         
     }else if (indexPath.section == 1 ) {
+        if(indexPath.row ==2){
+            SHIntent * intent = [[SHIntent alloc ]init];
+            intent.target = @"SHFriendListViewController";
+            [intent.args setValue:@"familylist" forKey:@"classType"];
+            [intent.args setValue:@"switch" forKey:@"type"];
+            intent.container = self.navigationController;
+            [[UIApplication sharedApplication] open:intent];
+        }
         if (indexPath.row == 3) {// 修改密码
             SHIntent * intent = [[SHIntent alloc ]init];
             intent.target = @"SHUpdatePasswordViewController";
             intent.container = self.navigationController;
             [[UIApplication sharedApplication] open:intent];
+        }
+       
+        if(indexPath.row ==4){
+//            if (self.delegate && [self.delegate respondsToSelector:@selector(settingViewControllerDelegateDidBackHome:)]) {
+//                [self.delegate settingViewControllerDelegateDidBackHome:self];
+//            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:CORE_NOTIFICATION_LOGIN_RELOGIN object:nil];
         }
     }
     
@@ -174,11 +199,9 @@
 -(void)sexSelectViewControllerDidSelect:(SHSexSelectViewController *) controll sex:(NSString * )sex
 {
     if ([sex isEqualToString:@"F"]) {
-        mSexName = @"女";
-        [detail setValue:@"F" forKey:@"gender"];
+        [mResult setValue:@"F" forKey:@"gender"];
     }else{
-        mSexName = @"男";
-        [detail setValue:@"M" forKey:@"gender"];
+        [mResult setValue:@"M" forKey:@"gender"];
     }
 
     NSIndexPath *index= [NSIndexPath indexPathForRow:3 inSection:0];
@@ -195,14 +218,18 @@
                 [self showAlertDialog:@"昵称不能为空"];
                 return;
             }
-            [detail setValue:cell.txtContent.text forKey:@"nickName"];
+            [mResult setValue:cell.txtContent.text forKey:@"nickName"];
             
         }else if(i == 2){
             if ([cell.txtContent.text isEqualToString:@""]) {
-                [self showAlertDialog:@"年龄不能为空"];
+                [self showAlertDialog:@"出生日期不能为空"];
                 return;
             }
-            [detail setValue:cell.txtContent.text forKey:@"age"];
+            if (cell.txtContent.text.length !=8) {
+                [self showAlertDialog:@"出生日期格式错误"];
+                return;
+            }
+            [mResult setValue:cell.txtContent.text  forKey:@"birthday"];
 
             
         }else if (i ==3){
@@ -210,13 +237,13 @@
                 [self showAlertDialog:@"性别不能为空"];
                 return;
             }
-            [detail setValue:cell.txtContent.text forKey:@"gender"];
+            [mResult setValue:cell.txtContent.text forKey:@"gender"];
         }else if (i ==4){
-            if ([cell.txtContent.text isEqualToString:@""]) {
+            if ([cell.txtContent.text isEqualToString:@""] ||cell.txtContent.text.intValue<=0) {
                 [self showAlertDialog:@"身高不能为空"];
                 return;
             }
-            [detail setValue:cell.txtContent.text  forKey:@"height"];
+            [mResult setValue:[NSNumber numberWithInt:[cell.txtContent.text integerValue]*10]  forKey:@"height"];
         }
     }
     for (int i = 0 ;i <2; i++) {
@@ -230,14 +257,14 @@
                 [self showAlertDialog:@"您输入的是邮箱吗？"];
                 return;
             }
-            [detail setValue:cell.txtContent.text forKey:@"email"];
+            [mResult setValue:cell.txtContent.text forKey:@"email"];
             
         }else if(i == 1){
             if ([cell.txtContent.text isEqualToString:@""]) {
-                [self showAlertDialog:@"年龄不能为空"];
+                [self showAlertDialog:@"地区不能为空"];
                 return;
             }
-            [detail setValue:cell.txtContent.text forKey:@"area"];
+            [mResult setValue:cell.txtContent.text forKey:@"area"];
         }
         
     }
@@ -247,9 +274,28 @@
     task.tag = 1;
     task.delegate = self;
     task.URL = URL_FOR(@"completeInfo.jhtml");
-    [detail setValue:SHEntironment.instance.userId forKey:@"userId"];
-    task.postData = [Utility createPostData:detail];
-    [task start];
+    [mResult setValue:SHEntironment.instance.userId forKey:@"userId"];
+    task.postData = [Utility createPostData:mResult];
+    [task start:^(SHTask *task ) {
+        [self dismissWaitDialog];
+       
+        if([[self.intent.args objectForKey:@"classType"]isEqualToString:@"regist"] ||[[self.intent.args objectForKey:@"classType"]isEqualToString:@"complete"] ){
+            [SHIntentManager clear];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGIN_SUCCESSFUL object:nil];
+        }else{
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" target:self action:@selector(editInfo)];
+            edit = NO;
+            [self.tableView reloadData];
+        }
+        
+  
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+        
+    }];
 
 }
 -(void) editInfo
@@ -261,23 +307,7 @@
 }
 -(void) sumbit
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" target:self action:@selector(editInfo)];
-    edit = NO;
-    [self.tableView reloadData];
-}
--(void) taskDidFinished:(SHTask *)task
-{
-    
-    [self dismissWaitDialog];
-    if (task.tag == 1) {// 完成注册
-         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGIN_SUCCESSFUL object:nil];
-    }
-   
-}
--(void) taskDidFailed:(SHTask *)task
-{
-    [self dismissWaitDialog];
-    [task.respinfo show];
+    [self registOnTouch];
 }
 #pragma  mark  修改 背后logo
 
@@ -315,7 +345,7 @@
             controller.mediaTypes = mediaTypes;
             controller.delegate = self;
             
-            [app.viewController  presentViewController:controller
+            [self.navigationController  presentViewController:controller
                                               animated:YES
                                             completion:^(void){
                                                 NSLog(@"Picker View Controller is presented");
@@ -331,7 +361,7 @@
             [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
             controller.mediaTypes = mediaTypes;
             controller.delegate = self;
-            [app.viewController presentViewController:controller
+            [self.navigationController presentViewController:controller
                                              animated:YES
                                            completion:^(void){
                                                NSLog(@"Picker View Controller is presented");
@@ -392,7 +422,7 @@
 
 - (void)imageCropper:(SHImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
     
-    imgPhoto.image = editedImage;
+
     
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
         
@@ -417,16 +447,38 @@
     
     // 请求修改{initiator,partake,fcode,favorite,cash, property,}
     SHPostTaskM * post = [[SHPostTaskM alloc]init];
-    //user/updateUserBgImage
-    post.URL = URL_FOR(@"uploaddata");
+    post.URL = URL_FOR(@"headImgUpload.jhtml");
     post.delegate = self;
     //｛session_id,data{encode_image(bas   e64)}｝
     NSData *dataObj = UIImageJPEGRepresentation(img, 1.0);
-    NSString  *base64String= [ Base64 encode: dataObj];
-    [post.postArgs setValue:@"image"  forKey:@"type"];
-    [post.postArgs setValue:base64String  forKey:@"data"];
+    NSString *pictureDataString=[dataObj base64Encoding];
+    NSString *image=[self encodeURL:pictureDataString];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    [dic setValue:image forKey:@"headImg"];
+    [post setPostData:[Utility createPostData:dic]];
     post.tag = 99;
-    [post start];
+    [post start:^(SHTask * task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+        NSDictionary*  result = [[task result]mutableCopy];
+        NSIndexPath *index= [NSIndexPath indexPathForRow:0 inSection:0];
+        [mResult setValue:[result objectForKey:@"headImg"] forKey:@"headImg"];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:index,nil] withRowAnimation:YES];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
+}
+- (NSString*)encodeURL:(NSString *)string
+{
+    NSString *newString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)string, NULL, CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~` "),kCFStringEncodingUTF8));
+    if (newString) {
+        return newString;
+    }
+    return @"";
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -448,7 +500,7 @@
         SHImageCropperViewController *imgEditorVC = [[SHImageCropperViewController alloc] initWithImage:portraitImg cropFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, self.view.frame.size.width) limitScaleRatio:1.0];
         imgEditorVC.delegate = self;
         imgEditorVC.isCamera = camera;
-        [app.viewController presentViewController:imgEditorVC animated:YES completion:^{
+        [self.navigationController presentViewController:imgEditorVC animated:YES completion:^{
             // TO DO  上传图片到服务起 lqh77
             
             

@@ -149,12 +149,13 @@
     [mBtnPhone setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
     [mBtnEmail setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
     labPhone.placeholder = @"请输入手机号码";
+    labPhone.keyboardType = UIKeyboardTypePhonePad;
     registType = NO;
 }
 - (IBAction)btnEmailResgitOntouch:(id)sender {
     [mBtnPhone setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
     [mBtnEmail setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
-    
+    labPhone.keyboardType = UIKeyboardTypeEmailAddress;
     registType = YES;
     labPhone.placeholder = @"请输入邮箱地址";
 }
@@ -226,6 +227,7 @@
     [self dismissWaitDialog];
      NSDictionary * result = [[task result]mutableCopy];
     if (task.tag == 0) {
+        [task.respinfo show];
         verificationCode = [result objectForKey:@"verifyCode"];
     }else if (task.tag == 1){
 //        [task.respinfo show];
@@ -252,25 +254,7 @@
    
     
 }
-//- (BOOL)textFieldShouldEndEditing:(UITextField *)textField;
-//{
-//    
-//    return YES;
-//}
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//    
-//    NSString * phone = [textField.text stringByAppendingString:string];
-//    if (textField == labPhone && [SHTools isValidateMobile:phone] && ![string isEqualToString:@""]) {
-//        SHPostTaskM * post = [[SHPostTaskM alloc]init];
-//        post.URL = URL_FOR(@"validateuser");
-//        [post.postArgs setValue:phone forKeyPath:@"mobile"];
-//        post.delegate = self;
-//        post.tag = 3;
-//        [post start];
-//    }
-//    return YES;
-//}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == labPhone) {

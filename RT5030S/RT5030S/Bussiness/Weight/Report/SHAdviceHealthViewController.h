@@ -9,12 +9,13 @@
 #import "SHTableViewController.h"
 #import "SHShareView.h"
 
-@interface SHAdviceHealthViewController : SHTableViewController
+@interface SHAdviceHealthViewController : SHTableViewController<SHTaskDelegate>
 {
     
     __weak IBOutlet UILabel *mLabTitle;
     __weak IBOutlet UITextView *txtContent;
     __strong IBOutlet   SHShareView* mViewShare;
+    NSDictionary * mResult;
 }
 
 @end

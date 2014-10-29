@@ -13,10 +13,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nan.png" translatesAutoresizingMaskIntoConstraints="NO" id="1gZ-GV-dU7" customClass="SHImageView">
-                        <rect key="frame" x="10" y="5" width="50" height="50"/>
+                        <rect key="frame" x="37" y="10" width="40" height="40"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7f-Yj-tFA">
-                        <rect key="frame" x="79" y="7" width="101" height="21"/>
+                        <rect key="frame" x="85" y="6" width="101" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -24,11 +24,8 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="userstyle" value="labmidlight"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" placeholderIntrinsicWidth="160" placeholderIntrinsicHeight="30" image="weizhi_tubiao.png" translatesAutoresizingMaskIntoConstraints="NO" id="7G4-df-A0c">
-                        <rect key="frame" x="73" y="26" width="20" height="29"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeT-W3-Vrc">
-                        <rect key="frame" x="101" y="30" width="72" height="21"/>
+                        <rect key="frame" x="107" y="32" width="72" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -36,25 +33,61 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="userstyle" value="labmidlight"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAn-xF-Zj3">
-                        <rect key="frame" x="272" y="15" width="30" height="30"/>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我的目标" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wtd-92-1Ye">
+                        <rect key="frame" x="144" y="19" width="64" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="userstyle" value="labmidlight"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30000卡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tlt-Ap-rKJ">
+                        <rect key="frame" x="208" y="19" width="64" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.82745098039999998" green="0.16862745100000001" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAn-xF-Zj3">
+                        <rect key="frame" x="281" y="17" width="25" height="25"/>
                         <state key="normal" backgroundImage="fujinhaoyou_tianjia_haoyou.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" placeholderIntrinsicWidth="160" placeholderIntrinsicHeight="30" image="weizhi_tubiao.png" translatesAutoresizingMaskIntoConstraints="NO" id="7G4-df-A0c">
+                        <rect key="frame" x="86" y="32" width="15" height="21"/>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kw2-xS-meo">
+                        <rect key="frame" x="10" y="19" width="36" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.82745098039999998" green="0.16862745100000001" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Enr-aD-f4e">
+                        <rect key="frame" x="269" y="17" width="43" height="25"/>
+                        <state key="normal" title="接受" backgroundImage="jieshou_anniu.png">
+                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
                 </subviews>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="btnAddFriend" destination="cAn-xF-Zj3" id="1k2-VK-Nkb"/>
+                <outlet property="btnPk" destination="Enr-aD-f4e" id="JWs-I1-vdj"/>
                 <outlet property="imgPhoto" destination="1gZ-GV-dU7" id="lzW-oy-nFM"/>
                 <outlet property="labAddress" destination="UeT-W3-Vrc" id="boQ-Wz-hwZ"/>
                 <outlet property="labName" destination="D7f-Yj-tFA" id="diK-6i-eAA"/>
+                <outlet property="labRank" destination="Kw2-xS-meo" id="tsQ-m4-5zB"/>
+                <outlet property="labTargetCalrio" destination="Tlt-Ap-rKJ" id="Zho-zn-0em"/>
+                <outlet property="labTargetTitle" destination="Wtd-92-1Ye" id="5mM-pb-Jtf"/>
             </connections>
             <point key="canvasLocation" x="248" y="149"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="fujinhaoyou_tianjia_haoyou.png" width="43" height="42"/>
+        <image name="jieshou_anniu.png" width="36" height="25"/>
         <image name="nan.png" width="53" height="69"/>
         <image name="weizhi_tubiao.png" width="20" height="29"/>
     </resources>

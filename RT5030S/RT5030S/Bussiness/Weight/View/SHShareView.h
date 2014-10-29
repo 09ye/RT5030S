@@ -8,7 +8,7 @@
 
 #import "SHView.h"
 
-@interface SHShareView : SHView<UIActionSheetDelegate>
+@interface SHShareView : SHView<UIActionSheetDelegate,SHTaskDelegate>
 {
     BOOL mIsShow;
    

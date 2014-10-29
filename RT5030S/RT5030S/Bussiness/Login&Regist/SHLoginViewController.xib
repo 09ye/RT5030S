@@ -51,7 +51,7 @@
                     <rect key="frame" x="40" y="340" width="240" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" placeholder="账号" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="23">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="账号" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="23">
                     <rect key="frame" x="64" y="250" width="193" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
@@ -61,7 +61,7 @@
                         <outlet property="delegate" destination="-1" id="KB2-nZ-405"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" placeholder="密码" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="27">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="27">
                     <rect key="frame" x="59" y="309" width="202" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -120,6 +120,7 @@
                     </connections>
                 </button>
             </subviews>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
         </view>
     </objects>
     <resources>

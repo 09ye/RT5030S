@@ -10,7 +10,7 @@
 #import "SHSettingViewController.h"
 
 
-@interface SHMainHomeViewController : SHTableViewController<SHSettingViewControllerDelegate>
+@interface SHMainHomeViewController : SHTableViewController<SHSettingViewControllerDelegate,SHTaskDelegate>
 {
     __weak IBOutlet UIView *mViewTop;
     __weak IBOutlet UIView *mViewButtom;
@@ -21,6 +21,8 @@
     __weak IBOutlet UILabel *mLabSongName;
     __weak IBOutlet SHImageView *mImgSong;
     SHLoginViewController* loginViewController;
+    NSTimer * mTimer;
+    BOOL SiderShow;
 }
 - (IBAction)btnLeftOntouch:(id)sender;
 

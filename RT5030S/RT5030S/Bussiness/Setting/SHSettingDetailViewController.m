@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"设置";
     self.view.backgroundColor = [SHSkin.instance colorOfStyle:@"ColorBackGroundGray"];
     if([[NSUserDefaults standardUserDefaults]boolForKey:SEARCH_ME]){
         mSwitchSearch.on = YES;
@@ -43,6 +44,7 @@
     }else {
         [[NSUserDefaults standardUserDefaults]setBool:YES forKey:SEARCH_ME];
     }
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 - (IBAction)switchAutolinkOntouch:(UISwitch *)sender {
@@ -51,6 +53,7 @@
     }else {
         [[NSUserDefaults standardUserDefaults]setBool:YES forKey:AUTO_LINK];
     }
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 
@@ -61,6 +64,7 @@
     }else {
         [[NSUserDefaults standardUserDefaults]setBool:YES forKey:AUTOLOGIN];
     }
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 @end

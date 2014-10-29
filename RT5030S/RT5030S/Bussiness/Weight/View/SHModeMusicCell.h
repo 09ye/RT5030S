@@ -10,4 +10,9 @@
 
 @interface SHModeMusicCell : SHTableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *labIndex;
+@property (weak, nonatomic) IBOutlet UILabel *labName;
+@property (weak, nonatomic) IBOutlet UILabel *labCount;
+@property (weak, nonatomic) IBOutlet UILabel *labTime;
+
 @end

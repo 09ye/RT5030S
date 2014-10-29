@@ -17,18 +17,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    if ([[self.intent.args objectForKey:@"classType"] isEqualToString:@"run"]) {
+    if ([[self.intent.args objectForKey:@"classType"] isEqualToString:@"1"]) {
         self.title = @"远动方案";
         mLabTitle.text = @"远动方案";
-        mViewShare.shareContent = @"xxx22xxx";
+        mViewShare.shareContent = @"#数据报告#我在使用荣泰RT5030享秀派，看这是我们的数据报告，我在这里设定了我的目标，我每天都会测试和训练，你也来加入我们吧！ @荣泰健康科技官方微博";
+
     }else{
         self.title = @"饮食建议";
         mLabTitle.text = @"饮食建议";
-        mViewShare.shareContent = @"xx222xxxx";
+        mViewShare.shareContent = @"#数据报告#我在使用荣泰RT5030享秀派，看这是我们的数据报告，我在这里设定了我的目标，我每天都会测试和训练，你也来加入我们吧！ @荣泰健康科技官方微博";
     }
     
 }
-
+-(void) request
+{
+    [self showWaitDialogForNetWork];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    [dic setValue:[NSNumber numberWithInt:[[self.intent.args objectForKey:@"classType"]intValue]] forKey:@"type"];//1运动方案，2:饮食建议，3：塑身建议
+    [dic setValue:[NSNumber numberWithInt:[[self.intent.args objectForKey:@"state" ]intValue]] forKey:@"result"];//1标准，2：偏瘦：3偏胖
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"adviceQuery.jhtml");
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        mResult = [[task result]mutableCopy];
+        txtContent.text = [mResult objectForKey:@"content"];
+ 
+        
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

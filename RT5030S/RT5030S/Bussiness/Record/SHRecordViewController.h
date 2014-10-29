@@ -8,6 +8,10 @@
 
 #import "SHTableViewController.h"
 
-@interface SHRecordViewController : SHTableViewController
+@interface SHRecordViewController : SHTableViewController<SHTaskDelegate>
+{
+    NSDictionary * mResult;
+    NSString * totalDays;
+}
 
 @end

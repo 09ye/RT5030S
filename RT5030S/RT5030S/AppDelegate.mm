@@ -14,56 +14,6 @@
 #import "WeiboApi.h"
 #import "SHBlueToothManager.h"
 
-
-//@implementation SHAnalyzeFactoryExtension1
-//
-//- (BOOL) analyzeDate:(SHTask *) task Data:(NSData*)data
-//{
-//    
-//    NSError * error ;
-//    NSDictionary * netreutrn = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions)NSJSONWritingPrettyPrinted error:&error];
-//    if(netreutrn == nil){
-//        return NO;
-//    }
-//    int code = 0;
-//    NSString * message;
-//    if([netreutrn valueForKey:@"message"]){
-//        message = [netreutrn  objectForKey:@"msg"];
-//        
-//    }else{
-//        message = [netreutrn objectForKey:@"message"];
-//        
-//    }
-//
-//    Respinfo* res  = [[Respinfo alloc]initWithCode:code message:message];
-//    SEL resSel = @selector(setRespinfo:);
-//    if([task respondsToSelector:resSel] && res){
-//        IMP p = [task methodForSelector:resSel];
-//        p (task,resSel,res);
-//    }
-//    SEL resData = @selector(setResult:);
-////    if([task netreutrn:resData]){
-////        IMP p = [task methodForSelector:resData];
-////        NSObject * obj = [netreutrn valueForKey:@"data"];
-////        //        if([obj containsObject:@"session_id"]){
-////        //            Entironment.instance.sessionid = [netreutrn valueForKey:@"session_id"];
-////        //        }
-////        if([obj isKindOfClass:[NSDictionary class]]){
-////            NSDictionary * d = (NSDictionary*)obj;
-////            if([[d allKeys] containsObject:@"session_id"]){
-////                SHEntironment.instance.sessionid = [d valueForKey:@"session_id"];
-////            }
-////        }
-////        
-////    }
-//    
-//    
-//    
-//    return NO;
-//}
-
-//@end
-
 @implementation AppDelegate
 @synthesize myAddressResult;
 @synthesize locationDistrict;
@@ -90,13 +40,9 @@ static bool __isupdate = NO;
     _locService.delegate = self;
     _geocodesearch = [[BMKGeoCodeSearch alloc]init];
     _geocodesearch.delegate = self;
-#if DEBUG
     
     BOOL ret = [_mapManager start:@"XUhLsGNq9Ch1HfTgZH8LFZs8"  generalDelegate:self];// ybh ky
-#else
-    BOOL ret = [_mapManager start:@"XUhLsGNq9Ch1HfTgZH8LFZs8"  generalDelegate:self];// iLR1svzmqrbaEe0u8xQ3OTnd = wzy ky
-    
-#endif
+//zambon key  RNuxCab28lK3wgb3jGhsrpa3
     if (!ret) {
         NSLog(@"manager start failed!");
     }
@@ -194,33 +140,7 @@ static bool __isupdate = NO;
         //        [myAlertView show];
         
         //	定位时非直辖市传值到市，如：江苏苏州市；直辖市传值到区，如：上海上海市闸北区 // provicne  上海 江苏
-        if (provice.length==0) {
-            NSLog(@"%@==省份",provice);
-            return;
-        }
-        SHPostTaskM * post = [[SHPostTaskM alloc]init];
-        post.URL = URL_FOR(@"getareainfo");
-        
-        if ([provice hasSuffix:@"市"]) {
-            [post.postArgs setValue:[provice substringToIndex:provice.length-1] forKey:@"provincename"];
-            [post.postArgs setValue:district forKey:@"districtname"];
-        }else{
-            [post.postArgs setValue:[provice substringToIndex:provice.length-1] forKey:@"provincename"];
-            [post.postArgs setValue:@"" forKey:@"districtname"];
-        }
-        [post.postArgs setValue:city forKey:@"cityname"];
-        post.delegate = self;
-        post.tag = 1;
-        [post start];
-        
-        post = [[SHPostTaskM alloc]init];
-        post.URL = URL_FOR(@"getareainfo");
-        [post.postArgs setValue:[provice substringToIndex:provice.length-1] forKey:@"provincename"];
-        [post.postArgs setValue:@"" forKey:@"districtname"];
-        [post.postArgs setValue:city forKey:@"cityname"];
-        post.delegate = self;
-        post.tag = 2;
-        [post start];
+       
         
 	}
 }
@@ -443,7 +363,7 @@ static bool __isupdate = NO;
         
         [[NSUserDefaults standardUserDefaults] setObject:wbtoken forKey:@"token"];
         [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"openId"];
-        [[NSUserDefaults standardUserDefaults] setObject:@"weibo" forKey:@"login_type"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"3" forKey:@"login_type"];
         // 获取用户资料  头像昵称
         NSString *url=[NSString stringWithFormat:@"https://api.weibo.com/2/users/show.json?access_token=%@&uid=%@",wbtoken,userId];
         
@@ -479,24 +399,7 @@ static bool __isupdate = NO;
             [[NSNotificationCenter defaultCenter]  postNotificationName: NOTIFY_SinaAuthon_Success object:netreutrn];
             
         }
-    }else if (task.tag == 1) {// 直辖市定位到 区
-        NSDictionary * mResutl = (NSDictionary *)[task result];
-        NSMutableDictionary * dic =  [[NSMutableDictionary alloc]init];
-        [dic setValue:[mResutl objectForKey:@"AreaName"] forKey:@"CodeValue"];
-        [dic setValue:[mResutl objectForKey:@"AreaId"] forKey:@"CodeID"];
-        locationDistrict = dic;
-//        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_DISTRICT object:dic];
-        [[NSUserDefaults standardUserDefaults] setValue:dic  forKey:@"location_district"];
-        
-    }else if (task.tag == 2) {// 定位到市  网聘会用
-        NSDictionary * mResutl = (NSDictionary *)[task result];
-        NSMutableDictionary * dic =  [[NSMutableDictionary alloc]init];
-        [dic setValue:[mResutl objectForKey:@"AreaName"] forKey:@"CodeValue"];
-        [dic setValue:[mResutl objectForKey:@"AreaId"] forKey:@"CodeID"];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_CITY object:dic];
-        [[NSUserDefaults standardUserDefaults] setValue:dic  forKey:@"location_city"];
     }
-    
     
 }
 

@@ -7,14 +7,20 @@
 //
 
 #import "SHTableViewController.h"
+#import "SHFamilyAddViewController.h"
+@class SHFriendListViewController;
+@protocol SHFriendListViewControllerDelegate <NSObject>
 
-@interface SHFriendListViewController : SHTableViewController
+-(void) friendListViewControllerPkAddSuccessful:(SHFriendListViewController *)control type:(int) index;
+
+@end
+@interface SHFriendListViewController : SHTableViewController<SHTaskDelegate,SHFamilyAddViewControllerDelegate>
 {
 
     __weak IBOutlet UIButton *btnButtomAdd;
     
 }
-
+@property (nonatomic,assign) id<SHFriendListViewControllerDelegate> delegate;
 - (IBAction)btnBottomAddOntouch:(id)sender;
 
 @end

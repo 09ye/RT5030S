@@ -7,7 +7,16 @@
 //
 
 #import "SHTableViewController.h"
+#import "SHFriendListViewController.h"
 
-@interface SHPKViewController : SHTableViewController
+@interface SHPKViewController : SHTableViewController<SHTaskDelegate,SHFriendListViewControllerDelegate>
+{
+    __weak IBOutlet UIButton *mbtnTab1;
 
+    __weak IBOutlet UIButton *mbtnTab2;
+    int type ;
+}
+- (IBAction)btnTabOntouch:(UIButton *)sender;
+
+- (IBAction)btnAddOntouch:(UIButton *)sender;
 @end

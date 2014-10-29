@@ -8,6 +8,16 @@
 
 #import "SHTableViewController.h"
 
-@interface SHChartsListViewController : SHTableViewController
+@interface SHChartsListViewController : SHTableViewController<SHTaskDelegate>
+{
+    __weak IBOutlet UIButton *mbtnTab1;
+    __weak IBOutlet UIButton *mbtnTab2;
+    __weak IBOutlet UIButton *mbtnTab3;
+    __weak IBOutlet SHImageView *imgPhoto;
+    __weak IBOutlet UILabel *mLabRank;
+    int type;
+    
+}
+- (IBAction)btnTopTabOntohc:(UIButton *)sender;
 
 @end

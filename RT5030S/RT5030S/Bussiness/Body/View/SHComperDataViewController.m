@@ -22,8 +22,12 @@
     mList = [@[@"一",@"二",@"三",@"四",@"五",@"六",@"七"] mutableCopy];
     mViewWeek.datasource = self;
     mViewWeek.delegate = self;
-    [mViewWeek reloadData];
+   
+    mListWeek = [[NSDate date] arrayCurWeek];
     selectWeek = [[[Utility weekDayWithDate:[NSDate date]]objectAtIndex:0]integerValue];
+    mLabOtherDay.text = [[Utility weekDayWithDate:[NSDate date]]objectAtIndex:1];
+    [mViewWeek reloadData];
+//    [self request];
 }
 - (SHTableHorizontalViewCell*) tableView:(SHTableHorizontalView *)tableView cellForColumnAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -52,24 +56,53 @@
 
 - (void)tableView:(SHTableHorizontalView *)tableView didSelectColumnAtIndexPath:(NSIndexPath *)indexPath
 {
+   
+    int today =  [[[Utility weekDayWithDate:[NSDate date]]objectAtIndex:0]integerValue];
+    if (indexPath.row >= today) {
+        [self showAlertDialog:@"只能对比当天之前的数据"];
+        return;
+    }
     selectWeek = indexPath.row;
+    mLabOtherDay.text = [[Utility weekDayWithDate:[mListWeek objectAtIndex:selectWeek]]objectAtIndex:1];
     [mViewWeek reloadData];
-
+    [self request];
+}
+-(void) request
+{
+    NSDate * date = [mListWeek objectAtIndex:selectWeek];
+    NSDateFormatter * format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyyMMdd"];
+    [self showWaitDialogForNetWork];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    [dic setValue:[format stringFromDate:date] forKey:@"compareDate"];
+    [dic setValue:[format stringFromDate:[NSDate date]] forKey:@"currentDate"];
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"sculptCompare.jhtml");
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        mResult = [[task result]mutableCopy];
+        NSDictionary * today = [mResult objectForKey:@"today"];
+        mLabWeightToday.text = [NSString stringWithFormat:@"%dKg",[[today objectForKey:@"weight"]intValue]/1000];
+        mLabCalrioToday.text = [[today objectForKey:@"calorie"]stringValue];
+        NSDictionary * otherday = [mResult objectForKey:@"otherDay"];
+        mLabCalrioWeek.text = [[otherday objectForKey:@"calorie"]stringValue];
+        mLabWegithWeek.text = [NSString stringWithFormat:@"%dKg",[[otherday objectForKey:@"weight"]intValue]/1000];
+        mLabFreq.text = [NSString stringWithFormat:@"%@/%@",[[today objectForKey:@"iterval"]stringValue],[[today objectForKey:@"iterval"]stringValue]];
+        
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)btnCreateDataReportOntouch:(id)sender {
     SHIntent * intent = [[SHIntent alloc]init];

@@ -18,8 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"塑身管理";
     mViewBodyMode = [[SHBodyModeViewController alloc]init];
+    mViewBodyMode.navController = self.navigationController;
     mViewRealData = [[SHRealDataViewController alloc]init];
+    mViewRealData.navController = self.navigationController;
     mViewComperData = [[SHComperDataViewController alloc]init];
     mViewComperData.navigationCont = self.navigationController;
     [mViewContain addSubview:mViewBodyMode.view];
@@ -30,15 +33,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)btnTopTabOntohc:(UIButton *)sender{
 

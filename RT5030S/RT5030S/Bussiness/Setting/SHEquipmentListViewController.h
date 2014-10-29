@@ -10,7 +10,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 @interface SHEquipmentListViewController : SHTableViewController
 {
-    
+    CBPeripheral *selectPeripheral;
 }
 
 

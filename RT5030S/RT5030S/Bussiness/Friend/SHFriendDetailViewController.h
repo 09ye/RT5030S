@@ -8,7 +8,7 @@
 
 #import "SHTableViewController.h"
 
-@interface SHFriendDetailViewController : SHTableViewController
+@interface SHFriendDetailViewController : SHTableViewController<SHTaskDelegate>
 {
     
     __weak IBOutlet SHImageView *mImgPhoto;
@@ -18,7 +18,9 @@
     __weak IBOutlet UILabel *mLabWeight;
     __weak IBOutlet UILabel *mLabFatRate;
     __weak IBOutlet UIButton *mBtnAdd;
-    __weak IBOutlet UIButton *btnRefuse;
+    __weak IBOutlet UIButton *mBtnRefuse;
+    
+    NSMutableDictionary * mResult;
 }
 - (IBAction)btnAddOntouch:(id)sender;
 - (IBAction)btnRefuseOntouch:(id)sender;

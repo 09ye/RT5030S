@@ -19,15 +19,134 @@
     [super viewDidLoad];
     self.title = @"阶段报告";
     // Do any additional setup after loading the view from its nib.
-    
-    UIButton * button = [[UIButton alloc]init];
-    button.tag = 0;
-    [self btnTopTabOntohc:button];
+    tabType = 1;//
+    mSegment.selectedSegmentIndex = 0;
+    NSDateFormatter * format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"MM月dd日"];
+    mLabCalendarDate.text = [format stringFromDate:[NSDate date]];
+    [self request];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) request
+{
+    [self showWaitDialogForNetWork];
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+   
+    [dic setValue:[NSNumber numberWithInt:tabType] forKey:@"itemType"];//1卡路里，2:使用时长，3：使用频次
+    [dic setValue:[NSNumber numberWithInt:mSegment.selectedSegmentIndex+1] forKey:@"dateType"];//1最近，2：周
+    if(tabType == 4){
+        [dic setValue:@"1" forKey:@"dateType"];
+    }
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"healthQuery.jhtml");
+    post.postData = [Utility createPostData:dic];
+    post.delegate = self;
+    [post start:^(SHTask *task) {
+        [self dismissWaitDialog];
+        mResult = [[task result]mutableCopy];
+        [lineChart removeFromSuperview];
+        lineChart = [[PNChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200.0)];
+        lineChart.backgroundColor = [UIColor clearColor];
+        switch (tabType) {
+            case 1:
+                [mbtnTab1 setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
+                [mbtnTab2 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                [mbtnTab3 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                [mbtnTab4 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                imgTitle.image = [UIImage imageNamed:@"ic_calrio"];
+                mLabTitle.text = @"卡路里";
+                mLabTitle.textColor = [SHSkin.instance colorOfStyle:@"ColorTextOrg"];
+                
+                mLabCriLeftTitle.text = @"总卡路里";
+                mLabCriLeftContent.text = [NSString stringWithFormat:@"%d卡",[[mResult objectForKey:@"totalCalories"]intValue]];
+                mLabCriMidTitle.text = @"单次最高";
+                mLabCriMidContent.text = [NSString stringWithFormat:@"%d卡",[[mResult objectForKey:@"maxCaloriie"]intValue]];
+                mLabCriRightTitle.text = @"使用天数";
+                mLabCriRightContent1.text = [[mResult objectForKey:@"useDays"]stringValue];
+                mLabCriRightContent2.text = [[mResult objectForKey:@"totalDays"]stringValue];
+                
+                [lineChart setXLabels:[mResult objectForKey:@"x-time"]];
+                [lineChart setYValues:[mResult objectForKey:@"y-data"]];
+                [lineChart  setStrokeColor:[SHSkin.instance colorOfStyle:@"ColorTextOrg"]];
+                [lineChart strokeChart];
+                [mViewChart addSubview:lineChart];
+                
+                mViewContain.hidden = NO;
+                self.tableView.hidden = YES;
+                
+                break;
+            case 2:
+                [mbtnTab1 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                [mbtnTab2 setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
+                [mbtnTab3 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                [mbtnTab4 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                imgTitle.image = [UIImage imageNamed:@"ic_time_shichang"];
+                mLabTitle.text = @"使用时长";
+                mLabTitle.textColor = [SHSkin.instance colorOfStyle:@"ColorTextBlue"];
+                
+                mLabCriLeftTitle.text = @"总时长";
+                mLabCriLeftContent.text = [NSString stringWithFormat:@"%d小时",[[mResult objectForKey:@"totalUseTime"]intValue]];
+                mLabCriMidTitle.text = @"平均时长";
+                mLabCriMidContent.text = [NSString stringWithFormat:@"%d分钟",[[mResult objectForKey:@"avgUseTime"]intValue]];;
+                mLabCriRightTitle.text = @"使用天数";
+                mLabCriRightContent1.text = [[mResult objectForKey:@"useDays"]stringValue];
+                mLabCriRightContent2.text = [[mResult objectForKey:@"totalDays"]stringValue];
+                
+                [lineChart setXLabels:[mResult objectForKey:@"x-time"]];
+                [lineChart setYValues:[mResult objectForKey:@"y-data"]];
+                [lineChart  setStrokeColor:[SHSkin.instance colorOfStyle:@"ColorTextBlue"]];
+                [lineChart strokeChart];
+                [mViewChart addSubview:lineChart];
+                mViewContain.hidden = NO;
+                self.tableView.hidden = YES;
+                break;
+            case 3:
+                [mbtnTab1 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                [mbtnTab2 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                [mbtnTab3 setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
+                [mbtnTab4 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                imgTitle.image = [UIImage imageNamed:@"ic_shichang"];
+                mLabTitle.text = @"使用频次";
+                mLabTitle.textColor = [SHSkin.instance colorOfStyle:@"ColorTextGreen"];
+                
+                mLabCriLeftTitle.text = @"总频次";
+                mLabCriLeftContent.text = [NSString stringWithFormat:@"%d次",[[mResult objectForKey:@"totalUseCount"]intValue]];
+                mLabCriMidTitle.text = @"单次最高";
+                mLabCriMidContent.text = [NSString stringWithFormat:@"%d次",[[mResult objectForKey:@"maxUseCount"]intValue]];
+                mLabCriRightTitle.text = @"使用天数";
+                mLabCriRightContent1.text = [[mResult objectForKey:@"useDays"]stringValue];
+                mLabCriRightContent2.text = [[mResult objectForKey:@"totalDays"]stringValue];
+                
+                [lineChart setXLabels:[mResult objectForKey:@"x-time"]];
+                [lineChart setYValues:[mResult objectForKey:@"y-data"]];
+                [lineChart  setStrokeColor:[SHSkin.instance colorOfStyle:@"ColorTextGreen"]];
+                [lineChart strokeChart];
+                [mViewChart addSubview:lineChart];
+                mViewContain.hidden = NO;
+                self.tableView.hidden = YES;
+                break;
+            case 4:
+                [mbtnTab1 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                [mbtnTab2 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                [mbtnTab3 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
+                [mbtnTab4 setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
+                mViewContain.hidden = YES;
+                self.tableView.hidden = NO;
+                mList = [mResult objectForKey:@"musicList"];
+                [self.tableView reloadData];
+                break;
+                
+            default:
+                break;
+        }
+        
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        [task.respinfo show];
+    }];
 }
 
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -36,7 +155,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return mList.count;
 }
 
 -(SHTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -47,6 +166,12 @@
         cell.backgroundColor = [UIColor clearColor];
     }
     cell.backgroundColor = [UIColor whiteColor];
+//    {"index":2,"musicName":"a","useCount":1,"useTime":0
+    NSDictionary * dic = [mList objectAtIndex:indexPath.row];
+    cell.labIndex.text = [[dic objectForKey:@"index"]stringValue];
+    cell.labName.text = [dic objectForKey:@"musicName"];
+    cell.labCount.text = [NSString stringWithFormat:@"%@次",[dic objectForKey:@"useCount"]];
+    cell.labTime.text = [NSString stringWithFormat:@"%@小时",[dic objectForKey:@"useTime"]];
     return cell;
     
 }
@@ -70,101 +195,13 @@
 }
 
 - (IBAction)btnTopTabOntohc:(UIButton *)sender {
-    [lineChart removeFromSuperview];
-    lineChart = [[PNChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200.0)];
-    lineChart.backgroundColor = [UIColor clearColor];
-    switch (sender.tag) {
-        case 0:
-            [mbtnTab1 setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
-            [mbtnTab2 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            [mbtnTab3 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            [mbtnTab4 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            imgTitle.image = [UIImage imageNamed:@"ic_calrio"];
-            mLabTitle.text = @"卡路里";
-            mLabTitle.textColor = [SHSkin.instance colorOfStyle:@"ColorTextOrg"];
-            
-            mLabCriLeftTitle.text = @"总卡路里";
-            mLabCriLeftContent.text = @"20000卡";
-            mLabCriMidTitle.text = @"单次最高";
-            mLabCriMidContent.text = @"200000卡";
-            mLabCriRightTitle.text = @"使用天数";
-            mLabCriRightContent1.text = @"1";
-            mLabCriRightContent2.text = @"10";
-            
-            [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"]];
-            [lineChart setYValues:@[@"1",@"10",@"2",@"6",@"300",@"10",@"100"]];
-            [lineChart  setStrokeColor:[SHSkin.instance colorOfStyle:@"ColorTextOrg"]];
-            [lineChart strokeChart];
-            [mViewChart addSubview:lineChart];
-            mViewContain.hidden = NO;
-            self.tableView.hidden = YES;
-            
-            break;
-        case 1:
-            [mbtnTab1 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            [mbtnTab2 setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
-            [mbtnTab3 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            [mbtnTab4 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            imgTitle.image = [UIImage imageNamed:@"ic_time_shichang"];
-            mLabTitle.text = @"使用时长";
-            mLabTitle.textColor = [SHSkin.instance colorOfStyle:@"ColorTextBlue"];
-            
-            mLabCriLeftTitle.text = @"总时长";
-            mLabCriLeftContent.text = @"20000小时";
-            mLabCriMidTitle.text = @"平均时长";
-            mLabCriMidContent.text = @"568分钟";
-            mLabCriRightTitle.text = @"使用天数";
-            mLabCriRightContent1.text = @"1";
-            mLabCriRightContent2.text = @"10";
-            
-            [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"]];
-            [lineChart setYValues:@[@"10",@"10",@"20",@"6",@"300",@"10",@"100"]];
-            [lineChart  setStrokeColor:[SHSkin.instance colorOfStyle:@"ColorTextBlue"]];
-            [lineChart strokeChart];
-            [mViewChart addSubview:lineChart];
-            mViewContain.hidden = NO;
-            self.tableView.hidden = YES;
-            break;
-        case 2:
-            [mbtnTab1 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            [mbtnTab2 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            [mbtnTab3 setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
-            [mbtnTab4 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            imgTitle.image = [UIImage imageNamed:@"ic_shichang"];
-            mLabTitle.text = @"使用时长";
-            mLabTitle.textColor = [SHSkin.instance colorOfStyle:@"ColorTextGreen"];
-            
-            mLabCriLeftTitle.text = @"总频次";
-            mLabCriLeftContent.text = @"20000次";
-            mLabCriMidTitle.text = @"单次最高";
-            mLabCriMidContent.text = @"200000次";
-            mLabCriRightTitle.text = @"使用天数";
-            mLabCriRightContent1.text = @"1";
-            mLabCriRightContent2.text = @"10";
-            
-            [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5"]];
-            [lineChart setYValues:@[@"1",@"100",@"2",@"6",@"30"]];
-            [lineChart  setStrokeColor:[SHSkin.instance colorOfStyle:@"ColorTextGreen"]];
-            [lineChart strokeChart];
-            [mViewChart addSubview:lineChart];
-            mViewContain.hidden = NO;
-            self.tableView.hidden = YES;
-            break;
-        case 3:
-            [mbtnTab1 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            [mbtnTab2 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            [mbtnTab3 setBackgroundImage:[SHSkin.instance image:@"xuanxiang_default"] forState:UIControlStateNormal];
-            [mbtnTab4 setBackgroundImage:[SHSkin.instance image:@"xuangxiang_selected"] forState:UIControlStateNormal];
-            mViewContain.hidden = YES;
-            self.tableView.hidden = NO;
-            break;
-            
-        default:
-            break;
-    }
-}
+  
+    tabType = sender.tag +1;
+    [self request];
+}   
 
 - (IBAction)segmentOntouch:(id)sender {
+    [self request];
 }
 
 - (IBAction)btnCalender:(UIButton *)sender {

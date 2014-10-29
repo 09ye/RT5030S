@@ -491,8 +491,15 @@
 		77497F2719D59A21009ED076 /* shengchengshuju_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77497F1719D59A21009ED076 /* shengchengshuju_button@2x.png */; };
 		77497F2819D59A21009ED076 /* shujuduibi_jinri.png in Resources */ = {isa = PBXBuildFile; fileRef = 77497F1819D59A21009ED076 /* shujuduibi_jinri.png */; };
 		77497F2919D59A21009ED076 /* shujuduibi_jinri@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77497F1919D59A21009ED076 /* shujuduibi_jinri@2x.png */; };
+		7782957019EA394900EB8DC3 /* tianjia_button2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7782956E19EA394900EB8DC3 /* tianjia_button2.png */; };
+		7782957119EA394900EB8DC3 /* tianjia_button2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7782956F19EA394900EB8DC3 /* tianjia_button2@2x.png */; };
+		778A7C4219EEAC94006AAC78 /* SHMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778A7C4019EEAC94006AAC78 /* SHMessageViewController.m */; };
+		778A7C4319EEAC94006AAC78 /* SHMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778A7C4119EEAC94006AAC78 /* SHMessageViewController.xib */; };
+		778A7C4519EEB0D7006AAC78 /* hongdian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 778A7C4419EEB0D7006AAC78 /* hongdian@2x.png */; };
 		7792EA1C19E6C64100A971B4 /* SHUpdatePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7792EA1A19E6C64100A971B4 /* SHUpdatePasswordViewController.m */; };
 		7792EA1D19E6C64100A971B4 /* SHUpdatePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7792EA1B19E6C64100A971B4 /* SHUpdatePasswordViewController.xib */; };
+		779BB97719F7E90100046948 /* SHFamilyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BB97519F7E90100046948 /* SHFamilyDetailViewController.m */; };
+		779BB97819F7E90100046948 /* SHFamilyDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779BB97619F7E90100046948 /* SHFamilyDetailViewController.xib */; };
 		77A3A9E919D19ED900F8001E /* TencentOpenApi_IOS_Bundle.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D79E0819C898280005648B /* TencentOpenApi_IOS_Bundle.bundle */; };
 		77A3A9EF19D1A48400F8001E /* SHComparisonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3A9ED19D1A48400F8001E /* SHComparisonViewController.m */; };
 		77A3A9F019D1A48400F8001E /* SHComparisonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A3A9EE19D1A48400F8001E /* SHComparisonViewController.xib */; };
@@ -563,9 +570,13 @@
 		77A3AA7619D1B76200F8001E /* yundongfangan_tubiao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A3AA5419D1B76200F8001E /* yundongfangan_tubiao@2x.png */; };
 		77A3AA7F19D1CE4900F8001E /* SHAdviceHealthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3AA7D19D1CE4900F8001E /* SHAdviceHealthViewController.m */; };
 		77A3AA8019D1CE4900F8001E /* SHAdviceHealthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A3AA7E19D1CE4900F8001E /* SHAdviceHealthViewController.xib */; };
+		77B0043C19F131F1002B72FD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0043B19F131F1002B72FD /* AVFoundation.framework */; };
 		77B06F0C19E5898200310E3E /* SHSexSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B06F0A19E5898200310E3E /* SHSexSelectViewController.m */; };
 		77B06F0D19E5898200310E3E /* SHSexSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77B06F0B19E5898200310E3E /* SHSexSelectViewController.xib */; };
 		77BACCB019E0F3820002E4A9 /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BACCAF19E0F3820002E4A9 /* libCore.a */; };
+		77C2D7F119F568DE00D1F9F8 /* SHFamilyAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C2D7EF19F568DE00D1F9F8 /* SHFamilyAddViewController.m */; };
+		77C2D7F219F568DE00D1F9F8 /* SHFamilyAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C2D7F019F568DE00D1F9F8 /* SHFamilyAddViewController.xib */; };
+		77C4C1A419F9E9F200183ACB /* SHMusicPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C4C1A319F9E9F200183ACB /* SHMusicPlayerManager.m */; };
 		77D3A2D519CDBDD900F9CE4F /* SHTitleHorizontalViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D3A2D419CDBDD900F9CE4F /* SHTitleHorizontalViewCell.m */; };
 		77D3A2D719CDBDE700F9CE4F /* SHTitleHorizontalViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D3A2D619CDBDE700F9CE4F /* SHTitleHorizontalViewCell.xib */; };
 		77D79C6B19C897710005648B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D79C6A19C897710005648B /* Foundation.framework */; };
@@ -1306,9 +1317,18 @@
 		77497F1719D59A21009ED076 /* shengchengshuju_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shengchengshuju_button@2x.png"; sourceTree = "<group>"; };
 		77497F1819D59A21009ED076 /* shujuduibi_jinri.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shujuduibi_jinri.png; sourceTree = "<group>"; };
 		77497F1919D59A21009ED076 /* shujuduibi_jinri@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shujuduibi_jinri@2x.png"; sourceTree = "<group>"; };
+		7782956E19EA394900EB8DC3 /* tianjia_button2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianjia_button2.png; sourceTree = "<group>"; };
+		7782956F19EA394900EB8DC3 /* tianjia_button2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tianjia_button2@2x.png"; sourceTree = "<group>"; };
+		778A7C3F19EEAC94006AAC78 /* SHMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHMessageViewController.h; sourceTree = "<group>"; };
+		778A7C4019EEAC94006AAC78 /* SHMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHMessageViewController.m; sourceTree = "<group>"; };
+		778A7C4119EEAC94006AAC78 /* SHMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHMessageViewController.xib; sourceTree = "<group>"; };
+		778A7C4419EEB0D7006AAC78 /* hongdian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hongdian@2x.png"; sourceTree = "<group>"; };
 		7792EA1919E6C64100A971B4 /* SHUpdatePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHUpdatePasswordViewController.h; sourceTree = "<group>"; };
 		7792EA1A19E6C64100A971B4 /* SHUpdatePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHUpdatePasswordViewController.m; sourceTree = "<group>"; };
 		7792EA1B19E6C64100A971B4 /* SHUpdatePasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHUpdatePasswordViewController.xib; sourceTree = "<group>"; };
+		779BB97419F7E90100046948 /* SHFamilyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHFamilyDetailViewController.h; sourceTree = "<group>"; };
+		779BB97519F7E90100046948 /* SHFamilyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHFamilyDetailViewController.m; sourceTree = "<group>"; };
+		779BB97619F7E90100046948 /* SHFamilyDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHFamilyDetailViewController.xib; sourceTree = "<group>"; };
 		77A3A9EC19D1A48400F8001E /* SHComparisonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHComparisonViewController.h; sourceTree = "<group>"; };
 		77A3A9ED19D1A48400F8001E /* SHComparisonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHComparisonViewController.m; sourceTree = "<group>"; };
 		77A3A9EE19D1A48400F8001E /* SHComparisonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHComparisonViewController.xib; sourceTree = "<group>"; };
@@ -1381,10 +1401,16 @@
 		77A3AA7C19D1CE4900F8001E /* SHAdviceHealthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHAdviceHealthViewController.h; sourceTree = "<group>"; };
 		77A3AA7D19D1CE4900F8001E /* SHAdviceHealthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHAdviceHealthViewController.m; sourceTree = "<group>"; };
 		77A3AA7E19D1CE4900F8001E /* SHAdviceHealthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHAdviceHealthViewController.xib; sourceTree = "<group>"; };
+		77B0043B19F131F1002B72FD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		77B06F0919E5898200310E3E /* SHSexSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHSexSelectViewController.h; sourceTree = "<group>"; };
 		77B06F0A19E5898200310E3E /* SHSexSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHSexSelectViewController.m; sourceTree = "<group>"; };
 		77B06F0B19E5898200310E3E /* SHSexSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHSexSelectViewController.xib; sourceTree = "<group>"; };
 		77BACCAF19E0F3820002E4A9 /* libCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCore.a; sourceTree = "<group>"; };
+		77C2D7EE19F568DE00D1F9F8 /* SHFamilyAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHFamilyAddViewController.h; sourceTree = "<group>"; };
+		77C2D7EF19F568DE00D1F9F8 /* SHFamilyAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHFamilyAddViewController.m; sourceTree = "<group>"; };
+		77C2D7F019F568DE00D1F9F8 /* SHFamilyAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHFamilyAddViewController.xib; sourceTree = "<group>"; };
+		77C4C1A219F9E9F200183ACB /* SHMusicPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHMusicPlayerManager.h; sourceTree = "<group>"; };
+		77C4C1A319F9E9F200183ACB /* SHMusicPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHMusicPlayerManager.m; sourceTree = "<group>"; };
 		77D3A2D319CDBDD900F9CE4F /* SHTitleHorizontalViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHTitleHorizontalViewCell.h; sourceTree = "<group>"; };
 		77D3A2D419CDBDD900F9CE4F /* SHTitleHorizontalViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHTitleHorizontalViewCell.m; sourceTree = "<group>"; };
 		77D3A2D619CDBDE700F9CE4F /* SHTitleHorizontalViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHTitleHorizontalViewCell.xib; sourceTree = "<group>"; };
@@ -1584,6 +1610,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77B0043C19F131F1002B72FD /* AVFoundation.framework in Frameworks */,
 				77A3A9E919D19ED900F8001E /* TencentOpenApi_IOS_Bundle.bundle in Frameworks */,
 				7700BC1819CD8E63000D172E /* CoreBluetooth.framework in Frameworks */,
 				77FF58EF19C8A1470037E319 /* SystemConfiguration.framework in Frameworks */,
@@ -1678,6 +1705,7 @@
 		7700BB8D19CC7ABA000D172E /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
+				778A7C4419EEB0D7006AAC78 /* hongdian@2x.png */,
 				7700BC2219CDA9B5000D172E /* hongdian.png */,
 				7700BBFC19CCAA58000D172E /* nav_button_shezhi_default.png */,
 				7700BBFD19CCAA58000D172E /* nav_button_shezhi_default@2x.png */,
@@ -2740,6 +2768,7 @@
 		7745034419D32208006AE129 /* Body */ = {
 			isa = PBXGroup;
 			children = (
+				77C4C1A119F9E9B500183ACB /* Music */,
 				7745036F19D32339006AE129 /* View */,
 				7745034519D32219006AE129 /* SHBodyViewController.h */,
 				7745034619D32219006AE129 /* SHBodyViewController.m */,
@@ -2830,6 +2859,16 @@
 				77497F1919D59A21009ED076 /* shujuduibi_jinri@2x.png */,
 			);
 			path = "树身管理-数据对比";
+			sourceTree = "<group>";
+		};
+		778A7C3E19EEAC1C006AAC78 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				778A7C3F19EEAC94006AAC78 /* SHMessageViewController.h */,
+				778A7C4019EEAC94006AAC78 /* SHMessageViewController.m */,
+				778A7C4119EEAC94006AAC78 /* SHMessageViewController.xib */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		77A3A9EA19D1A3D500F8001E /* PK */ = {
@@ -2946,6 +2985,28 @@
 			path = "体检报告-深度报告";
 			sourceTree = "<group>";
 		};
+		77C2D7ED19F568BC00D1F9F8 /* Family */ = {
+			isa = PBXGroup;
+			children = (
+				77C2D7EE19F568DE00D1F9F8 /* SHFamilyAddViewController.h */,
+				77C2D7EF19F568DE00D1F9F8 /* SHFamilyAddViewController.m */,
+				77C2D7F019F568DE00D1F9F8 /* SHFamilyAddViewController.xib */,
+				779BB97419F7E90100046948 /* SHFamilyDetailViewController.h */,
+				779BB97519F7E90100046948 /* SHFamilyDetailViewController.m */,
+				779BB97619F7E90100046948 /* SHFamilyDetailViewController.xib */,
+			);
+			path = Family;
+			sourceTree = "<group>";
+		};
+		77C4C1A119F9E9B500183ACB /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				77C4C1A219F9E9F200183ACB /* SHMusicPlayerManager.h */,
+				77C4C1A319F9E9F200183ACB /* SHMusicPlayerManager.m */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		77D79C5E19C897710005648B = {
 			isa = PBXGroup;
 			children = (
@@ -2968,6 +3029,7 @@
 		77D79C6919C897710005648B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77B0043B19F131F1002B72FD /* AVFoundation.framework */,
 				7700BC1719CD8E63000D172E /* CoreBluetooth.framework */,
 				77FF58EE19C8A1470037E319 /* SystemConfiguration.framework */,
 				77FF58EC19C8A1070037E319 /* libiconv.dylib */,
@@ -3162,6 +3224,8 @@
 		77D79ED019C89A170005648B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7782956E19EA394900EB8DC3 /* tianjia_button2.png */,
+				7782956F19EA394900EB8DC3 /* tianjia_button2@2x.png */,
 				7706F74F19D9A0FF00A84A27 /* 数据报告 */,
 				77497F0919D59A21009ED076 /* 树身管理-数据对比 */,
 				77497EF719D58C7E009ED076 /* 塑身管理-实时数据 */,
@@ -3203,6 +3267,8 @@
 		77D79ED119C89A170005648B /* Bussiness */ = {
 			isa = PBXGroup;
 			children = (
+				77C2D7ED19F568BC00D1F9F8 /* Family */,
+				778A7C3E19EEAC1C006AAC78 /* Message */,
 				7745034419D32208006AE129 /* Body */,
 				7745031419D316E8006AE129 /* Charts */,
 				77A3A9EA19D1A3D500F8001E /* PK */,
@@ -3500,6 +3566,7 @@
 				7700BBF519CC9210000D172E /* SHPhotoImgCell.xib in Resources */,
 				773C62F419C9D08200397A0B /* blackArrow@2x.png in Resources */,
 				7745030319D30A40006AE129 /* SHPhaseReportViewController.xib in Resources */,
+				778A7C4319EEAC94006AAC78 /* SHMessageViewController.xib in Resources */,
 				7725DD3019D051D700BB3137 /* mubiao_dingbu_biaozhun_bg@2x.png in Resources */,
 				77211AFF19CEC993006B3BE7 /* mubiao_button.png in Resources */,
 				77497F2019D59A21009ED076 /* diburiqi_selected.png in Resources */,
@@ -3538,6 +3605,7 @@
 				7700BBCB19CC7ABA000D172E /* zhuye_tizhongguanli_button@2x.png in Resources */,
 				773C615D19C9CD9A00397A0B /* zhanghao_logo.png in Resources */,
 				7745037819D3283E006AE129 /* sanjiao_xuanze_anniu_right.png in Resources */,
+				778A7C4519EEB0D7006AAC78 /* hongdian@2x.png in Resources */,
 				7725DD2319D051D700BB3137 /* kaluli_huangsejianbian_jiantou.png in Resources */,
 				7700BBBE19CC7ABA000D172E /* zhuye_dingbu_xingxi_bj.png in Resources */,
 				77211AAF19CE972F006B3BE7 /* yonghu_xinxi_xianshi_bg.png in Resources */,
@@ -3590,6 +3658,7 @@
 				7700BC1B19CD8FE0000D172E /* shebei_yilianjie.png in Resources */,
 				773C631119C9D08200397A0B /* button_current_bg.png in Resources */,
 				77D79F9A19C89C550005648B /* mapapi.bundle in Resources */,
+				7782957019EA394900EB8DC3 /* tianjia_button2.png in Resources */,
 				7725DD2819D051D700BB3137 /* kaluli_xianshiqu_bg@2x.png in Resources */,
 				773C62E519C9D08200397A0B /* DSLCalendar-nextMonth@2x.png in Resources */,
 				7725DD3819D0569F00BB3137 /* ic_xiaoqi.png in Resources */,
@@ -3651,6 +3720,7 @@
 				77A3AA6019D1B76200F8001E /* jieduanbaogao_tubiao@2x.png in Resources */,
 				7700BBC419CC7ABA000D172E /* zhuye_paihangbang_button.png in Resources */,
 				7700BBE419CC8BE3000D172E /* lianjieshebei_icon.png in Resources */,
+				7782957119EA394900EB8DC3 /* tianjia_button2@2x.png in Resources */,
 				77211AFA19CEC993006B3BE7 /* dingbu_lansejianbian_fengexian@2x.png in Resources */,
 				7745030919D31325006AE129 /* ic_cricle_org.png in Resources */,
 				773C62E419C9D08200397A0B /* DSLCalendar-nextMonth.png in Resources */,
@@ -3718,6 +3788,7 @@
 				7700BC2119CD912B000D172E /* SHEquipmentListViewController.xib in Resources */,
 				7700BC2919CDAA11000D172E /* jilu_dingbu_bg.png in Resources */,
 				7700BC3719CDAB09000D172E /* SHRecordViewCell.xib in Resources */,
+				77C2D7F219F568DE00D1F9F8 /* SHFamilyAddViewController.xib in Resources */,
 				7700BBCF19CC7BE7000D172E /* ic_home_left@2x.png in Resources */,
 				773C631219C9D08200397A0B /* button_item_white_bg.png in Resources */,
 				77497F2119D59A21009ED076 /* diburiqi_selected@2x.png in Resources */,
@@ -3765,6 +3836,7 @@
 				7700BBB919CC7ABA000D172E /* zhuye_dingbu_button_jilu@2x.png in Resources */,
 				7745030719D31325006AE129 /* ic_cricle_blue.png in Resources */,
 				7700BB6A19CC4303000D172E /* SHMainHomeViewController.xib in Resources */,
+				779BB97819F7E90100046948 /* SHFamilyDetailViewController.xib in Resources */,
 				7745033819D3171E006AE129 /* tianjia_button@2x.png in Resources */,
 				7700BBBC19CC7ABA000D172E /* zhuye_dingbu_lianjiezhuangtai_weilianjie.png in Resources */,
 				77211AAC19CE972F006B3BE7 /* jieshou_anniu@2x.png in Resources */,
@@ -3912,9 +3984,11 @@
 				77A3AA7F19D1CE4900F8001E /* SHAdviceHealthViewController.m in Sources */,
 				773C635419C9D08200397A0B /* BWStatusBarOverlay.m in Sources */,
 				773C62F219C9D08200397A0B /* NSDate+DSLCalendarView.m in Sources */,
+				77C2D7F119F568DE00D1F9F8 /* SHFamilyAddViewController.m in Sources */,
 				77211AC419CEB2D7006B3BE7 /* SHFriendDetailViewController.m in Sources */,
 				773C637819C9D08200397A0B /* SHAppDelegate.m in Sources */,
 				773C636719C9D08200397A0B /* NSDate+convenience.m in Sources */,
+				778A7C4219EEAC94006AAC78 /* SHMessageViewController.m in Sources */,
 				7706F74219D98E1A00A84A27 /* SHWeekDayCell.m in Sources */,
 				773C637719C9D08200397A0B /* NSObjectAddtion.m in Sources */,
 				77211A9619CE96AA006B3BE7 /* SHFriendListViewController.m in Sources */,
@@ -3932,6 +4006,8 @@
 				773C635619C9D08200397A0B /* JDStatusBarStyle.m in Sources */,
 				773C631F19C9D08200397A0B /* MJPhotoToolbar.m in Sources */,
 				773C636119C9D08200397A0B /* SHTableHorizontalView.m in Sources */,
+				77C4C1A419F9E9F200183ACB /* SHMusicPlayerManager.m in Sources */,
+				779BB97719F7E90100046948 /* SHFamilyDetailViewController.m in Sources */,
 				7700BBD519CC8944000D172E /* SHSettingViewController.m in Sources */,
 				7700BB8019CC4731000D172E /* SHGuideViewController.m in Sources */,
 				773C632A19C9D08200397A0B /* SDWebImagePrefetcher.m in Sources */,

@@ -13,7 +13,7 @@
 @interface SHViewController : UIViewController<ISHSkin>
 {
     
-    
+     NSMutableArray * mListTxt;
 }
 
 /**

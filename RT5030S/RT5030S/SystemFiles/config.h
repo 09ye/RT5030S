@@ -47,6 +47,8 @@
 //config
 #define USER_CENTER_LOGINNAME @"user_center_loginname"
 #define USER_CENTER_PASSWORD @"user_center_password"
+#define USER_CENTER_NICKNAME @"user_center_nickname"
+#define USER_CENTER_PHOTO @"user_center_photo"
 //notification
 #define NOTIFICATION_LOGIN_SUCCESSFUL @"notification_login_successful"
 
@@ -54,7 +56,7 @@
 #define NOTIFICATION_REGIST_SUCCESSFUL @"notification_regist_successful"
 #define NOTIFICATION_BACK_HOME @"notification_back_home"
 #define NOTIFICATION_BLUETOOTH_DATA_UPDATE @"notification_bluetooth_data_update"
-
+#define NOTIFICATION_BLUETOOTH_CONNET_SUCCESSFUL @"notification_bluetooth_connet_successful"
 //#define NOTIFICATION_LOGIN_SUCCESS @"notification_login_success"
 
 #define NOTIFICATION_EditRefrence @"notification_edit_refrence"

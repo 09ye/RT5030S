@@ -10,7 +10,7 @@
 #import "PNChart.h"
 #import "SHCalendarViewController.h"
 
-@interface SHPhaseReportViewController : SHTableViewController<SHCalendarViewControllerDelegate>
+@interface SHPhaseReportViewController : SHTableViewController<SHCalendarViewControllerDelegate,SHTaskDelegate>
 {
     
     __weak IBOutlet UILabel *mLabTitle;
@@ -34,6 +34,8 @@
     
     PNChart * lineChart ;
     SHCalendarViewController * mStartDatecontroller;
+    int tabType;
+    NSDictionary * mResult;
     
 }
 - (IBAction)btnTopTabOntohc:(id)sender;

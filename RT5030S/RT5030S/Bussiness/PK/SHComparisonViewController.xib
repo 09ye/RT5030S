@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SHComparisonViewController">
@@ -21,6 +22,7 @@
                 <outlet property="mLabName2" destination="5IL-iT-EJA" id="urX-id-SZN"/>
                 <outlet property="mLabScore1" destination="oEs-pu-zhS" id="tqI-Cb-u5P"/>
                 <outlet property="mLabScore2" destination="sAB-QH-4ja" id="QbP-mQ-1wT"/>
+                <outlet property="mLabToTarget" destination="81W-c6-5JM" id="ULm-Qu-6W2"/>
                 <outlet property="mLabWeight1" destination="qGi-iT-gws" id="DVa-wC-yHa"/>
                 <outlet property="mLabWeight2" destination="2hV-7f-wnQ" id="lIH-2l-n9N"/>
                 <outlet property="mSegment" destination="ZVf-VY-7sk" id="WMm-Bh-gYK"/>
@@ -124,8 +126,8 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60.89Kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dHX-Ga-OgL">
-                    <rect key="frame" x="47" y="258" width="65" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60.89%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dHX-Ga-OgL">
+                    <rect key="frame" x="50" y="258" width="60" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.96470588239999999" green="0.70588235290000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
@@ -274,6 +276,9 @@
                     <state key="normal" backgroundImage="ic_show_bg.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="btnShareOntouch:" destination="-1" eventType="touchUpInside" id="RFd-Q6-5Lj"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sMQ-gc-qxN">
                     <rect key="frame" x="34" y="142" width="91" height="21"/>

@@ -87,16 +87,23 @@
 }
 -(void) autologin
 {
-    NSString * username = [[NSUserDefaults standardUserDefaults]objectForKey:@"username"];
-    NSString * password = [[NSUserDefaults standardUserDefaults]objectForKey:@"password"];
+    NSString * username = [[NSUserDefaults standardUserDefaults]objectForKey:USER_CENTER_LOGINNAME];
+    NSString * password = [[NSUserDefaults standardUserDefaults]objectForKey:USER_CENTER_PASSWORD];
     if (username && password) {
         SHEntironment.instance.loginName = username;
         SHEntironment.instance.password = password;
-        SHPostTaskM * post = [[SHPostTaskM alloc]init];
-        post.tag = 0;
-        post.URL = URL_FOR(@"login");
-        post.delegate  = self;
-        [post start];
+        AppDelegate* app=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
+        [dic setValue:username forKey:@"username"];
+        [dic setValue:password forKey:@"password"];
+        [dic setValue:[NSNumber numberWithDouble: app.myLocation.location.coordinate.longitude] forKey:@"longitude"];
+        [dic setValue:[NSNumber numberWithDouble: app.myLocation.location.coordinate.latitude] forKey:@"latitude"];
+        SHPostTaskM * task = [[SHPostTaskM alloc]init];
+        task.URL = URL_FOR(@"login.jhtml");
+        task.delegate = self;
+        task.tag = 0;
+        task.postData  = [Utility createPostData:dic];
+        [task start];
     }
     
 }
@@ -104,26 +111,23 @@
 {
     [self dismissWaitDialog];
     if (task.tag == 0) {
-        NSDictionary *  result = (NSDictionary *)[task result];
-        SHEntironment.instance.sessionid = [result objectForKey:@"SessionId"];
-        [[NSUserDefaults standardUserDefaults] setValue:[result objectForKey:@"PersonInfoState"]  forKey:@"personinfo_state"];// 个人信息完整
-        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGIN_SUCCESSFUL object:nil];
-        SHPostTaskM * post = [[SHPostTaskM alloc]init];
-        post.tag = 1;
-        post.URL = URL_FOR(@"getuserinformationbysession");
-        post.delegate  = self;
-        [post start];
-        
-        
-        
-    }else if(task.tag == 1){
-        NSDictionary * mResult = (NSDictionary *)[task result];
-        [[NSUserDefaults standardUserDefaults] setValue:[mResult objectForKey:@"MobileNumber"]  forKey:@"moblile"];
-        [[NSUserDefaults standardUserDefaults] setValue:[mResult objectForKey:@"EmailAddress"]   forKey:@"email"];
-        [[NSUserDefaults standardUserDefaults] setValue:[mResult objectForKey:@"DisplayName"]   forKey:@"display_name"];
-        [[NSUserDefaults standardUserDefaults] setValue:[mResult objectForKey:@"UserInformationID"]   forKey:@"pseron_id"];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        
+
+        SHEntironment.instance.userId = [task.result valueForKey:@"userId"];
+        [[NSUserDefaults standardUserDefaults] setValue:[task.result valueForKey:@"nickName"] forKey:USER_CENTER_NICKNAME];
+        [[NSUserDefaults standardUserDefaults] setValue:[task.result valueForKey:@"headImg"] forKey:USER_CENTER_PHOTO];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        if(![[task.result valueForKey:@"complete"]boolValue]){
+            // 注册成功 进入完善资料
+            SHIntent * intent = [[SHIntent alloc ]init];
+            intent.target = @"SHSelfInfoViewController";
+            intent.container = self.navigationController;
+            [intent.args setValue:@"complete" forKey:@"classType"];
+            [[UIApplication sharedApplication] open:intent];
+            
+        }else{
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGIN_SUCCESSFUL object:nil];
+        }
         
     }
 }
@@ -151,7 +155,7 @@
         
     }
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"] && false) {
         // 这里判断是否第一次
         guideVC=[[SHGuideViewController alloc]  init];
         guideVC.delegate=self;

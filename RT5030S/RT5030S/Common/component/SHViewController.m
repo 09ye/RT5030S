@@ -117,7 +117,19 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
         [self.view addGestureRecognizer:_panGestureRec];
         
     }
-    //NVSkin * skin = [[NVSkin alloc]init];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+    //    mValidate.
+}
+
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    //    if (mIsShowKeyboard) {
+    [self resignKeyBoardInView:self.view];
+    //    }
+    
 }
 
 - (void)moveViewWithGesture:(UIPanGestureRecognizer *)panGes
@@ -511,7 +523,11 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
 -(void)viewDidAppear:(BOOL)animated
 {
     [self registerForKeyboardNotifications];
-    
+    if (_keybordView) {
+        mListTxt = [[NSMutableArray alloc] init];
+        [self txtInView:_keybordView];// 收集 txt
+        SHLog(@"count===%d",mListTxt.count);
+    }
 }
 
 //- (void) __subview :(UIView*) view
@@ -525,6 +541,20 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
 //        [view resignFirstResponder];
 //    }
 //}
+-(void) txtInView:(UIView *)view
+{
+    
+    for (UIView *v in view.subviews) {
+        if ([v.subviews count] > 0) {
+            [self txtInView:v];
+        }
+        
+        if ([v isKindOfClass:[UITextView class]] || [v isKindOfClass:[UITextField class]]) {
+            [v resignFirstResponder];
+            [mListTxt  addObject:v];
+        }
+    }
+}
 
 - (void)resignKeyBoardInView:(UIView *)view
 {
@@ -567,6 +597,27 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
         mRectkeybordview = _keybordView.frame;
     }
     mIsShowKeyboard = YES;
+    
+    CGRect rect2 = [[ns.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat y = rect2.origin.y;// 键盘坐标
+    for (UIView *v in mListTxt) {
+        if ([v isKindOfClass:[UITextView class]] || [v isKindOfClass:[UITextField class]]) {
+            if( [v isFirstResponder]){
+                CGRect parentRect = [v.superview convertRect:v.frame toView:nil];// 相对屏幕坐标
+                int  altitude = y -( parentRect.origin.y+v.bounds.size.height) ;//控件底部距离键盘顶
+                if ( altitude >= 0 ) {
+                    SHLog(@"===%@",v);
+                    return;
+                }else if(fabs(altitude) < y){
+                    self.keybordheight = fabs(altitude);
+                }else{
+                    self.keybordheight = parentRect.origin.y;
+                }
+            }
+            
+        }
+    }
+    
     [UIView beginAnimations:nil context:nil];
     //设定动画持续时间
     [UIView setAnimationDuration:0.3];
@@ -595,10 +646,11 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
 
 - (void)keyboardDidHidden:(NSNotification*)ns
 {
+     mIsShowKeyboard = NO;
     if(!_keybordView){
         return;
     }
-    mIsShowKeyboard = NO;
+   
     [UIView beginAnimations:nil context:nil];
     //设定动画持续时间
     [UIView setAnimationDuration:0.3];
