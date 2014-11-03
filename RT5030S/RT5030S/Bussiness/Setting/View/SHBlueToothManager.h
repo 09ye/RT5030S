@@ -12,6 +12,8 @@
 @interface SHBlueToothManager : NSObject<CBCentralManagerDelegate,CBPeripheralDelegate>
 {
      NSThread * thread;
+     NSTimer *  timerLink;
+    
 }
 @property BOOL cbRun;
 //@property BOOL cbReady;

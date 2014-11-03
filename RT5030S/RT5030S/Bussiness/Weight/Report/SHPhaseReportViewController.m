@@ -46,7 +46,7 @@
         [self dismissWaitDialog];
         mResult = [[task result]mutableCopy];
         [lineChart removeFromSuperview];
-        lineChart = [[PNChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200.0)];
+        lineChart = [[PNChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180.0)];
         lineChart.backgroundColor = [UIColor clearColor];
         switch (tabType) {
             case 1:
@@ -86,7 +86,7 @@
                 mLabTitle.textColor = [SHSkin.instance colorOfStyle:@"ColorTextBlue"];
                 
                 mLabCriLeftTitle.text = @"总时长";
-                mLabCriLeftContent.text = [NSString stringWithFormat:@"%d小时",[[mResult objectForKey:@"totalUseTime"]intValue]];
+                mLabCriLeftContent.text = [NSString stringWithFormat:@"%d分钟",[[mResult objectForKey:@"totalUseTime"]intValue]];
                 mLabCriMidTitle.text = @"平均时长";
                 mLabCriMidContent.text = [NSString stringWithFormat:@"%d分钟",[[mResult objectForKey:@"avgUseTime"]intValue]];;
                 mLabCriRightTitle.text = @"使用天数";
@@ -171,26 +171,14 @@
     cell.labIndex.text = [[dic objectForKey:@"index"]stringValue];
     cell.labName.text = [dic objectForKey:@"musicName"];
     cell.labCount.text = [NSString stringWithFormat:@"%@次",[dic objectForKey:@"useCount"]];
-    cell.labTime.text = [NSString stringWithFormat:@"%@小时",[dic objectForKey:@"useTime"]];
+    cell.labTime.text = [NSString stringWithFormat:@"%@分钟",[dic objectForKey:@"useTime"]];
     return cell;
     
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([[self.intent.args objectForKey:@"classType"] isEqualToString:@"comper"])// 比一比
-    {
-        SHIntent * intent = [[SHIntent alloc ]init];
-        intent.target = @"SHComparisonViewController";
-        intent.container = self.navigationController;
-        [[UIApplication sharedApplication] open:intent];
-    }else{
-        SHIntent * intent = [[SHIntent alloc ]init];
-        intent.target = @"SHFriendDetailViewController";
-        intent.container = self.navigationController;
-        [intent.args setValue:@"Done" forKey:@"classType"];
-        [[UIApplication sharedApplication] open:intent];
-    }
+    
     
 }
 

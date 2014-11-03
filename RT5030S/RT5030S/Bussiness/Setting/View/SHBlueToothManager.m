@@ -33,9 +33,7 @@ static SHBlueToothManager * _instance;
         //                 [NSThread sleepForTimeInterval:0.1];
         self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
-//        Byte byte[] = {0xF0, 0x11,0x01 ,0x13 ,0x14 ,0x15 ,0x16 ,0x17 ,0x18,0x19,0x1A,0x1B,0x1C ,0x1D,0x1E,0xF1};
-//        NSData * data  =[NSData dataWithBytes:&byte length:16];
-//        [self bytesToIntArray:data];
+
     }
     return self;
 }
@@ -47,6 +45,20 @@ static SHBlueToothManager * _instance;
         _cbRun = NO;
         
     }
+}
+-(void) deviceLink
+{
+    if (self.peripheral.state == CBPeripheralStateDisconnected) {
+        if(_responseData && _responseData.count>0){// 关闭蓝牙时候 发送数据
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+            [dic setValue:_responseData forKey:@"data"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BLUETOOTH_DATA_SUBMIT object:dic];
+            
+            [timerLink invalidate];
+            timerLink = nil;
+        }
+    }
+
 }
 - (void)showAlertDialog:(NSString*)content
 {
@@ -89,6 +101,15 @@ static SHBlueToothManager * _instance;
         case CBCentralManagerStatePoweredOn:
             //            [self showAlertDialog:@"蓝牙已打开,请扫描外设"];
             [self scanDevinces];
+            break;
+        case CBCentralManagerStatePoweredOff:
+            [self showAlertDialog:@"蓝牙已关闭"];
+            if(_responseData && _responseData.count>0){// 关闭蓝牙时候 发送数据
+                NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+                [dic setValue:_responseData forKey:@"data"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BLUETOOTH_DATA_SUBMIT object:dic];
+            }
+          
             break;
         default:
             [self showAlertDialog:@"请先打开蓝牙"];
@@ -136,6 +157,7 @@ static SHBlueToothManager * _instance;
 {
     NSLog(@"%@",error);
     [self showAlertDialog:@"连接失败"];
+   
 }
 
 -(void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
@@ -183,10 +205,13 @@ static SHBlueToothManager * _instance;
         NSString *value = [[NSString alloc]initWithData:characteristic.value encoding:NSUTF8StringEncoding];
        _responseData = [[self bytesToIntArray:characteristic.value] mutableCopy];
         
-          SHLog(@"4A5B-==%@",characteristic.value);
+//          SHLog(@"4A5B-==%@",characteristic.value);
         NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
         [dic setValue:_responseData forKey:@"data"];
-          [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BLUETOOTH_DATA_UPDATE object:dic];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BLUETOOTH_DATA_UPDATE object:dic];
+        if (!timerLink) {
+            timerLink = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(deviceLink) userInfo:Nil repeats:YES];
+        }
         
         
     }else{
@@ -223,7 +248,7 @@ static SHBlueToothManager * _instance;
 //接受到数据 转成 10进制的数组（16）
 -(NSArray *) bytesToIntArray:(NSData *)data
 {
-    //手机收到十六进制信息（nsdata）：0xF0 11 01 13 14 15 16 17 18 19 1A 1B 1C 1D 1E F1
+    //手机收到十六进制信息（nsdata）：0xF0 11 01 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 20 F1
     NSLog(@"%@",data);
     NSMutableArray * array = [[NSMutableArray alloc]init];
     Byte *bytes = (Byte *)[data bytes];
@@ -249,23 +274,30 @@ static SHBlueToothManager * _instance;
         }else if (i == 4) {//字节5 （低7位） 字节6（高7位） 运行剩余时间 单位秒
             NSString * tenL = [self two2ten:two  range:NSMakeRange(1, 7)];// 低7位
             NSString *hexStrH = [NSString stringWithFormat:@"%x",bytes[5]&0xff];
-            NSString * twoH = [NSString stringWithFormat:@"%@00000000",[self hex2Binary:hexStrH]];
-            NSString * tenH = [self two2ten:twoH  range:NSMakeRange(1, 15)];// 高7位
+            NSString * twoH = [NSString stringWithFormat:@"%@0000000",[self hex2Binary:hexStrH]];
+            NSString * tenH = [self two2ten:twoH  range:NSMakeRange(1, 14)];// 高7位
             NSString * vlaue = [NSString stringWithFormat:@"%d",tenH.intValue +tenL.intValue];
             [array addObject:vlaue];
         }else if (i == 6) {//字节5 （低7位） 字节6（高7位） 体重0.1kg  单位秒
             NSString * tenL = [self two2ten:two  range:NSMakeRange(1, 7)];// 低7位
             NSString *hexStrH = [NSString stringWithFormat:@"%x",bytes[7]&0xff];
-            NSString * twoH = [NSString stringWithFormat:@"%@00000000",[self hex2Binary:hexStrH]];
-            NSString * tenH = [self two2ten:twoH  range:NSMakeRange(1, 15)];// 高7位
+            NSString * twoH = [NSString stringWithFormat:@"%@0000000",[self hex2Binary:hexStrH]];
+            NSString * tenH = [self two2ten:twoH  range:NSMakeRange(1, 14)];// 高7位
             NSString * value = [NSString stringWithFormat:@"%0.1f",((tenH.floatValue +tenL.floatValue)*0.1)];
             [array addObject:value];
-        }else if(i != 5 && i != 7){
+        }else if (i == 15) {//字节5 （低7位） 字节6（高7位） 消耗卡路里 单位秒
+            NSString * tenL = [self two2ten:two  range:NSMakeRange(1, 7)];// 低7位
+            NSString *hexStrH = [NSString stringWithFormat:@"%x",bytes[16]&0xff];
+            NSString * twoH = [NSString stringWithFormat:@"%@0000000",[self hex2Binary:hexStrH]];
+            NSString * tenH = [self two2ten:twoH  range:NSMakeRange(1, 14)];// 高7位
+            NSString * value = [NSString stringWithFormat:@"%d",tenH.integerValue +tenL.integerValue];
+            [array addObject:value];
+        }else if(i != 5 && i != 7 && i != 16){
             [array addObject:ten];
         }
         
     }
-    NSLog(@"%@",array);
+    SHLog(@"%@",array);
     return array;
 }
 

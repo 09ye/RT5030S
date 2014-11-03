@@ -146,12 +146,14 @@
        
         if ([[self.intent.args objectForKey:@"type"]isEqualToString:@"switch"]) {
             SHEntironment.instance.userId = [dic valueForKey:@"userId"];
+            [[NSUserDefaults standardUserDefaults] setValue:[dic valueForKey:@"nickName"] forKey:USER_CENTER_NICKNAME];
+            [[NSUserDefaults standardUserDefaults] setValue:[dic valueForKey:@"headImg"] forKey:USER_CENTER_PHOTO];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
             SHIntent * intent = [[SHIntent alloc ]init];
             intent.target = @"SHFamilyDetailViewController";
             intent.container = self.navigationController;
-            [intent.args setValue:[dic objectForKey:@"userId"] forKey:@"userId"];
+            [intent.args setValue:dic forKey:@"detail"];
             [[UIApplication sharedApplication] open:intent];
         }
         

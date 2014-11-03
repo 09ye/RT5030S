@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
 #import "SHAppDelegate.h"
-// lqh77
 #import "ShareConfig.h"
 #import <ShareSDK/ShareSDK.h>
 #import "SHAnalyzeFactory.h"

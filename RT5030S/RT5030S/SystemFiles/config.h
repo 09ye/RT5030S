@@ -57,6 +57,7 @@
 #define NOTIFICATION_BACK_HOME @"notification_back_home"
 #define NOTIFICATION_BLUETOOTH_DATA_UPDATE @"notification_bluetooth_data_update"
 #define NOTIFICATION_BLUETOOTH_CONNET_SUCCESSFUL @"notification_bluetooth_connet_successful"
+#define NOTIFICATION_BLUETOOTH_DATA_SUBMIT @"notification_bluetooth_data_submit"
 //#define NOTIFICATION_LOGIN_SUCCESS @"notification_login_success"
 
 #define NOTIFICATION_EditRefrence @"notification_edit_refrence"

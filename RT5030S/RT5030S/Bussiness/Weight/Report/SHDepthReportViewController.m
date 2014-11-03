@@ -32,12 +32,14 @@
     [post start:^(SHTask *task) {
         [self dismissWaitDialog];
         mResult = [[task result]mutableCopy];
+        if(![[mResult objectForKey:@"beforeDate"] isEqualToString:@""]){
+            NSDateFormatter * format = [[NSDateFormatter alloc]init];
+            [format setDateFormat:@"yyyyMMdd"];
+            NSDate * date = [format dateFromString:[mResult objectForKey:@"beforeDate"]];
+            [format setDateFormat:@"MM月dd日"];
+            mLabBeforeDate.text = [format stringFromDate:date];
+        }
         mLabBeforeDay.text = [NSString stringWithFormat:@"%@天前",[mResult objectForKey:@"beforeDays"]];
-        NSDateFormatter * format = [[NSDateFormatter alloc]init];
-        [format setDateFormat:@"yyyyMMdd"];
-        NSDate * date = [format dateFromString:[mResult objectForKey:@"beforeDate"]];
-        [format setDateFormat:@"MM月dd日"];
-        mLabBeforeDate.text = [format stringFromDate:date];
         mLabWeight.text = [NSString stringWithFormat:@"%dKg",[[mResult objectForKey:@"weight"]intValue]/1000 ];
         mLabFat.text = [NSString stringWithFormat:@"%@%@",[mResult objectForKey:@"fat"],@"%"];
         mLabWater.text = [NSString stringWithFormat:@"%@%@",[mResult objectForKey:@"water"],@"%"];
@@ -48,6 +50,9 @@
         mLabBone.text = [NSString stringWithFormat:@"%@%@",[mResult objectForKey:@"bone"],@"%"];
         [mBtnUseDay setTitle:[NSString stringWithFormat:@"使用%@天",[mResult objectForKey:@"useDays"]] forState:UIControlStateNormal];
         mLabStander.text = [mResult objectForKey:@"statusName"];
+        if([[mResult objectForKey:@"useDays"]intValue] <2){
+            mBtnReport.enabled  = NO;
+        }
         
 
         

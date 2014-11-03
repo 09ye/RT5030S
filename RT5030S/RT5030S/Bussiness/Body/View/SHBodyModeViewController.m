@@ -22,6 +22,11 @@
     if (currentItem) {
         mLabMusicTitle.text = [currentItem valueForProperty:MPMediaItemPropertyTitle];//歌曲名称
         mTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerUp:) userInfo:Nil repeats:YES];
+        MPMusicPlaybackState playbackState = [SHMusicPlayerManager.instance.musicPlayer playbackState];
+        if (playbackState == MPMusicPlaybackStatePlaying) {
+            [mBtnStart setTitle:@"暂停" forState:UIControlStateNormal];
+        }
+        
     }
 }
 
@@ -54,6 +59,7 @@
     MPMediaItem * musicItem = [[mediaItemCollection items] objectAtIndex:0];
     [SHMusicPlayerManager.instance.musicPlayer setQueueWithItemCollection:mediaItemCollection];
     [SHMusicPlayerManager.instance.musicPlayer play];
+    [mBtnStart setTitle:@"暂停" forState:UIControlStateNormal];
     
     [mediaPicker dismissModalViewControllerAnimated: YES];//释放选择器
     mLabMusicTitle.text = [musicItem valueForProperty:MPMediaItemPropertyTitle];;
@@ -147,7 +153,7 @@
         }
     }
     if (mSwitchYun.on) {
-        Byte byte [] = {0xf0,0x04,0xf1};
+        Byte byte [] = {0xf0,0x07,0xf1};
         NSData * data =  [NSData dataWithBytes:&byte length:3];
         [SHBlueToothManager.instance sendData:data];
     }else{
@@ -159,6 +165,13 @@
 }
 
 - (IBAction)btnStartOntouch:(id)sender {
+    if ([mBtnStart.titleLabel.text isEqualToString:@"开始"]) {
+        [SHMusicPlayerManager.instance.musicPlayer play];
+        [mBtnStart setTitle:@"暂停" forState:UIControlStateNormal];
+    }else{
+        [SHMusicPlayerManager.instance.musicPlayer pause];
+        [mBtnStart setTitle:@"开始" forState:UIControlStateNormal];
+    }
 }
 - (IBAction)btnMusSelectOntouch:(id)sender
 {
@@ -171,6 +184,13 @@
             return;
         }
         [mBtnTimeSet setTitle:[NSString stringWithFormat:@"%d",timeTitle.intValue-1] forState:UIControlStateNormal];
+        
+        Byte byte [3] ;
+        byte[0] = 0xf0;
+        byte[1] = timeTitle.intValue-1 +7;
+        byte[2] = 0xf1;
+        NSData * data =  [NSData dataWithBytes:&byte length:3];
+        [SHBlueToothManager.instance sendData:data];
     }else{
         NSString * timeTitle = mBtnFrequencySet.titleLabel.text;
         if ([timeTitle isEqualToString:@"1"]) {
@@ -178,7 +198,15 @@
         }
         [mBtnFrequencySet setTitle:[NSString stringWithFormat:@"%d",timeTitle.intValue-1] forState:UIControlStateNormal];
         
+        Byte byte [3] ;
+        byte[0] = 0xf0;
+        byte[1] = timeTitle.intValue-1 +17;
+        byte[2] = 0xf1;
+        NSData * data =  [NSData dataWithBytes:&byte length:3];
+        [SHBlueToothManager.instance sendData:data];
+        
     }
+  
 }
 
 - (IBAction)btnIncreaseOntouch:(UIButton *)sender {
@@ -188,13 +216,26 @@
             return;
         }
         [mBtnTimeSet setTitle:[NSString stringWithFormat:@"%d",timeTitle.intValue+1] forState:UIControlStateNormal];
+        Byte byte [3] ;
+        byte[0] = 0xf0;
+        byte[1] = timeTitle.intValue+1 +7;
+        byte[2] = 0xf1;
+        NSData * data =  [NSData dataWithBytes:&byte length:3];
+        [SHBlueToothManager.instance sendData:data];
     }else{
         NSString * timeTitle = mBtnFrequencySet.titleLabel.text;
         if ([timeTitle isEqualToString:@"1"]) {
             return;
         }
         [mBtnFrequencySet setTitle:[NSString stringWithFormat:@"%d",timeTitle.intValue+1] forState:UIControlStateNormal];
+        Byte byte [3] ;
+        byte[0] = 0xf0;
+        byte[1] = timeTitle.intValue+1 +17;
+        byte[2] = 0xf1;
+        NSData * data =  [NSData dataWithBytes:&byte length:3];
+        [SHBlueToothManager.instance sendData:data];
     }
+    
 }
 
 

@@ -53,7 +53,11 @@
         NSDictionary *mResult = [[task result]mutableCopy];
         mLabWeight.text = [NSString stringWithFormat:@"体重%dKg",[[mResult objectForKey:@"weight"]intValue]/1000];
         mLabCalorie.text = [NSString stringWithFormat:@"卡路里%@卡",[mResult objectForKey:@"calorie"]];
-        mLabTime.text = [mResult objectForKey:@"date"];
+        NSDateFormatter * format = [[NSDateFormatter alloc]init];
+        [format setDateFormat:@"yyyyMMdd"];
+        NSDate * date = [format dateFromString:[mResult objectForKey:@"date"]];
+        [format setDateFormat:@"yyyy-MM-dd"];
+        mLabTime.text = [format stringFromDate:date];
       
         
     } taskWillTry:^(SHTask *task) {

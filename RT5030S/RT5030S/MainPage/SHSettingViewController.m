@@ -89,10 +89,8 @@
         intent.container = self.navController;
         [[UIApplication sharedApplication] open:intent];
     }else if(indexPath .row == 3){
-        SHIntent * intent = [[SHIntent alloc ]init];
-        intent.target = @"SHFeedBackViewController";
-        intent.container = self.navigationController;
-        [[UIApplication sharedApplication] open:intent];
+        NSURL * url = [NSURL URLWithString:@"http://detail.tmall.com/item.htm?spm=a1z10.3.w4011-2535793592.129.GjJZ2g&id=39471402846&rn=ddb8a938288b3de540fe1fc129b882c0&abbucket=10"];
+       [[UIApplication sharedApplication] openURL:url];
     }
 }
 

@@ -32,6 +32,8 @@
     __weak IBOutlet UIButton *mbtnProtein;
     __weak IBOutlet UILabel *mLabBone;
     __weak IBOutlet UIButton *mbtnBone;
+    
+    NSMutableDictionary * mResult;
 }
 
 @end

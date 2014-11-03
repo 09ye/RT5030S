@@ -37,9 +37,9 @@
 -(void) clearRecord
 {
 
-    Byte byte [] = {0xf0,0x51,0xf1};
-    NSData * data =  [NSData dataWithBytes:&byte length:3];
-    [SHBlueToothManager.instance sendData:data];
+//    Byte byte [] = {0xf0,0x51,0xf1};
+//    NSData * data =  [NSData dataWithBytes:&byte length:3];
+//    [SHBlueToothManager.instance sendData:data];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

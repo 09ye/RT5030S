@@ -454,7 +454,6 @@
 		7745036519D32257006AE129 /* sushenguanli_kaishi_button-_tingzhi.png in Resources */ = {isa = PBXBuildFile; fileRef = 7745035319D32257006AE129 /* sushenguanli_kaishi_button-_tingzhi.png */; };
 		7745036619D32257006AE129 /* sushenguanli_kaishi_button-_tingzhi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7745035419D32257006AE129 /* sushenguanli_kaishi_button-_tingzhi@2x.png */; };
 		7745036719D32257006AE129 /* sushenguanli_kaishi_button_kaishi.png in Resources */ = {isa = PBXBuildFile; fileRef = 7745035519D32257006AE129 /* sushenguanli_kaishi_button_kaishi.png */; };
-		7745036819D32257006AE129 /* sushenguanli_kaishi_button_kaishi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7745035619D32257006AE129 /* sushenguanli_kaishi_button_kaishi@2x.png */; };
 		7745036919D32257006AE129 /* toggle-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7745035719D32257006AE129 /* toggle-off.png */; };
 		7745036A19D32257006AE129 /* toggle-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7745035819D32257006AE129 /* toggle-off@2x.png */; };
 		7745036B19D32257006AE129 /* toggle-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 7745035919D32257006AE129 /* toggle-on.png */; };
@@ -1276,7 +1275,6 @@
 		7745035319D32257006AE129 /* sushenguanli_kaishi_button-_tingzhi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sushenguanli_kaishi_button-_tingzhi.png"; sourceTree = "<group>"; };
 		7745035419D32257006AE129 /* sushenguanli_kaishi_button-_tingzhi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sushenguanli_kaishi_button-_tingzhi@2x.png"; sourceTree = "<group>"; };
 		7745035519D32257006AE129 /* sushenguanli_kaishi_button_kaishi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sushenguanli_kaishi_button_kaishi.png; sourceTree = "<group>"; };
-		7745035619D32257006AE129 /* sushenguanli_kaishi_button_kaishi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sushenguanli_kaishi_button_kaishi@2x.png"; sourceTree = "<group>"; };
 		7745035719D32257006AE129 /* toggle-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toggle-off.png"; sourceTree = "<group>"; };
 		7745035819D32257006AE129 /* toggle-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toggle-off@2x.png"; sourceTree = "<group>"; };
 		7745035919D32257006AE129 /* toggle-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toggle-on.png"; sourceTree = "<group>"; };
@@ -2792,7 +2790,6 @@
 				7745035319D32257006AE129 /* sushenguanli_kaishi_button-_tingzhi.png */,
 				7745035419D32257006AE129 /* sushenguanli_kaishi_button-_tingzhi@2x.png */,
 				7745035519D32257006AE129 /* sushenguanli_kaishi_button_kaishi.png */,
-				7745035619D32257006AE129 /* sushenguanli_kaishi_button_kaishi@2x.png */,
 				7745035719D32257006AE129 /* toggle-off.png */,
 				7745035819D32257006AE129 /* toggle-off@2x.png */,
 				7745035919D32257006AE129 /* toggle-on.png */,
@@ -3595,7 +3592,6 @@
 				77211AB919CE990D006B3BE7 /* SHNeighboursViewController.xib in Resources */,
 				77211AF519CEC993006B3BE7 /* baogao_button.png in Resources */,
 				77A3AA5919D1B76200F8001E /* dingbujianbian_fenge.png in Resources */,
-				7745036819D32257006AE129 /* sushenguanli_kaishi_button_kaishi@2x.png in Resources */,
 				773C63A219C9E2C900397A0B /* xuangxiang_selected.png in Resources */,
 				7745036519D32257006AE129 /* sushenguanli_kaishi_button-_tingzhi.png in Resources */,
 				773C614F19C9CD9A00397A0B /* 5030s_mingzi.png in Resources */,
@@ -4269,7 +4265,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RT5030S/RT5030S-Prefix.pch";
 				INFOPLIST_FILE = "RT5030S/RT5030S-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RT5030S/frame",
@@ -4305,7 +4301,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RT5030S/RT5030S-Prefix.pch";
 				INFOPLIST_FILE = "RT5030S/RT5030S-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RT5030S/frame",

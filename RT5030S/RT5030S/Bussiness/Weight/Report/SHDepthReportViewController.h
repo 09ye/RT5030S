@@ -28,6 +28,7 @@
     __weak IBOutlet UIButton *mBtnWeight;
     __weak IBOutlet UIButton *mBtnFat;
     __weak IBOutlet UIButton *mBtnWater;
+     __weak IBOutlet UIButton *mBtnReport;
 }
 - (IBAction)btnPhaseReportOntouch:(id)sender;
 - (IBAction)btnRunOntouch:(id)sender;
