@@ -52,7 +52,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         
     }];
     
@@ -95,6 +96,7 @@
         cell.backgroundColor = [UIColor clearColor];
       
     }
+    cell.accessoryType = UITableViewCellAccessoryNone;
     cell.editing = NO;
     cell.imgPhone.hidden = YES;
     if (indexPath.section == 0) {
@@ -108,6 +110,7 @@
             cell.imgPhone.userInteractionEnabled = YES;
             [cell.imgPhone  setUrl:[mResult objectForKey:@"headImg"]];
             [cell.imgPhone addGestureRecognizer:tapGr];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
         }else if(indexPath.row == 1){
             cell.labTitle.text = @"昵称";
@@ -125,6 +128,7 @@
             }else{
                 cell.txtContent.text = @"男";
             }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
           
         }else if(indexPath.row == 4){
             cell.labTitle.text = @"身高";
@@ -287,13 +291,18 @@
             edit = NO;
             [self.tableView reloadData];
         }
+        [[NSUserDefaults standardUserDefaults] setValue:[mResult valueForKey:@"nickName"] forKey:USER_CENTER_NICKNAME];
+//        [[NSUserDefaults standardUserDefaults] setValue:[dic valueForKey:@"headImg"] forKey:USER_CENTER_PHOTO];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHANGE_INFO object:nil];
         
   
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         
     }];
 
@@ -460,16 +469,19 @@
     post.tag = 99;
     [post start:^(SHTask * task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         NSDictionary*  result = [[task result]mutableCopy];
         NSIndexPath *index= [NSIndexPath indexPathForRow:0 inSection:0];
         [mResult setValue:[result objectForKey:@"headImg"] forKey:@"headImg"];
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:index,nil] withRowAnimation:YES];
+         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHANGE_INFO object:nil];
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 - (NSString*)encodeURL:(NSString *)string

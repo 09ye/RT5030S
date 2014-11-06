@@ -63,7 +63,8 @@
      post.delegate = self;
      [post start:^(SHTask *task) {
          [self dismissWaitDialog];
-         [task.respinfo show];
+//         [task.respinfo show];
+          [self showAlertDialog:task.respinfo.message];
          if (self.delegate && [self.delegate respondsToSelector:@selector(familyAddViewControllerAddSuccessful:)]) {
              [self.delegate familyAddViewControllerAddSuccessful:self];
          }
@@ -73,7 +74,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
     
 }

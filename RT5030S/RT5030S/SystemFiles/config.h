@@ -69,6 +69,8 @@
 #define NOTIFICATION_APPLY_SUCCESSFUL @"notification_apply_successful"
 
 #define NOTIFICATION_MESSAGE_UPDATE @"notification_message_update"
+
+#define NOTIFICATION_CHANGE_INFO @"notification_change_info"
 /* lqh77 add  */
 
 //userdefault

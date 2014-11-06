@@ -79,7 +79,7 @@
     
     
     //自动登录
-    if ([[NSUserDefaults standardUserDefaults]boolForKey:AUTOLOGIN]) {
+    if ([[NSUserDefaults standardUserDefaults]boolForKey:AUTOLOGIN] == nil ||[[NSUserDefaults standardUserDefaults]boolForKey:AUTOLOGIN]) {
         [self autologin];
     }
     

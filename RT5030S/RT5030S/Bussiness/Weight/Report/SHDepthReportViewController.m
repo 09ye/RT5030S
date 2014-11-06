@@ -60,7 +60,9 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
+        
     }];
 }
 - (void)didReceiveMemoryWarning {

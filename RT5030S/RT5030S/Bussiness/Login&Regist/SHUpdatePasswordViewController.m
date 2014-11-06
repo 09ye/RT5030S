@@ -54,13 +54,14 @@
     [post setPostData:[Utility createPostData:dic]];
     [post start:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show]; [self showAlertDialog:task.respinfo.message];
         [[NSNotificationCenter defaultCenter] postNotificationName:CORE_NOTIFICATION_LOGIN_RELOGIN object:nil];
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 @end

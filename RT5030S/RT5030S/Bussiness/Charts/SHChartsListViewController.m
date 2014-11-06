@@ -43,7 +43,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         mList =[[NSMutableArray alloc]init ];
         mLabRank.text = @"0";
         [self.tableView reloadData];
@@ -101,12 +102,14 @@
     post.delegate = self;
     [post start:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 

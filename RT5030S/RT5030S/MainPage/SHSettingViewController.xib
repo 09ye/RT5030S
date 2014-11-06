@@ -78,10 +78,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qPo-gl-grB">
                     <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kai-RJ-LUE">
-                            <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kai-RJ-LUE">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="qD2-SG-YkD"/>
+                                <constraint firstAttribute="height" constant="44" id="9pd-aC-cFT"/>
+                                <constraint firstAttribute="width" constant="80" id="fg9-Ag-OOe"/>
                             </constraints>
                             <state key="normal" title="注销" backgroundImage="xuanxiang_default.png">
                                 <color key="titleColor" red="0.36862745099999999" green="0.59215686270000001" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,10 +92,11 @@
                                 <action selector="btnLoginOutOntouch:" destination="-1" eventType="touchUpInside" id="T3e-iE-9Ly"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpm-i7-3fg">
-                            <rect key="frame" x="101" y="0.0" width="100" height="44"/>
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpm-i7-3fg">
+                            <rect key="frame" x="81" y="0.0" width="80" height="44"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="UKA-zq-VCq"/>
+                                <constraint firstAttribute="height" constant="44" id="EDN-6R-e6n"/>
+                                <constraint firstAttribute="width" constant="80" id="cPn-Sy-IWQ"/>
                             </constraints>
                             <state key="normal" title="意见反馈" backgroundImage="xuanxiang_default.png">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -107,23 +109,25 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="kai-RJ-LUE" secondAttribute="bottom" id="F9U-b0-frq"/>
-                        <constraint firstItem="kai-RJ-LUE" firstAttribute="top" secondItem="qPo-gl-grB" secondAttribute="top" id="W5h-vz-Ibp"/>
-                        <constraint firstItem="Mpm-i7-3fg" firstAttribute="baseline" secondItem="kai-RJ-LUE" secondAttribute="baseline" id="amx-Bk-QVo"/>
-                        <constraint firstItem="Mpm-i7-3fg" firstAttribute="leading" secondItem="kai-RJ-LUE" secondAttribute="trailing" constant="1" id="rey-5X-vIC"/>
-                        <constraint firstItem="kai-RJ-LUE" firstAttribute="leading" secondItem="qPo-gl-grB" secondAttribute="leading" id="tf8-fL-Mtk"/>
+                        <constraint firstAttribute="bottom" secondItem="Mpm-i7-3fg" secondAttribute="bottom" id="9cx-HU-ecW"/>
+                        <constraint firstItem="kai-RJ-LUE" firstAttribute="top" secondItem="qPo-gl-grB" secondAttribute="top" id="PJR-tx-ZDX"/>
+                        <constraint firstAttribute="bottom" secondItem="kai-RJ-LUE" secondAttribute="bottom" id="WRH-wy-znT"/>
+                        <constraint firstItem="Mpm-i7-3fg" firstAttribute="top" secondItem="qPo-gl-grB" secondAttribute="top" id="ZJg-Fy-7Us"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="qPo-gl-grB" secondAttribute="trailing" id="5Pz-Fh-vUC"/>
                 <constraint firstItem="fGP-zA-Osz" firstAttribute="leading" secondItem="qPo-gl-grB" secondAttribute="leading" id="CPc-Iq-GHi"/>
                 <constraint firstAttribute="bottom" secondItem="fGP-zA-Osz" secondAttribute="bottom" constant="43" id="D3U-Hg-EQe"/>
                 <constraint firstAttribute="bottom" secondItem="qPo-gl-grB" secondAttribute="bottom" id="NOK-VZ-iUO"/>
                 <constraint firstItem="fGP-zA-Osz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Un2-kM-gwp"/>
                 <constraint firstItem="qPo-gl-grB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VWq-i8-G2a"/>
                 <constraint firstAttribute="trailing" secondItem="qPo-gl-grB" secondAttribute="trailing" id="X3K-71-U1o"/>
+                <constraint firstAttribute="bottom" secondItem="qPo-gl-grB" secondAttribute="bottom" id="b1D-YK-xRY"/>
                 <constraint firstItem="fGP-zA-Osz" firstAttribute="trailing" secondItem="qPo-gl-grB" secondAttribute="trailing" id="tmw-OZ-NJf"/>
+                <constraint firstItem="qPo-gl-grB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vV2-MF-xr1"/>
             </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>

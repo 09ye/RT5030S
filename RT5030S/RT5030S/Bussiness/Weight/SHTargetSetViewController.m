@@ -53,7 +53,7 @@
             mList = [@[@"",@"1000",@"2000",@"3000",@"4000",@"5000",@"6000",@"7000",@"8000",@"9000",@"10000",@"11000",@"12000",@"13000",@"14000",@"15000",@"16000",@"17000",@"18000",@"19000",@"20000"] mutableCopy];
             [mScrollview reloadData];
         }else{
-            mLabMount.text = [NSString stringWithFormat:@"%@Kg",[mResult objectForKey:@"targetWeight"]];// 单位g
+            mLabMount.text = [NSString stringWithFormat:@"%dKg",[[mResult objectForKey:@"targetWeight"]intValue]/1000];// 单位g
             mLabNowTarget.text =  [NSString stringWithFormat:@"当前体重为%dKg",[[mResult objectForKey:@"currentWeight"]intValue]/1000];// 单位g
             [mBtnTargetLevel setTitle:[mResult objectForKey:@"statusName"] forState:UIControlStateNormal];
 //            [mList addObject:@""];
@@ -73,7 +73,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
          mList = [[NSMutableArray alloc]init];
         if (mSegment.selectedSegmentIndex ==1) {
                mList = [@[@"",@"1000",@"2000",@"3000",@"4000",@"5000",@"6000",@"7000",@"8000",@"9000",@"10000",@"11000",@"12000",@"13000",@"14000",@"15000",@"16000",@"17000",@"18000",@"19000",@"20000"] mutableCopy];
@@ -231,12 +232,14 @@
     post.delegate = self;
     [post start:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 - (void)didReceiveMemoryWarning {

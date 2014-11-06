@@ -54,7 +54,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 -(void) requestFamily
@@ -75,7 +76,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -129,7 +131,13 @@
         post.delegate = self;
         [post start:^(SHTask *task) {
             [self dismissWaitDialog];
-            [task.respinfo show];
+//            [task.respinfo show];
+            if([[self.intent.args objectForKey:@"type"]intValue] ==0 ){
+                [self showAlertDialog:@"PK挑战书发送成功"];
+            }else{
+                [self showAlertDialog:@"监督邀请发送成功"];
+            }
+            
             if (self.delegate && [self.delegate respondsToSelector:@selector(friendListViewControllerPkAddSuccessful:type:)]) {
                 [self.delegate friendListViewControllerPkAddSuccessful:self type:[[self.intent.args objectForKey:@"type"]intValue]];
             }
@@ -139,7 +147,8 @@
             
         } taskDidFailed:^(SHTask *task) {
             [self dismissWaitDialog];
-            [task.respinfo show];
+//            [task.respinfo show];
+             [self showAlertDialog:task.respinfo.message];
         }];
     }else if([[self.intent.args objectForKey:@"classType"] isEqualToString:@"familylist"]){
         
@@ -148,6 +157,8 @@
             SHEntironment.instance.userId = [dic valueForKey:@"userId"];
             [[NSUserDefaults standardUserDefaults] setValue:[dic valueForKey:@"nickName"] forKey:USER_CENTER_NICKNAME];
             [[NSUserDefaults standardUserDefaults] setValue:[dic valueForKey:@"headImg"] forKey:USER_CENTER_PHOTO];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHANGE_INFO object:nil];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
             SHIntent * intent = [[SHIntent alloc ]init];
@@ -205,14 +216,16 @@
     post.delegate = self;
     [post start:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         [mList removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
     
 //    [self.tableView reloadData];

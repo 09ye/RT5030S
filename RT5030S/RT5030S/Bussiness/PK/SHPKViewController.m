@@ -44,7 +44,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 -(float) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -75,8 +76,9 @@
         cell.btnPk.tag = indexPath.row;
         [cell.btnPk setTitle:@"接受" forState:UIControlStateNormal];
         [cell.btnPk setBackgroundImage:[UIImage imageNamed:@"jieshou_anniu"] forState:UIControlStateNormal];
-        [cell.btnPk addTarget:self action:@selector(btnComfriePKOntouch:) forControlEvents:UIControlEventTouchUpInside];
         [cell.btnPk removeTarget:self action:@selector(btnRemindPKOntouch:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnPk addTarget:self action:@selector(btnComfriePKOntouch:) forControlEvents:UIControlEventTouchUpInside];
+        
     }else if ([[dic objectForKey:@"operate"]intValue] == 1 ) {//0-接收，1提醒，-1不显示按钮
         cell.btnPk.hidden = NO;
         cell.btnPk.tag = indexPath.row;
@@ -141,14 +143,16 @@
     post.delegate = self;
     [post start:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         [mList removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 
@@ -205,13 +209,15 @@
         post.delegate = self;
         [post start:^(SHTask *task) {
             [self dismissWaitDialog];
-            [task.respinfo show];
+//            [task.respinfo show];
+             [self showAlertDialog:task.respinfo.message];
             [self request];
         } taskWillTry:^(SHTask *task) {
             
         } taskDidFailed:^(SHTask *task) {
             [self dismissWaitDialog];
-            [task.respinfo show];
+//            [task.respinfo show];
+             [self showAlertDialog:task.respinfo.message];
         }];
     }else{
        
@@ -222,7 +228,7 @@
         [[UIApplication sharedApplication] open:intent];
     }
   
-}
+}  
 -(void) btnRemindPKOntouch:(UIButton *)button// 提醒
 {
     NSDictionary * dic  =[mList objectAtIndex:button.tag];
@@ -236,13 +242,15 @@
     post.delegate = self;
     [post start:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         [self request];
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 -(void) friendListViewControllerPkAddSuccessful:(SHFriendListViewController *)control type:(int) index

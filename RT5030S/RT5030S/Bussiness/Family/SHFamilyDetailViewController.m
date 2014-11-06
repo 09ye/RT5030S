@@ -20,7 +20,7 @@
     [mImgPhoto setCircleStyle:nil];
     NSDictionary * dic = [self.intent.args objectForKey:@"detail"];
     mLabName.text = [dic objectForKey:@"nickName"];
-    mLabName.text = [dic objectForKey:@"area"];
+    mLabScore.text = [dic objectForKey:@"area"];
     [mImgPhoto setUrl:[dic objectForKey:@"headImg"]];
     [self request];
 
@@ -54,7 +54,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 

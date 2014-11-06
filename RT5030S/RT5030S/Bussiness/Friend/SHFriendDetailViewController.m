@@ -69,7 +69,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 - (IBAction)btnAddOntouch:(id)sender {
@@ -89,7 +90,8 @@
     post.delegate = self;
     [post start:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         if ([[self.intent.args objectForKey:@"classType"] isEqualToString:@"message"]) {
             [self readMessage];
         }
@@ -98,7 +100,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 
@@ -114,7 +117,8 @@
     post.delegate = self;
     [post start:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         if ([[self.intent.args objectForKey:@"classType"] isEqualToString:@"message"]) {
             [self readMessage];
         }
@@ -124,7 +128,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 -(void) readMessage
@@ -142,7 +147,8 @@
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 @end

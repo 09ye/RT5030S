@@ -57,20 +57,20 @@
 /*   必须的框架 Security.framework”,“libiconv.dylib”，“SystemConfiguration.framework”，“CoreGraphics.Framework”、“libsqlite3.dylib”、“CoreTelephony.framework”、“libstdc++.dylib”、“libz.dylib”。
  */
 
-#define  APPID_Sina          @"3677032229"
-#define  APPID_KEY_Sina      @"b0f69e5b4c74c26a6c154fe712f4f3fb"
+#define  APPID_Sina          @"4095790252"
+#define  APPID_KEY_Sina      @"1105c3b44282ab015f8878636e662091"
 //注意:IOS 应用推荐使用默认授权回调页!地址为: https://api.weibo.com/oauth2/default.html
-#define  Sina_RedirectURI    @"http://www.baidu.com"
+#define  Sina_RedirectURI    @"http://www.rongtai-china.com"
 
 //#define  APPID_WeoXin         @"wxf293133716ec75b6"
 //#define  APPID_KEY_WeiXin     @"582c0b7f0e0f9ed980b61e404010497b"
 
 //wxd5e5e9fd7f5b6fe6
-#define  APPID_WeoXin         @"wxd5e5e9fd7f5b6fe6"
+#define  APPID_WeoXin         @"wx330b1ba3b0d77938"
 
-#define  APPID_KEY_WeiXin     @"ea28cac5d72f2c4b6b22fb6e202bb082"
+#define  APPID_KEY_WeiXin     @"9fc1f71867c18abfd791e4a83e43b698"
 
-#define  WeiXin_RedirectURI   @"http://www.zyj.com"
+#define  WeiXin_RedirectURI   @"http://www.rongtai-china.com"
 
 
 #define IOS7 [[[UIDevice currentDevice] systemVersion]floatValue]>=7

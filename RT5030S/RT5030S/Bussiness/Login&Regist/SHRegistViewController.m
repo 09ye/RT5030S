@@ -227,7 +227,8 @@
     [self dismissWaitDialog];
      NSDictionary * result = [[task result]mutableCopy];
     if (task.tag == 0) {
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         verificationCode = [result objectForKey:@"verifyCode"];
     }else if (task.tag == 1){
 //        [task.respinfo show];
@@ -250,7 +251,8 @@
 -(void)taskDidFailed:(SHTask *)task
 {
     [self dismissWaitDialog];
-    [task.respinfo show];
+//    [task.respinfo show];
+     [self showAlertDialog:task.respinfo.message];
    
     
 }

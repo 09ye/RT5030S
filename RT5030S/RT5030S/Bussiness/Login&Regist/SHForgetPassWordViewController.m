@@ -83,7 +83,8 @@
     if (task.tag == 0) {
         verificationCode = [result objectForKey:@"verifyCode"];
     }else if (task.tag == 1){
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
         [SHIntentManager clear];
     }
     
@@ -92,7 +93,8 @@
 -(void)taskDidFailed:(SHTask *)task
 {
     [self dismissWaitDialog];
-    [task.respinfo show];
+//    [task.respinfo show];
+     [self showAlertDialog:task.respinfo.message];
     
     
 }

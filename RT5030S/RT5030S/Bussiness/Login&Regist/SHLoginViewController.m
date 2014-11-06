@@ -280,7 +280,8 @@
 # pragma  taskdid
 - (void)taskDidFailed:(SHTask *)task
 {
-    [task.respinfo show];
+//    [task.respinfo show];
+     [self showAlertDialog:task.respinfo.message];
     [self dismissWaitDialog];
  
     

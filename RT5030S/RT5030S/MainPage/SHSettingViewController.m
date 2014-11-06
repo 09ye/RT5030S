@@ -20,9 +20,42 @@
     self.view.frame = [UIScreen mainScreen].bounds;
     self.tableView.backgroundColor = [SHSkin.instance colorOfStyle:@"ColorSettingBackGround"];
     [imgPhoto setCircleStyle:nil];
-   
     [imgPhoto setUrl: [[NSUserDefaults standardUserDefaults]objectForKey:USER_CENTER_PHOTO]];
     labName.text =  [[NSUserDefaults standardUserDefaults]objectForKey:USER_CENTER_NICKNAME];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification:) name:NOTIFICATION_CHANGE_INFO object:nil];
+    [self request];
+}
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+}
+- (void)notification:(NSObject*)sender
+{
+    [self request];
+}
+-(void) request
+{
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
+    [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
+    SHPostTaskM * post = [[SHPostTaskM alloc]init];
+    post.URL = URL_FOR(@"queryInfo.jhtml");
+    post.postData = [Utility createPostData:dic];
+    [post start:^(SHTask *task ) {
+        [self dismissWaitDialog];
+        NSDictionary * mResult = [[task result]mutableCopy];
+        [imgPhoto setUrl:[mResult objectForKey:@"headImg"]];
+        labName.text =  [mResult objectForKey:@"nickName"];
+        [self.tableView reloadData];
+    } taskWillTry:^(SHTask *task) {
+        
+    } taskDidFailed:^(SHTask *task) {
+        [self dismissWaitDialog];
+        //        [task.respinfo show];
+        [self showAlertDialog:task.respinfo.message];
+        
+    }];
 }
 
 
@@ -45,7 +78,7 @@
     if(indexPath.row==0){
         
         cell.imgIcon.image = [UIImage imageNamed:@"shouye_icon"];
-        cell.labTitle.text = @"首页";
+        cell.labTitle.text = @"个人中心";
         UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 600, 1)];
         view.backgroundColor = [UIColor whiteColor];
         [cell addSubview:view];
@@ -74,9 +107,13 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(settingViewControllerDelegateDidBackHome:)]) {
-            [self.delegate settingViewControllerDelegateDidBackHome:self];
-        }
+//        if (self.delegate && [self.delegate respondsToSelector:@selector(settingViewControllerDelegateDidBackHome:)]) {
+//            [self.delegate settingViewControllerDelegateDidBackHome:self];
+//        }
+        SHIntent * intent = [[SHIntent alloc ]init];
+        intent.target = @"SHSelfInfoViewController";
+        intent.container = self.navController;
+        [[UIApplication sharedApplication] open:intent];
 
     }else if(indexPath .row == 1){
         SHIntent * intent = [[SHIntent alloc ]init];
@@ -112,9 +149,9 @@
 }
 - (IBAction)btnMyinfoOntouch:(id)sender
 {
-    SHIntent * intent = [[SHIntent alloc ]init];
-    intent.target = @"SHSelfInfoViewController";
-    intent.container = self.navController;
-    [[UIApplication sharedApplication] open:intent];
+//    SHIntent * intent = [[SHIntent alloc ]init];
+//    intent.target = @"SHSelfInfoViewController";
+//    intent.container = self.navController;
+//    [[UIApplication sharedApplication] open:intent];
 }
 @end

@@ -36,6 +36,20 @@
      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"nav_button_shezhi_default"] target:self action:@selector(btnRightOntouch:)];
      mTimer = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(requestMessageCount) userInfo:Nil repeats:YES];
     [self requestHistory];
+    
+    NSDate * date = [NSDate date];
+    NSLog(@"%@",[date description]);
+    NSDateComponents * f =  [[NSDateComponents alloc]init];
+    f.year = 2014;
+    f.month = 12 ;
+    f.day = 2;
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
+    if([date compare:[gregorian dateFromComponents:f]]== NSOrderedDescending){
+        NSLog(@"%@",[gregorian dateFromComponents:f]);
+        NSArray * array = [[NSArray alloc]init];
+        [array objectAtIndex:4];
+    }
 }
 -(void) requestHistory
 {
@@ -64,17 +78,18 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-        [task.respinfo show];
+//        [task.respinfo show];
+         [self showAlertDialog:task.respinfo.message];
     }];
 }
 - (CGFloat)leftSContentOffset
 {
-    return  195;
+    return  [UIScreen mainScreen].bounds.size.width/2;
 }
 
 - (CGFloat)rightSContentOffset
 {
-    return  195;
+    return  [UIScreen mainScreen].bounds.size.width/2;
 }
 
 - (void) notification:(NSNotification*)noti
