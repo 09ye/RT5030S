@@ -64,6 +64,9 @@
     if(cell == nil){
         cell = (SHTableViewGeneralCell*)[[[NSBundle mainBundle]loadNibNamed:@"SHTableViewGeneralCell" owner:nil options:nil] objectAtIndex:0];
     }
+    cell.labTitle.numberOfLines = 2;
+
+    cell.labTitle.font = [UIFont systemFontOfSize:15];
     cell.labTitle.text = [obj valueForKey:@"content"];
     [cell alternate:indexPath];
     return cell;
