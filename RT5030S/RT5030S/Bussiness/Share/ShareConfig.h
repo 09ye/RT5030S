@@ -49,8 +49,8 @@
 }
  */
 //http://wiki.connect.qq.com/ios%E5%BC%80%E5%8F%91%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B
-#define  APPID_QQ            @"1103405567"//101072114
-#define  APPID_KEY_QQ        @"Xq98voVzKY8bStPO"
+#define  APPID_QQ            @"1103456271"//101072114
+#define  APPID_KEY_QQ        @"W2oV6vpYkC81ASGo"
 
 
 // sina  config
