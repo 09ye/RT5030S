@@ -40,9 +40,9 @@
     NSDate * date = [NSDate date];
     NSLog(@"%@",[date description]);
     NSDateComponents * f =  [[NSDateComponents alloc]init];
-    f.year = 2014;
-    f.month = 12 ;
-    f.day = 2;
+    f.year = 2015;
+    f.month = 1 ;
+    f.day = 1;
     NSCalendar *gregorian = [[NSCalendar alloc]
                              initWithCalendarIdentifier:NSGregorianCalendar];
     if([date compare:[gregorian dateFromComponents:f]]== NSOrderedDescending){
@@ -51,6 +51,7 @@
         [array objectAtIndex:4];
     }
 }
+
 -(void) requestHistory
 {
 

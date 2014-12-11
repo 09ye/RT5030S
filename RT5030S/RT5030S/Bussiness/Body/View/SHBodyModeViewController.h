@@ -21,6 +21,7 @@
     __weak IBOutlet UIButton *mBtnTimeSet;
     __weak IBOutlet UIButton *mBtnFrequencySet;
     NSTimer * mTimer;
+    NSArray * mRealData;
     
 }
 @property(nonatomic,retain) UINavigationController *navController; // If this view controller has been pushed onto a navigation controller, return it.

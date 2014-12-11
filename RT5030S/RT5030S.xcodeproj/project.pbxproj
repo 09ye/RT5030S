@@ -621,6 +621,12 @@
 		77D79ED619C89A280005648B /* OperationShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D79ED419C89A280005648B /* OperationShare.m */; };
 		77D79F9919C89C550005648B /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D79F9619C89C550005648B /* libbaidumapapi.a */; };
 		77D79F9A19C89C550005648B /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77D79F9719C89C550005648B /* mapapi.bundle */; };
+		77F70ECC1A1C65C500D5CD41 /* guide01.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F70EC61A1C65C500D5CD41 /* guide01.png */; };
+		77F70ECD1A1C65C500D5CD41 /* guide02.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F70EC71A1C65C500D5CD41 /* guide02.png */; };
+		77F70ECE1A1C65C500D5CD41 /* guide03.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F70EC81A1C65C500D5CD41 /* guide03.png */; };
+		77F70ECF1A1C65C500D5CD41 /* guide41.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F70EC91A1C65C500D5CD41 /* guide41.png */; };
+		77F70ED01A1C65C500D5CD41 /* guide42.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F70ECA1A1C65C500D5CD41 /* guide42.png */; };
+		77F70ED11A1C65C500D5CD41 /* guide43.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F70ECB1A1C65C500D5CD41 /* guide43.png */; };
 		77FF58D319C89E200037E319 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF58D219C89E200037E319 /* CFNetwork.framework */; };
 		77FF58D519C89E5B0037E319 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF58D419C89E5B0037E319 /* CoreTelephony.framework */; };
 		77FF58D719C89EE10037E319 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF58D619C89EE10037E319 /* Security.framework */; };
@@ -1586,6 +1592,12 @@
 		77D79F9419C89C550005648B /* BMKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKVersion.h; sourceTree = "<group>"; };
 		77D79F9619C89C550005648B /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		77D79F9719C89C550005648B /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		77F70EC61A1C65C500D5CD41 /* guide01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide01.png; sourceTree = "<group>"; };
+		77F70EC71A1C65C500D5CD41 /* guide02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide02.png; sourceTree = "<group>"; };
+		77F70EC81A1C65C500D5CD41 /* guide03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide03.png; sourceTree = "<group>"; };
+		77F70EC91A1C65C500D5CD41 /* guide41.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide41.png; sourceTree = "<group>"; };
+		77F70ECA1A1C65C500D5CD41 /* guide42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide42.png; sourceTree = "<group>"; };
+		77F70ECB1A1C65C500D5CD41 /* guide43.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide43.png; sourceTree = "<group>"; };
 		77FF58D219C89E200037E319 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		77FF58D419C89E5B0037E319 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		77FF58D619C89EE10037E319 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -3221,6 +3233,12 @@
 		77D79ED019C89A170005648B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				77F70EC61A1C65C500D5CD41 /* guide01.png */,
+				77F70EC71A1C65C500D5CD41 /* guide02.png */,
+				77F70EC81A1C65C500D5CD41 /* guide03.png */,
+				77F70EC91A1C65C500D5CD41 /* guide41.png */,
+				77F70ECA1A1C65C500D5CD41 /* guide42.png */,
+				77F70ECB1A1C65C500D5CD41 /* guide43.png */,
 				7782956E19EA394900EB8DC3 /* tianjia_button2.png */,
 				7782956F19EA394900EB8DC3 /* tianjia_button2@2x.png */,
 				7706F74F19D9A0FF00A84A27 /* 数据报告 */,
@@ -3583,6 +3601,7 @@
 				7725DD3319D051D700BB3137 /* mubiaosheding_xuanxiang_selected.png in Resources */,
 				77A3AA6C19D1B76200F8001E /* qipao_wenben@2x.png in Resources */,
 				77A3AA1C19D1A4F800F8001E /* mubiao_icon.png in Resources */,
+				77F70ECF1A1C65C500D5CD41 /* guide41.png in Resources */,
 				77211AB019CE972F006B3BE7 /* yonghu_xinxi_xianshi_bg@2x.png in Resources */,
 				7725DD3119D051D700BB3137 /* mubiaosheding_xuanxiang_default.png in Resources */,
 				773C62F519C9D08200397A0B /* blueArrow.png in Resources */,
@@ -3647,6 +3666,7 @@
 				77D79EC819C898280005648B /* module.xml in Resources */,
 				7745033519D3171E006AE129 /* heibai_fenge.png in Resources */,
 				7700BBAE19CC7ABA000D172E /* da_bg.png in Resources */,
+				77F70ECE1A1C65C500D5CD41 /* guide03.png in Resources */,
 				7725DD2A19D051D700BB3137 /* lanse_jianbian_wenzi_jiantou@2x.png in Resources */,
 				7725DD2B19D051D700BB3137 /* lanse_jianbian_zhixian.png in Resources */,
 				7700BC0919CD8B34000D172E /* SHFindEquipmentViewController.xib in Resources */,
@@ -3655,6 +3675,7 @@
 				773C631119C9D08200397A0B /* button_current_bg.png in Resources */,
 				77D79F9A19C89C550005648B /* mapapi.bundle in Resources */,
 				7782957019EA394900EB8DC3 /* tianjia_button2.png in Resources */,
+				77F70ED11A1C65C500D5CD41 /* guide43.png in Resources */,
 				7725DD2819D051D700BB3137 /* kaluli_xianshiqu_bg@2x.png in Resources */,
 				773C62E519C9D08200397A0B /* DSLCalendar-nextMonth@2x.png in Resources */,
 				7725DD3819D0569F00BB3137 /* ic_xiaoqi.png in Resources */,
@@ -3747,6 +3768,7 @@
 				77211B0919CEC993006B3BE7 /* zhifanglv_xianshiqu_bg.png in Resources */,
 				77A3AA1319D1A4F800F8001E /* duishou_mubiao_xuanze-_selected@2x.png in Resources */,
 				77211AAB19CE972F006B3BE7 /* jieshou_anniu.png in Resources */,
+				77F70ECC1A1C65C500D5CD41 /* guide01.png in Resources */,
 				77497EFF19D58C7E009ED076 /* kaluli_xianshi@2x.png in Resources */,
 				77A3AA6419D1B76200F8001E /* lanse_xiaodian@2x.png in Resources */,
 				7700BBE619CC8BE3000D172E /* lipin_icon.png in Resources */,
@@ -3832,6 +3854,7 @@
 				7700BBB919CC7ABA000D172E /* zhuye_dingbu_button_jilu@2x.png in Resources */,
 				7745030719D31325006AE129 /* ic_cricle_blue.png in Resources */,
 				7700BB6A19CC4303000D172E /* SHMainHomeViewController.xib in Resources */,
+				77F70ED01A1C65C500D5CD41 /* guide42.png in Resources */,
 				779BB97819F7E90100046948 /* SHFamilyDetailViewController.xib in Resources */,
 				7745033819D3171E006AE129 /* tianjia_button@2x.png in Resources */,
 				7700BBBC19CC7ABA000D172E /* zhuye_dingbu_lianjiezhuangtai_weilianjie.png in Resources */,
@@ -3843,6 +3866,7 @@
 				77A3AA5719D1B76200F8001E /* dafenge_lanse_shu_jianbian.png in Resources */,
 				773C62E719C9D08200397A0B /* DSLCalendar-previousMonth@2x.png in Resources */,
 				77211AFD19CEC993006B3BE7 /* fenxiang_button.png in Resources */,
+				77F70ECD1A1C65C500D5CD41 /* guide02.png in Resources */,
 				77D79C7D19C897710005648B /* Images.xcassets in Resources */,
 				773C615E19C9CD9A00397A0B /* zhanghao_logo@2x.png in Resources */,
 				7725DD3D19D06F5C00BB3137 /* SHAmountSelectViewCell.xib in Resources */,

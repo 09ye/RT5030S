@@ -18,6 +18,8 @@
     __weak IBOutlet UILabel *mLabUserTime;
     __weak IBOutlet UILabel *mLabFreq;
     NSMutableArray * mRealData;
+    NSMutableArray * mUploadData;
+    bool isUpload;
     NSTimer * mTimer;
 //    int songTime;
 //    NSString *mSongTitle;

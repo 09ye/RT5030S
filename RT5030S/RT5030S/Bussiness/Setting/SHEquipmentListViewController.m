@@ -66,6 +66,7 @@
    CBPeripheral * peripheral = [SHBlueToothManager.instance.devices objectAtIndex:indexPath.row];
     [SHBlueToothManager.instance connetPeripheral:peripheral connect:YES];
     [self.tableView reloadData];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 - (void)didReceiveMemoryWarning {

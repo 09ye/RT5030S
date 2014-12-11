@@ -33,9 +33,12 @@
 {
     if ([noti.name isEqualToString:NOTIFICATION_BLUETOOTH_DATA_UPDATE]){
         NSDictionary * temp=[noti object];
-        mRealData = [temp objectForKey:@"data"];
         [self updateRealData];
-        if ([[mRealData objectAtIndex:6]intValue] <=1) {// 剩余时间0
+        mRealData = [temp objectForKey:@"data"];
+        if ([[mRealData objectAtIndex:2]intValue] == 1) {// 开光状态
+            mUploadData = [mRealData mutableCopy];
+        }else if(!isUpload){
+             isUpload = true;
             [self submitData];
         }
         
@@ -43,7 +46,8 @@
 //        NSDictionary * temp=[noti object];
 //        mRealData = [temp objectForKey:@"data"];
 //        [self updateRealData];
-        if (mRealData) {
+        if (mUploadData) {
+            
              [self submitData];
         }
        
@@ -52,7 +56,7 @@
 -(void) updateRealData
 {
     
-    mLabCalrio.text = [mRealData objectAtIndex:15];
+    mLabCalrio.text = [mRealData objectAtIndex:8];
     int time=   abs([[mRealData objectAtIndex:4]intValue]*60-[[mRealData objectAtIndex:6]intValue]);// 已经使用时间 = 总时间4（单位：分钟） - 剩余时间6（单位：秒）
     
     mLabUserTime.text = [self timeStringWithNumber:time];
@@ -64,7 +68,7 @@
 // 当时间结束时 或者蓝牙断开连接时 提交数据
 -(void) submitData
 {
-    int time=   abs([[mRealData objectAtIndex:4]intValue]*60-[[mRealData objectAtIndex:6]intValue]);// 已经使用时间 = 总时间4（单位：分钟） - 剩余时间6（单位：秒）
+    int time=   abs([[mUploadData objectAtIndex:4]intValue]*60-[[mUploadData objectAtIndex:6]intValue]);// 已经使用时间 = 总时间4（单位：分钟） - 剩余时间6（单位：秒）
     
     NSDateFormatter * format = [[NSDateFormatter alloc]init];
     [format setDateFormat:@"yyyyMMdd"];
@@ -72,20 +76,20 @@
     NSMutableDictionary * dic = [[NSMutableDictionary alloc]init ];
     [dic setValue:SHEntironment.instance.userId forKey:@"userId"];
     //    [dic setValue:[format stringFromDate:[NSDate date]] forKey:@"dateTime"];
-    [dic setValue:[mRealData objectAtIndex:3] forKey:@"type"];// 模式
+    [dic setValue:[mUploadData objectAtIndex:3] forKey:@"type"];// 模式
     [dic setValue:[NSNumber numberWithInt:time] forKey:@"useTime"];// 使用时间
-    [dic setValue:[mRealData objectAtIndex:5] forKey:@"deviceFeq"];
+    [dic setValue:[mUploadData objectAtIndex:5] forKey:@"deviceFeq"];
     //     [dic setValue:[mRealData objectAtIndex:6] forKey:@""];// 运行剩余时间 s
-    [dic setValue:[NSNumber numberWithInt:[[mRealData objectAtIndex:7]intValue]*1000] forKey:@"weight"]; //传来kg去g
-    [dic setValue:[mRealData objectAtIndex:8] forKey:@"fat"];
-    [dic setValue:[mRealData objectAtIndex:9] forKey:@"muscle"];
-    [dic setValue:[mRealData objectAtIndex:10] forKey:@"visceralFat"];
-    [dic setValue:[mRealData objectAtIndex:11] forKey:@"basalMetabolism"];
-    [dic setValue:[mRealData objectAtIndex:12] forKey:@"water"];
-    [dic setValue:[mRealData objectAtIndex:13] forKey:@"protein"];
-    [dic setValue:[mRealData objectAtIndex:14] forKey:@"boneWeight"];
+    [dic setValue:[NSNumber numberWithInt:[[mUploadData objectAtIndex:7]intValue]*1000] forKey:@"weight"]; //传来kg去g
+//    [dic setValue:[mRealData objectAtIndex:8] forKey:@"fat"];
+//    [dic setValue:[mRealData objectAtIndex:9] forKey:@"muscle"];
+//    [dic setValue:[mRealData objectAtIndex:10] forKey:@"visceralFat"];
+//    [dic setValue:[mRealData objectAtIndex:11] forKey:@"basalMetabolism"];
+//    [dic setValue:[mRealData objectAtIndex:12] forKey:@"water"];
+//    [dic setValue:[mRealData objectAtIndex:13] forKey:@"protein"];
+//    [dic setValue:[mRealData objectAtIndex:14] forKey:@"boneWeight"];
     [dic setValue:mLabMusicTitle.text forKey:@"music"];//
-    [dic setValue:[mRealData objectAtIndex:15] forKey:@"calorie"];//
+    [dic setValue:[mUploadData objectAtIndex:8] forKey:@"calorie"];//
     
     SHPostTaskM * post = [[SHPostTaskM alloc]init];
     post.URL = URL_FOR(@"realTimeData.jhtml");
@@ -94,7 +98,7 @@
     
     [post start:^(SHTask *task) {
         [self dismissWaitDialog];
-        
+        isUpload = true;
         
     } taskWillTry:^(SHTask *task) {
         
@@ -102,6 +106,7 @@
         [self dismissWaitDialog];
 //        [task.respinfo show];
          [self showAlertDialog:task.respinfo.message];
+         isUpload = false;
     }];
     
 }

@@ -105,7 +105,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="userstyle" value="labmidlight"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="643-nJ-dn3">
+                        <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="643-nJ-dn3">
                             <rect key="frame" x="256" y="9" width="51" height="31"/>
                             <color key="onTintColor" red="0.36862745099999999" green="0.59215686270000001" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

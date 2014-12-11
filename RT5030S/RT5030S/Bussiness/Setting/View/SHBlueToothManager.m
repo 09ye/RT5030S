@@ -134,7 +134,7 @@ static SHBlueToothManager * _instance;
     if (!replace) {
         [_devices addObject:peripheral];
     }
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"auto_link_equ"]) {// 自动连接设备
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"auto_link_equ"]||[[NSUserDefaults standardUserDefaults] boolForKey:@"auto_link_equ"] ==nil) {// 自动连接设备
         [self connetPeripheral:peripheral connect:YES];
     }
 }
@@ -274,6 +274,11 @@ static SHBlueToothManager * _instance;
         }else if (i == 4) {//字节5 （低7位） 字节6（高7位） 运行剩余时间 单位秒
             NSString * tenL = [self two2ten:two  range:NSMakeRange(1, 7)];// 低7位
             NSString *hexStrH = [NSString stringWithFormat:@"%x",bytes[5]&0xff];
+            if([hexStrH length]==1)
+                hexStrH = [NSString stringWithFormat:@"0%@",hexStrH];
+            else
+                hexStrH = [NSString stringWithFormat:@"%@",hexStrH];
+
             NSString * twoH = [NSString stringWithFormat:@"%@0000000",[self hex2Binary:hexStrH]];
             NSString * tenH = [self two2ten:twoH  range:NSMakeRange(1, 14)];// 高7位
             NSString * vlaue = [NSString stringWithFormat:@"%d",tenH.intValue +tenL.intValue];
@@ -281,18 +286,26 @@ static SHBlueToothManager * _instance;
         }else if (i == 6) {//字节5 （低7位） 字节6（高7位） 体重0.1kg  单位秒
             NSString * tenL = [self two2ten:two  range:NSMakeRange(1, 7)];// 低7位
             NSString *hexStrH = [NSString stringWithFormat:@"%x",bytes[7]&0xff];
+            if([hexStrH length]==1)
+                hexStrH = [NSString stringWithFormat:@"0%@",hexStrH];
+            else
+                hexStrH = [NSString stringWithFormat:@"%@",hexStrH];
             NSString * twoH = [NSString stringWithFormat:@"%@0000000",[self hex2Binary:hexStrH]];
             NSString * tenH = [self two2ten:twoH  range:NSMakeRange(1, 14)];// 高7位
             NSString * value = [NSString stringWithFormat:@"%0.1f",((tenH.floatValue +tenL.floatValue)*0.1)];
             [array addObject:value];
-        }else if (i == 15) {//字节5 （低7位） 字节6（高7位） 消耗卡路里 单位秒
+        }else if (i == 8) {//字节5 （低7位） 字节6（高7位） 消耗卡路里 单位秒
             NSString * tenL = [self two2ten:two  range:NSMakeRange(1, 7)];// 低7位
-            NSString *hexStrH = [NSString stringWithFormat:@"%x",bytes[16]&0xff];
+            NSString *hexStrH = [NSString stringWithFormat:@"%x",bytes[9]&0xff];
+            if([hexStrH length]==1)
+                hexStrH = [NSString stringWithFormat:@"0%@",hexStrH];
+            else
+                hexStrH = [NSString stringWithFormat:@"%@",hexStrH];
             NSString * twoH = [NSString stringWithFormat:@"%@0000000",[self hex2Binary:hexStrH]];
             NSString * tenH = [self two2ten:twoH  range:NSMakeRange(1, 14)];// 高7位
             NSString * value = [NSString stringWithFormat:@"%d",tenH.integerValue +tenL.integerValue];
             [array addObject:value];
-        }else if(i != 5 && i != 7 && i != 16){
+        }else if(i != 5 && i != 7 && i != 9){
             [array addObject:ten];
         }
         
