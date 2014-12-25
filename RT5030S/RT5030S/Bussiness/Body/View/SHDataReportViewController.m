@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view from its nib.
     [imgPhoto setCircleStyle:nil];
     [imgPhoto setUrl: [[NSUserDefaults standardUserDefaults]objectForKey:USER_CENTER_PHOTO]];
-    mViewShare.shareContent = @"#数据报告#我在使用荣泰RT5030享秀派，看这是我们的数据报告，我在这里设定了我的目标，我每天都会测试和训练，你也来加入我们吧！ @荣泰健康科技官方微博";
+    mViewShare.shareContent = @"#数据报告#我在使用荣泰RT5030S享秀派，看这是我们的数据报告，我在这里设定了我的目标，我每天都会测试和训练，你也来加入我们吧！ @荣泰健康科技官方微博";
     self.title = @"数据报告";
     [self request];
     

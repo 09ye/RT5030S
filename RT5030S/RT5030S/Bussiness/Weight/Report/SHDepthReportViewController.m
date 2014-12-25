@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"深度报告";
-    mViewShare.shareContent = @"#阶段报告#我在使用荣泰RT5030享秀派，看这是我的阶段报告，在这里我可以检测体重和体质，你快来加入我们吧！ @荣泰健康科技官方微博";
+    mViewShare.shareContent = @"#阶段报告#我在使用荣泰RT5030S享秀派，看这是我的阶段报告，在这里我可以检测体重和体质，你快来加入我们吧！ @荣泰健康科技官方微博";
     [self request];
 }
 -(void) request

@@ -47,6 +47,9 @@
     [post start:^(SHTask *task ) {
         [self dismissWaitDialog];
         mResult = [[task result]mutableCopy];
+        if(mResult == nil){
+            mResult = [[NSMutableDictionary alloc]init];
+        }
         [self.tableView reloadData];
     } taskWillTry:^(SHTask *task) {
         
@@ -202,6 +205,7 @@
 }
 -(void)sexSelectViewControllerDidSelect:(SHSexSelectViewController *) controll sex:(NSString * )sex
 {
+   
     if ([sex isEqualToString:@"F"]) {
         [mResult setValue:@"F" forKey:@"gender"];
     }else{

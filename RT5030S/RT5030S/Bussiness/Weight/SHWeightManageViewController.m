@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"体重管理";
     self.view.backgroundColor = [UIColor whiteColor];
-    mViewShare.shareContent = @"#体重管理#我在使用荣泰RT5030享秀派，看这是我们的体重管理，我在这里设定了我的目标，我每天都会测试和训练，你也来加入我们吧！ @荣泰健康科技官方微博";
+    mViewShare.shareContent = @"#体重管理#我在使用荣泰RT5030S享秀派，看这是我们的体重管理，我在这里设定了我的目标，我每天都会测试和训练，你也来加入我们吧！ @荣泰健康科技官方微博";
     [self request];
 }
 -(void) request

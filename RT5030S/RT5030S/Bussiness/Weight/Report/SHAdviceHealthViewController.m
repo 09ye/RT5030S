@@ -18,14 +18,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     if ([[self.intent.args objectForKey:@"classType"] isEqualToString:@"1"]) {
-        self.title = @"远动方案";
-        mLabTitle.text = @"远动方案";
-        mViewShare.shareContent = @"#数据报告#我在使用荣泰RT5030享秀派，看这是我们的数据报告，我在这里设定了我的目标，我每天都会测试和训练，你也来加入我们吧！ @荣泰健康科技官方微博";
+        self.title = @"运动方案";
+        mLabTitle.text = @"运动方案";
+        mViewShare.shareContent = @"#数据报告#我在使用荣泰RT5030S享秀派，看这是我们的数据报告，我在这里设定了我的目标，我每天都会测试和训练，你也来加入我们吧！ @荣泰健康科技官方微博";
 
     }else{
         self.title = @"饮食建议";
         mLabTitle.text = @"饮食建议";
-        mViewShare.shareContent = @"#数据报告#我在使用荣泰RT5030享秀派，看这是我们的数据报告，我在这里设定了我的目标，我每天都会测试和训练，你也来加入我们吧！ @荣泰健康科技官方微博";
+        mViewShare.shareContent = @"#数据报告#我在使用荣泰RT5030S享秀派，看这是我们的数据报告，我在这里设定了我的目标，我每天都会测试和训练，你也来加入我们吧！ @荣泰健康科技官方微博";
     }
     
 }

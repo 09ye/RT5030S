@@ -41,7 +41,7 @@
         mLabWeight1.text = [NSString stringWithFormat:@"%dKg",[[myDic objectForKey:@"weight"]intValue]/1000];
         mLabFatRate1.text = [[myDic objectForKey:@"fat"]stringValue];
         mLabCalorie1.text = [NSString stringWithFormat:@"%@",[myDic objectForKey:@"calorie"]];
-    
+        
         mLabScore1.text = [[myDic objectForKey:@"score"]stringValue];
         
         NSDictionary * targetDic = [mResult objectForKey:@"target"];
@@ -50,16 +50,16 @@
         mLabWeight2.text = [NSString stringWithFormat:@"%dKg",[[targetDic objectForKey:@"weight"]intValue]/1000];
         mLabFatRate2.text = [[targetDic objectForKey:@"fat"]stringValue];
         mLabCalorie2.text = [NSString stringWithFormat:@"%@",[targetDic objectForKey:@"calorie"]];
-    
+        
         mLabScore2.text = [[targetDic objectForKey:@"score"]stringValue];
         
-  
+        
     } taskWillTry:^(SHTask *task) {
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-//        [task.respinfo show];
-         [self showAlertDialog:task.respinfo.message];
+        //        [task.respinfo show];
+        [self showAlertDialog:task.respinfo.message];
     }];
 }
 -(void) requestTarget
@@ -97,8 +97,8 @@
         
     } taskDidFailed:^(SHTask *task) {
         [self dismissWaitDialog];
-//        [task.respinfo show];
-         [self showAlertDialog:task.respinfo.message];
+        //        [task.respinfo show];
+        [self showAlertDialog:task.respinfo.message];
     }];
 }
 - (void)didReceiveMemoryWarning {
@@ -114,7 +114,10 @@
 - (IBAction)btnShareOntouch:(UIButton *)sender {
     NSString * content = @"#比一比#我在使用荣泰RT5030享秀派，看这是我跟好友的PK目标，你快来监督我们吧！ @荣泰健康科技官方微博";
     
-    WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:content];
+    WBMessageObject *message = [WBMessageObject message];
+    //    message.text=_sharedContent;
+    message.text = content;
+    WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:message];
     request.userInfo = @{@"ShareMessageFrom": @"SendMessageToWeiboViewController",
                          @"Other_Info_1": [NSNumber numberWithInt:123],
                          @"Other_Info_2": @[@"obj1", @"obj2"],
@@ -142,7 +145,7 @@
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:imgCricle2 cache:YES];
     switch (index) {
         case 0:
-
+            
             mLabDate2.text = @"今日";
             mLabFat1.text = @"脂肪";
             mLabFat2.text = @"脂肪";
@@ -157,7 +160,7 @@
             mLabFat2.text = @"卡路里";
             mViewOther.hidden = YES;
             mViewTarget.hidden = NO;
-
+            
             [self requestTarget];
             break;
             

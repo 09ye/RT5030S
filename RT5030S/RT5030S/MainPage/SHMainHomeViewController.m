@@ -30,7 +30,7 @@
     self.rightViewController = messageController;
 //    self.rightViewController = (SHViewController*)nacontroller;
      [super viewDidLoad];
-    self.title = @"ST5030";
+    self.title = @"RT5030S";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification:) name:NOTIFICATION_BACK_HOME object:nil];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"ic_home_left"] target:self action:@selector(btnLeftOntouch:)];
      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"nav_button_shezhi_default"] target:self action:@selector(btnRightOntouch:)];

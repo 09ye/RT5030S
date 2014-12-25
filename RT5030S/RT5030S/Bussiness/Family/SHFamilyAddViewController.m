@@ -52,9 +52,9 @@
      [dic setValue:mTxtName.text forKey:@"familyName"];
     [dic setValue:mTxtBrith forKey:@"birthday"];
     if ([mTxtSex.text isEqualToString:@"男"]) {
-        [dic setValue:@"F" forKey:@"gender"];
-    }else{
         [dic setValue:@"M" forKey:@"gender"];
+    }else{
+        [dic setValue:@"F" forKey:@"gender"];
     }
     [dic setValue:[NSNumber numberWithInt:[mTxtHeight.text integerValue]*10] forKey:@"height"];
      SHPostTaskM * post = [[SHPostTaskM alloc]init];
@@ -96,7 +96,7 @@
 }
 -(void)sexSelectViewControllerDidSelect:(SHSexSelectViewController *) controll sex:(NSString * )sex
 {
-    if ([sex isEqualToString:@"F"]) {
+    if ([sex isEqualToString:@"M"]) {
         mTxtSex.text = @"男";
     }else{
         mTxtSex.text = @"女";
